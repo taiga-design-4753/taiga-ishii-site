@@ -1,0 +1,4 @@
+# 公開前（〜2026/10/12 19:00 JST）だけ Coming soon を表示する。公開時にこのファイルと coming-soon/ を削除する。
+/coming-soon/*   /coming-soon/:splat   200!
+/img/hero.jpg    /img/hero.jpg         200!
+/*               /coming-soon/index.html   200!
