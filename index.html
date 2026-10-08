@@ -97,6 +97,12 @@ th{color:var(--orange);width:7em;font-weight:700;white-space:nowrap}
 .dl{font-size:13px;font-weight:700;color:var(--gray);text-align:right}
 .dl.up{color:#3ccf7a}.dl.down{color:#ff5a5a}
 .rrow[hidden],.ryear[hidden],.rhead[hidden],.rhint[hidden]{display:none}
+.toreport{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:32px;padding:20px 24px;border:1px solid #333;border-left:4px solid var(--orange);color:var(--white);text-decoration:none;transition:background .25s,border-color .25s}
+.toreport small{display:block;color:var(--orange);font-size:11px;font-weight:700;letter-spacing:.2em;margin-bottom:4px}
+.toreport span{font-size:15px;line-height:1.6}
+.toreport b{font-size:13px;letter-spacing:.08em;white-space:nowrap;padding:8px 18px;background:var(--orange);color:var(--black);transition:transform .25s}
+.toreport:hover{background:#151515;border-color:var(--orange)}
+.toreport:hover b{transform:translateX(4px)}
 .rhint{color:var(--gray);font-size:13px;letter-spacing:.06em;padding:14px 0;border-top:1px solid #2a2a2a}
 .rrow.pop,.ryear.pop{animation:pop .5s cubic-bezier(.2,.7,.2,1) both}
 @keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -446,6 +452,7 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
     <span class="rf"><small>決勝</small>7<span class="i">位</span></span><span class="dl">±0</span>
   </div>
   <p class="note">FIA-F4には、2026年の富士大会（第1・2戦）からフジタ薬局レーシング #47で参戦しています。<br>FJ1500の予選順位はクラス内の順位です。2024年日本一決定戦の予選・セミファイナルはA組内の順位で、ファイナルのグリッドはセミファイナルの結果で決まりました。<br>「グリッド」は、前のレースの結果などで決まったスタート位置です。▲▼は予選（グリッド）からの順位の上下を表します。</p>
+  <a class="toreport reveal" href="report/"><span><small>RACE REPORT</small>レースごとの振り返りは、レポートページで紹介しています</span><b>レポートを見る →</b></a>
 </section>
 
 <figure class="band reveal"><img src="img/band2.jpg" alt="マシンに乗り込む石井大雅" loading="lazy" style="object-position:45% 8%"></figure>
