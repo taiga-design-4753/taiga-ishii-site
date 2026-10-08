@@ -82,6 +82,20 @@ main{max-width:1100px;margin:0 auto;padding:40px 5vw 90px}
 .next h2{font-size:22px;font-weight:900;margin:6px 0}
 .next p{color:var(--gray)}
 .next a{display:inline-block;margin-top:16px;background:var(--orange);color:var(--black);font-weight:700;letter-spacing:.08em;padding:10px 22px;border-radius:999px}
+/* CONTACT（トップページと同じ） */
+.contact{text-align:center;background:var(--orange);color:var(--black);padding:80px 5vw}
+.contact h2{font-size:clamp(26px,4vw,40px);font-weight:900;font-style:italic;letter-spacing:.1em;margin-bottom:36px}
+.contact h2::after{content:"";display:block;width:60px;height:4px;background:var(--black);margin:10px auto 0;transform:scaleX(0);transform-origin:center;transition:transform .9s cubic-bezier(.2,.7,.2,1) .2s}
+.contact h2.in::after,.still .contact h2::after{transform:scaleX(1)}
+.contact p{margin-bottom:24px;font-weight:600}
+.contact .mail{border-bottom:2px solid var(--black);padding-bottom:2px}
+.contact .follow{margin:44px 0 16px;font-size:12px;letter-spacing:.3em}
+.sns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px}
+.sns a{display:flex;align-items:center;gap:12px;width:min(100%,270px);box-sizing:border-box;padding:14px 22px;background:var(--black);color:var(--white);text-decoration:none;border-radius:999px;transition:transform .25s,box-shadow .25s}
+.sns a:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.sns svg{width:22px;height:22px;flex:none}
+.sns b{font-size:14px;letter-spacing:.06em}
+.sns span{font-size:12px;color:var(--gray);margin-left:auto}
 footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
 
 /* ふわっと出てくる演出（トップページと同じ） */
@@ -111,7 +125,7 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
 <body>
 <header>
   <a href="../" class="logo">TAIGA <span>ISHII</span></a>
-  <nav><a href="../#profile">PROFILE</a><a href="../#results">RESULTS</a><a href="./" class="on">REPORT</a><a href="../#schedule">SCHEDULE</a><a href="../#contact">CONTACT</a></nav>
+  <nav><a href="../#profile">PROFILE</a><a href="../#results">RESULTS</a><a href="./" class="on">REPORT</a><a href="../#schedule">SCHEDULE</a><a href="#contact">CONTACT</a></nav>
 </header>
 
 <div class="top-wrap">
@@ -373,6 +387,18 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
   <p class="srcnote">2024・2025年のレポートは、モータースポーツフォーラムに掲載されたレース後のコメントをもとに要約しています。</p>
 
 </main>
+
+<section class="contact" id="contact">
+  <h2 class="reveal">CONTACT</h2>
+  <p class="reveal">取材のご依頼、スポンサーのご相談、応援メッセージは、お気軽にこちらへどうぞ。</p>
+  <p class="reveal" style="font-size:18px"><a class="mail" href="mailto:taiga10racing@gmail.com">taiga10racing@gmail.com</a></p>
+  <p class="follow reveal">FOLLOW</p>
+  <div class="sns reveal">
+    <a href="https://x.com/T_Ishii_10" data-sns="x" target="_blank" rel="noopener" aria-label="Xを見る"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><b>X</b><span>@T_Ishii_10</span></a>
+    <a href="https://www.instagram.com/taiga.ishii20/" data-sns="ig" target="_blank" rel="noopener" aria-label="Instagramを見る"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg><b>Instagram</b><span>@taiga.ishii20</span></a>
+    <a href="https://www.youtube.com/@石井大雅-x6b" data-sns="yt" target="_blank" rel="noopener" aria-label="YouTubeを見る"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6z"/></svg><b>YouTube</b><span>@石井大雅-x6b</span></a>
+  </div>
+</section>
 
 <footer>© Taiga Ishii Racing</footer>
 
