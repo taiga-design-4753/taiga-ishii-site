@@ -120,23 +120,32 @@ th{color:var(--orange);width:7em;font-weight:700;white-space:nowrap}
 .card h3{margin:4px 0 6px;font-size:18px}
 .card p{color:var(--gray)}
 
-/* GALLERY：横スクロールバーで動かす */
-.gallery-sec{max-width:none;padding-left:0;padding-right:0}
-.gallery-sec h2{max-width:1100px;margin:0 auto 36px;padding:0 5vw}
-.track{position:relative;display:flex;gap:12px;padding:0 max(5vw,calc(50vw - 550px + 5vw));overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 max(5vw,calc(50vw - 550px + 5vw));scrollbar-width:none;cursor:grab}
-.track::-webkit-scrollbar{display:none}
-.track.drag{cursor:grabbing;scroll-snap-type:none}
-.track div{height:clamp(170px,22vw,330px);aspect-ratio:3/2;overflow:hidden;flex:none;scroll-snap-align:start}
-.track div.tall{aspect-ratio:3/4}
-.track img{transition:transform .6s;pointer-events:none;user-select:none}
-.track div:hover img{transform:scale(1.05)}
-.gbar{display:flex;align-items:center;gap:16px;max-width:1100px;margin:28px auto 0;padding:0 5vw}
-.gbar button{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid #444;background:var(--dark);color:var(--white);font-size:18px;cursor:pointer;transition:background .2s,border-color .2s}
-.gbar .gplay{font-size:13px;letter-spacing:-1px}
-.gbar button:hover{background:var(--orange);border-color:var(--orange);color:var(--black)}
-.gbar input{flex:1;-webkit-appearance:none;appearance:none;height:4px;background:#333;border-radius:2px;cursor:pointer;background-image:linear-gradient(var(--orange),var(--orange));background-size:var(--fill,0%) 100%;background-repeat:no-repeat}
-.gbar input::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--orange);border:3px solid var(--black);box-shadow:0 0 0 2px var(--orange)}
-.gbar input::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--orange);border:3px solid var(--black);box-shadow:0 0 0 2px var(--orange)}
+/* GALLERY：グリッド。3秒ごとに3枚ずつ入れ替わる。カテゴリ切り替え・拡大表示つき */
+.gallery-sec h2{margin-bottom:28px}
+.gtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.gtabs button{background:none;border:1px solid #444;color:var(--white);padding:6px 14px;font:700 12px/1.6 inherit;letter-spacing:.1em;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s}
+.gtabs button:hover{border-color:var(--orange)}
+.gtabs button.on{background:var(--orange);border-color:var(--orange);color:var(--black)}
+.gtabs em{font-style:normal;font-weight:400;opacity:.7;margin-left:5px}
+.ggrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ggrid .ph{all:unset;position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:var(--dark);cursor:zoom-in}
+.ggrid .ph[hidden]{display:none}
+.ggrid .ph:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.ggrid .ph img{position:absolute;inset:0;transition:opacity 1.4s ease,transform .6s}
+.ggrid .ph img.fade{opacity:0}
+.ggrid .ph:hover img{transform:scale(1.05)}
+.gbar{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:24px}
+.gbar .gplay{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid #444;background:var(--dark);color:var(--white);font-size:13px;letter-spacing:-1px;cursor:pointer;transition:background-color .2s,border-color .2s}
+.gbar .gplay:hover{background:var(--orange);border-color:var(--orange);color:var(--black)}
+.gbar .gall{background:none;border:1px solid var(--orange);color:var(--white);padding:10px 26px;font:700 13px/1.6 inherit;letter-spacing:.12em;cursor:pointer;transition:background-color .2s,color .2s}
+.gbar .gall:hover{background:var(--orange);color:var(--black)}
+.gallery-sec.all .gplay{display:none}
+.glb{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(56px + env(safe-area-inset-top,0px)) 12px calc(24px + env(safe-area-inset-bottom,0px))}
+.glb[hidden]{display:none}
+.glb img{max-width:100%;max-height:calc(100% - 40px);object-fit:contain;width:auto;height:auto}
+.glb p{color:#ddd;font-size:13px;margin:10px 0 0;text-align:center}
+.glb button{position:absolute;width:44px;height:44px;border-radius:50%;border:1px solid #555;background:rgba(255,255,255,.08);color:#fff;font-size:18px;cursor:pointer}
+.glb .x{top:calc(12px + env(safe-area-inset-top,0px));right:12px}.glb .p{left:12px;top:50%}.glb .n{right:12px;top:50%}
 
 .sponsor{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
 .sponsor div{border:1px dashed #444;padding:30px 10px;text-align:center;color:var(--gray);font-size:13px}
@@ -156,7 +165,7 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
 .contact .mail{border-bottom:2px solid var(--black);padding-bottom:2px}
 /* 2024・2025年を選んだときは、オレンジをロゴの青に切り替える（2026年はオレンジのまま。CONTACT欄は青地に白文字） */
 html.blue{--orange:#2456D8;--hi:rgba(36,86,216,.26);--hi2:rgba(36,86,216,.12)}
-html.blue .filters button.on,html.blue .toreport b,html.blue .tag.fj,html.blue .gbar button:hover{color:var(--white)}
+html.blue .filters button.on,html.blue .toreport b,html.blue .tag.fj,html.blue .gbar button:hover,html.blue .gtabs button.on{color:var(--white)}
 html.blue .contact{color:var(--white)}
 html.blue .contact h2::after{background:var(--white)}
 html.blue .contact .mail{border-bottom-color:var(--white)}
@@ -165,7 +174,7 @@ header,.filters button,.contact,.contact .mail{transition:border-color .4s,backg
 .psns a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.35);border-radius:50%;color:var(--white);transition:background .2s,border-color .2s,transform .2s}
 .psns a:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-2px)}
 .psns svg{width:19px;height:19px}
-@media(max-width:720px){.gbar button[data-dir]{display:none}th{font-size:13px;padding:12px 6px 12px 4px}header{gap:12px}nav{gap:12px;font-size:11px;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 85%,transparent)}nav::-webkit-scrollbar{display:none}.profile{grid-template-columns:1fr}.logo svg{height:26px}.track div{height:38vw}}
+@media(max-width:720px){th{font-size:13px;padding:12px 6px 12px 4px}header{gap:12px}nav{gap:12px;font-size:11px;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 85%,transparent)}nav::-webkit-scrollbar{display:none}.profile{grid-template-columns:1fr}.logo svg{height:26px}.ggrid{grid-template-columns:repeat(2,1fr);gap:6px}}
 
 /* 動きを減らす設定の人には演出なしで表示 */
 .still .hero-wrap,.still .statement-wrap{height:auto!important}
@@ -503,75 +512,77 @@ header,.filters button,.contact,.contact .mail{transition:border-color .4s,backg
 
 <section class="gallery-sec" id="gallery">
   <h2 class="reveal">GALLERY</h2>
-  <div class="track reveal">
-    <div><img src="img/p2.jpg" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g47.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g30.jpg" alt="F110 CUPを走る石井大雅（#8）" loading="lazy"></div>
-    <div><img src="gal/g48.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g33.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="img/p1.jpg" alt="FJ1500を走る石井大雅（#52）" loading="lazy"></div>
-    <div><img src="gal/g49.jpg" alt="" loading="lazy"></div>
-    <div><img src="img/p6.jpg" alt="FIA-F4でバトルする石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g50.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g34.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g51.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g26.jpg" alt="ヘルメットを持ってパドックを歩く石井大雅" loading="lazy"></div>
-    <div><img src="gal/g52.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g31.jpg" alt="FJ1500を走る石井大雅（#52）" loading="lazy"></div>
-    <div><img src="gal/g53.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g35.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g54.jpg" alt="" loading="lazy"></div>
-    <div><img src="img/p4.jpg" alt="FIA-F4のコックピットに座る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g55.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g36.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g56.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g21.jpg" alt="コックピットで出走を待つ石井大雅" loading="lazy"></div>
-    <div><img src="gal/g57.jpg" alt="" loading="lazy"></div>
-    <div class="tall"><img src="gal/g46.jpg" alt="スーパーFJのコックピットに座る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g58.jpg" alt="" loading="lazy"></div>
-    <div><img src="img/p3.jpg" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g59.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g37.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g32.jpg" alt="F110 CUPを走る石井大雅（#8）" loading="lazy"></div>
-    <div><img src="gal/g38.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g27.jpg" alt="ピットでレーシングスーツを着る石井大雅" loading="lazy"></div>
-    <div><img src="gal/g39.jpg" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g07.jpg" alt="スーパーFJのコックピットに座る石井大雅" loading="lazy"></div>
-    <div class="tall"><img src="gal/g40.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></div>
-    <div><img src="gal/g60.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g18.jpg" alt="パドックでチームと話す石井大雅" loading="lazy"></div>
-    <div><img src="gal/g06.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g61.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g44.jpg" alt="スーパーFJでバトルする石井大雅" loading="lazy"></div>
-    <div><img src="gal/g29.jpg" alt="スーパーFJで集団の先頭を走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g62.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g08.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g19.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g63.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g43.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g23.jpg" alt="スタート前のグリッドで準備する石井大雅" loading="lazy"></div>
-    <div><img src="gal/g17.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g64.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g09.jpg" alt="スーパーFJの集団の中を走る石井大雅" loading="lazy"></div>
-    <div><img src="gal/g24.jpg" alt="スーパーFJのレース序盤の集団" loading="lazy"></div>
-    <div><img src="gal/g65.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g45.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g14.jpg" alt="スーパーFJの集団の中を走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g66.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g04.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g16.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g67.jpg" alt="" loading="lazy"></div>
-    <div><img src="gal/g42.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g20.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></div>
-    <div><img src="gal/g15.jpg" alt="スーパーFJのマシンに乗り込んだ石井大雅" loading="lazy"></div>
+  <div class="gtabs reveal" role="group" aria-label="写真のカテゴリ">
+    <button type="button" data-c="all" class="on">ALL</button><button type="button" data-c="f4">FIA-F4</button><button type="button" data-c="fj">FJ1500 / F110</button><button type="button" data-c="sfj">SUPER FJ</button><button type="button" data-c="off">OFF TRACK</button>
+  </div>
+  <div class="ggrid reveal">
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/p2.jpg" data-full="img/p2.jpg" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g47.jpg" data-full="gal/g47.jpg" alt="F110 CUPのコックピットに座る石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="fj"><img src="gal/t/g30.jpg" data-full="gal/g30.jpg" alt="F110 CUPを走る石井大雅（#8）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g48.jpg" data-full="gal/g48.jpg" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g33.jpg" data-full="gal/g33.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="fj"><img src="gal/t/p1.jpg" data-full="img/p1.jpg" alt="FJ1500を走る石井大雅（#52）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g49.jpg" data-full="gal/g49.jpg" alt="笑顔でポーズをとる石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/p6.jpg" data-full="img/p6.jpg" alt="FIA-F4でバトルする石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="fj"><img src="gal/t/g50.jpg" data-full="gal/g50.jpg" alt="F110 CUPでバトルする石井大雅（#8）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g34.jpg" data-full="gal/g34.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g51.jpg" data-full="gal/g51.jpg" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g26.jpg" data-full="gal/g26.jpg" alt="ヘルメットを持ってパドックを歩く石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g52.jpg" data-full="gal/g52.jpg" alt="ピットで笑顔を見せる石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="fj"><img src="gal/t/g31.jpg" data-full="gal/g31.jpg" alt="FJ1500を走る石井大雅（#52）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g53.jpg" data-full="gal/g53.jpg" alt="FIA-F4でバトルする石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g35.jpg" data-full="gal/g35.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g54.jpg" data-full="gal/g54.jpg" alt="グリッドで応援してくれるファン" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/p4.jpg" data-full="img/p4.jpg" alt="FIA-F4のコックピットに座る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g55.jpg" data-full="gal/g55.jpg" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g36.jpg" data-full="gal/g36.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g56.jpg" data-full="gal/g56.jpg" alt="スーパーFJのマシンに乗り込む石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g21.jpg" data-full="gal/g21.jpg" alt="コックピットで出走を待つ石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g57.jpg" data-full="gal/g57.jpg" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g46.jpg" data-full="gal/g46.jpg" alt="スーパーFJのコックピットに座る石井大雅（#53）" loading="lazy" style="object-position:50% 30%"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g58.jpg" data-full="gal/g58.jpg" alt="雨のFIA-F4の隊列" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/p3.jpg" data-full="img/p3.jpg" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g59.jpg" data-full="gal/g59.jpg" alt="ピットでスーパーFJのマシンに乗り込む石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g37.jpg" data-full="gal/g37.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="fj"><img src="gal/t/g32.jpg" data-full="gal/g32.jpg" alt="F110 CUPを走る石井大雅（#8）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g38.jpg" data-full="gal/g38.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g27.jpg" data-full="gal/g27.jpg" alt="ピットでレーシングスーツを着る石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g39.jpg" data-full="gal/g39.jpg" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g07.jpg" data-full="gal/g07.jpg" alt="スーパーFJのコックピットに座る石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="f4"><img src="gal/t/g40.jpg" data-full="gal/g40.jpg" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy" style="object-position:50% 30%"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g60.jpg" data-full="gal/g60.jpg" alt="ファーストガレージのスーパーFJ 3台" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g18.jpg" data-full="gal/g18.jpg" alt="パドックでチームと話す石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g06.jpg" data-full="gal/g06.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g61.jpg" data-full="gal/g61.jpg" alt="鈴鹿の観覧車を背にスーパーFJを走る石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g44.jpg" data-full="gal/g44.jpg" alt="スーパーFJでバトルする石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g29.jpg" data-full="gal/g29.jpg" alt="スーパーFJで集団の先頭を走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g62.jpg" data-full="gal/g62.jpg" alt="雨のスーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g08.jpg" data-full="gal/g08.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g19.jpg" data-full="gal/g19.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g63.jpg" data-full="gal/g63.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g43.jpg" data-full="gal/g43.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g23.jpg" data-full="gal/g23.jpg" alt="スタート前のグリッドで準備する石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g17.jpg" data-full="gal/g17.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g64.jpg" data-full="gal/g64.jpg" alt="雨のスーパーFJでバトルする石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g09.jpg" data-full="gal/g09.jpg" alt="スーパーFJの集団の中を走る石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g24.jpg" data-full="gal/g24.jpg" alt="スーパーFJのレース序盤の集団" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g65.jpg" data-full="gal/g65.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g45.jpg" data-full="gal/g45.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g14.jpg" data-full="gal/g14.jpg" alt="スーパーFJの集団の中を走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g66.jpg" data-full="gal/g66.jpg" alt="雨のスーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g04.jpg" data-full="gal/g04.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g16.jpg" data-full="gal/g16.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g67.jpg" data-full="gal/g67.jpg" alt="雨のスーパーFJを走る石井大雅" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g42.jpg" data-full="gal/g42.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="sfj"><img src="gal/t/g20.jpg" data-full="gal/g20.jpg" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
+    <button type="button" class="ph" data-c="off"><img src="gal/t/g15.jpg" data-full="gal/g15.jpg" alt="スーパーFJのマシンに乗り込んだ石井大雅" loading="lazy"></button>
   </div>
   <div class="gbar reveal">
-    <button type="button" data-dir="-1" aria-label="前の写真">&#8592;</button>
-    <input type="range" min="0" max="1000" value="0" aria-label="ギャラリーを横に動かす">
-    <button type="button" data-dir="1" aria-label="次の写真">&#8594;</button>
-    <button type="button" class="gplay" aria-label="自動再生を一時停止">&#10074;&#10074;</button>
+    <button type="button" class="gplay" aria-label="自動の入れ替えを一時停止">&#10074;&#10074;</button>
+    <button type="button" class="gall">すべて見る</button>
   </div>
 </section>
+<div class="glb" hidden><button type="button" class="x" aria-label="閉じる">&#10005;</button><button type="button" class="p" aria-label="前の写真">&#8592;</button><img alt=""><p></p><button type="button" class="n" aria-label="次の写真">&#8594;</button></div>
 
 <section class="contact" id="contact">
   <h2 class="reveal">CONTACT</h2>
@@ -622,71 +633,90 @@ header,.filters button,.contact,.contact .mail{transition:border-color .4s,backg
     }, { threshold: .15, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(function(el){ io.observe(el); });
   }
-  // ギャラリー：バー・矢印・ドラッグで横に動かす
-  var track = document.querySelector('.track');
-  var bar = document.querySelector('.gbar input');
-  function maxX(){ return track.scrollWidth - track.clientWidth; }
-  function syncBar(){
-    var v = maxX() > 0 ? track.scrollLeft / maxX() : 0;
-    bar.value = Math.round(v * 1000);
-    bar.style.setProperty('--fill', (v * 100) + '%');
+  // ギャラリー：12枚（スマホは6枚）を並べ、3秒ごとに3枚ずつ入れ替える。カテゴリ切り替え・すべて見る・拡大表示
+  var gsec = document.querySelector('.gallery-sec');
+  var grid = gsec.querySelector('.ggrid');
+  var gplay = gsec.querySelector('.gplay'), gall = gsec.querySelector('.gall');
+  var tabs = gsec.querySelectorAll('.gtabs button');
+  var phs = Array.prototype.slice.call(grid.querySelectorAll('.ph'));
+  var photos = phs.map(function(b){ var im = b.querySelector('img'); return { c: b.dataset.c, t: im.getAttribute('src'), f: im.dataset.full, a: im.alt, pos: im.getAttribute('style') || '' }; });
+  tabs.forEach(function(b){ var c = b.dataset.c, n = c === 'all' ? photos.length : photos.filter(function(p){ return p.c === c; }).length; b.insertAdjacentHTML('beforeend', '<em>' + n + '</em>'); });
+  var gcat = 'all', list = [], slots = [], queue = [], lastSlots = [], showAll = false;
+  var gplaying = !still, ghover = false, gvisible = false, gtimer = null;
+  function slotCount(){ return matchMedia('(max-width:720px)').matches ? 6 : 12; }
+  function setPh(b, i, fade){
+    var p = list[i], old = b.querySelector('img'), im = document.createElement('img');
+    im.src = p.t; im.alt = p.a; if (p.pos) im.setAttribute('style', p.pos);
+    b.dataset.i = i; b.setAttribute('aria-label', p.a + '（拡大）');
+    if (!fade || !old) { b.innerHTML = ''; b.appendChild(im); return; }
+    im.className = 'fade';
+    im.onload = function(){ b.appendChild(im); requestAnimationFrame(function(){ requestAnimationFrame(function(){ im.className = ''; }); }); setTimeout(function(){ if (old.parentNode === b) b.removeChild(old); }, 1500); };
   }
-  track.addEventListener('scroll', syncBar, { passive: true });
-  bar.addEventListener('input', function(){
-    track.style.scrollSnapType = 'none';
-    track.scrollLeft = bar.value / 1000 * maxX();
-    bar.style.setProperty('--fill', (bar.value / 10) + '%');
-  });
-  bar.addEventListener('change', function(){ track.style.scrollSnapType = ''; });
-  var cards = track.children;
-  var pad = function(){ return parseFloat(getComputedStyle(track).paddingLeft) || 0; };
-  // dir=1 で次の写真、-1 で前の写真へ（端まで行ったら反対側の端へ戻る）
-  function go(dir){
-    var x = track.scrollLeft, target = null, i;
-    if (dir > 0) {
-      if (x >= maxX() - 2) { target = 0; }
-      else for (i = 0; i < cards.length; i++) { var l = cards[i].offsetLeft - pad(); if (l > x + 2) { target = l; break; } }
-    } else {
-      if (x <= 2) { target = maxX(); }
-      else for (i = cards.length - 1; i >= 0; i--) { var l2 = cards[i].offsetLeft - pad(); if (l2 < x - 2) { target = l2; break; } }
-    }
-    if (target === null) target = dir > 0 ? maxX() : 0;
-    track.scrollTo({ left: Math.min(target, maxX()), behavior: still ? 'auto' : 'smooth' });
+  function gRender(){
+    list = gcat === 'all' ? photos : photos.filter(function(p){ return p.c === gcat; });
+    var n = showAll ? list.length : Math.min(slotCount(), list.length);
+    slots = []; queue = []; lastSlots = [];
+    for (var i = 0; i < list.length; i++) (i < n ? slots : queue).push(i);
+    phs.forEach(function(b, k){ b.hidden = k >= n; if (k < n) setPh(b, slots[k], false); });
+    gsec.classList.toggle('all', showAll);
+    gall.textContent = showAll ? '閉じる' : 'すべて見る（' + list.length + '枚）';
+    gall.hidden = !showAll && list.length <= n;
   }
-  document.querySelectorAll('.gbar button[data-dir]').forEach(function(b){
-    b.addEventListener('click', function(){ go(+b.dataset.dir); restart(); });
-  });
-  var dragX = null, startLeft = 0;
-  track.addEventListener('pointerdown', function(e){
-    if (e.pointerType !== 'mouse') return;
-    dragX = e.clientX; startLeft = track.scrollLeft; track.classList.add('drag');
-  });
-  addEventListener('pointermove', function(e){ if (dragX !== null) track.scrollLeft = startLeft - (e.clientX - dragX); });
-  addEventListener('pointerup', function(){ if (dragX !== null) { dragX = null; track.classList.remove('drag'); } });
-
-  // 自動で流す：見えている間だけ3秒ごとに次の写真へ。触っている間は止める
-  var play = document.querySelector('.gplay');
-  var playing = !still, hover = false, touching = false, visible = false, timer = null;
-  function tick(){ if (playing && !hover && !touching && dragX === null && visible && !document.hidden) go(1); }
-  function restart(){ clearInterval(timer); timer = setInterval(tick, 3000); }
-  function setPlay(on){
-    playing = on;
-    play.innerHTML = on ? '&#10074;&#10074;' : '&#9654;';
-    play.setAttribute('aria-label', on ? '自動再生を一時停止' : '自動再生を再開');
-    restart();
+  function swap(){
+    if (showAll || !gplaying || ghover || !gvisible || document.hidden || !glb.hidden || !queue.length) return;
+    var idx = [];
+    for (var s = 0; s < slots.length; s++) if (lastSlots.indexOf(s) < 0) idx.push(s);
+    idx.sort(function(){ return Math.random() - .5; });
+    idx = idx.slice(0, Math.min(3, queue.length)); lastSlots = idx;
+    idx.forEach(function(s, k){
+      var ni = queue.shift(); queue.push(slots[s]); slots[s] = ni;
+      setTimeout(function(){ setPh(phs[s], ni, true); }, k * 450);
+    });
   }
-  play.addEventListener('click', function(){ setPlay(!playing); });
-  track.addEventListener('mouseenter', function(){ hover = true; });
-  track.addEventListener('mouseleave', function(){ hover = false; restart(); });
-  track.addEventListener('touchstart', function(){ touching = true; }, { passive: true });
-  track.addEventListener('touchend', function(){ touching = false; restart(); }, { passive: true });
-  bar.addEventListener('input', restart);
+  function gSetPlay(on){
+    gplaying = on;
+    gplay.innerHTML = on ? '&#10074;&#10074;' : '&#9654;';
+    gplay.setAttribute('aria-label', on ? '自動の入れ替えを一時停止' : '自動の入れ替えを再開');
+  }
+  gplay.addEventListener('click', function(){ gSetPlay(!gplaying); });
+  gall.addEventListener('click', function(){
+    showAll = !showAll; gRender();
+    if (!showAll) gsec.scrollIntoView({ behavior: still ? 'auto' : 'smooth' });
+  });
+  tabs.forEach(function(b){ b.addEventListener('click', function(){
+    gcat = b.dataset.c; tabs.forEach(function(x){ x.classList.toggle('on', x === b); }); gRender();
+  }); });
+  grid.addEventListener('mouseenter', function(){ ghover = true; });
+  grid.addEventListener('mouseleave', function(){ ghover = false; });
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function(es){ visible = es[0].isIntersecting; }, { threshold: .3 }).observe(track);
-  } else { visible = true; }
-  setPlay(playing);
-  addEventListener('resize', syncBar);
-  syncBar();
+    new IntersectionObserver(function(es){ gvisible = es[0].isIntersecting; }, { threshold: .3 }).observe(grid);
+  } else { gvisible = true; }
+  var lastN = slotCount();
+  addEventListener('resize', function(){ if (slotCount() !== lastN) { lastN = slotCount(); gRender(); } });
+  gSetPlay(gplaying); gRender();
+  gtimer = setInterval(swap, 3000);
+
+  // 拡大表示（左右ボタン・スワイプ・矢印キーでめくる）
+  var glb = document.querySelector('.glb'), glbImg = glb.querySelector('img'), glbCap = glb.querySelector('p'), gcur = 0, glbFrom = null;
+  function lbShow(){ var p = list[gcur]; glbImg.src = p.f; glbImg.alt = p.a; glbCap.textContent = p.a + '　' + (gcur + 1) + ' / ' + list.length; }
+  function lbStep(d){ gcur = (gcur + d + list.length) % list.length; lbShow(); }
+  function lbClose(){ glb.hidden = true; document.body.style.overflow = ''; if (glbFrom) glbFrom.focus(); }
+  grid.addEventListener('click', function(e){
+    var b = e.target.closest('.ph'); if (!b) return;
+    gcur = +b.dataset.i; glbFrom = b; lbShow(); glb.hidden = false; document.body.style.overflow = 'hidden'; glb.querySelector('.x').focus();
+  });
+  glb.addEventListener('click', function(e){
+    if (e.target.closest('.n')) lbStep(1);
+    else if (e.target.closest('.p')) lbStep(-1);
+    else if (e.target.closest('.x') || e.target === glb) lbClose();
+  });
+  var glbX = null;
+  glb.addEventListener('touchstart', function(e){ glbX = e.touches[0].clientX; }, { passive: true });
+  glb.addEventListener('touchend', function(e){ if (glbX === null) return; var d = e.changedTouches[0].clientX - glbX; glbX = null; if (Math.abs(d) > 40) lbStep(d < 0 ? 1 : -1); });
+  addEventListener('keydown', function(e){
+    if (glb.hidden) return;
+    if (e.key === 'Escape') lbClose(); else if (e.key === 'ArrowRight') lbStep(1); else if (e.key === 'ArrowLeft') lbStep(-1);
+  });
 
   // リザルトの年切り替え（年ボタンで開く・同じボタンで閉じる）
   var current = null;
