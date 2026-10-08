@@ -9,7 +9,7 @@
 <meta property="og:title" content="Taiga Ishii Racing">
 <meta property="og:description" content="SIMレース出身のフォーミュラレーサー、石井大雅（#47）の公式サイト。FIA-F4・FJ1500・F110 CUPに参戦中。プロフィール、リザルト、レーススケジュールを掲載。">
 <style>
-:root{color-scheme:dark;--orange:#ff6a00;--black:#0b0b0b;--dark:#151515;--white:#fff;--gray:#a8a8a8}
+:root{color-scheme:dark;--orange:#ff6a00;--hi:rgba(255,106,0,.18);--hi2:rgba(255,106,0,.08);--black:#0b0b0b;--dark:#151515;--white:#fff;--gray:#a8a8a8}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{word-break:auto-phrase;background:var(--black);padding-inline:0;color:var(--white);font-family:"Helvetica Neue",Arial,"Hiragino Sans","Yu Gothic",sans-serif;line-height:1.8;overflow-x:clip}
@@ -79,8 +79,8 @@ th{color:var(--orange);width:7em;font-weight:700;white-space:nowrap}
 .ryear{font-size:22px;font-weight:900;font-style:italic;color:var(--orange);letter-spacing:.08em;margin:28px 0 8px}
 .rrow{padding:14px 16px;border-bottom:1px solid #222;transition:background .2s}
 .rrow:hover{background:#141414}
-.rrow.win{background:linear-gradient(90deg,rgba(255,106,0,.18),transparent 70%);border-left:3px solid var(--orange)}
-.rrow.pod{background:linear-gradient(90deg,rgba(255,106,0,.08),transparent 70%)}
+.rrow.win{background:linear-gradient(90deg,var(--hi),transparent 70%);border-left:3px solid var(--orange)}
+.rrow.pod{background:linear-gradient(90deg,var(--hi2),transparent 70%)}
 .rdate{color:var(--gray);font-size:14px;font-variant-numeric:tabular-nums}
 .rrace{font-size:15px;line-height:1.5}
 .rrace em{font-style:normal;color:var(--gray);font-size:13px;margin-left:8px;display:inline-block}
@@ -154,6 +154,13 @@ th{color:var(--orange);width:7em;font-weight:700;white-space:nowrap}
 .contact .follow{margin:44px 0 16px;font-size:12px;letter-spacing:.3em}
 footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
 .contact .mail{border-bottom:2px solid var(--black);padding-bottom:2px}
+/* 2024・2025年を選んだときは、オレンジをロゴの青に切り替える（2026年はオレンジのまま。CONTACT欄は青地に白文字） */
+html.blue{--orange:#2456D8;--hi:rgba(36,86,216,.26);--hi2:rgba(36,86,216,.12)}
+html.blue .filters button.on,html.blue .toreport b,html.blue .tag.fj,html.blue .gbar button:hover{color:var(--white)}
+html.blue .contact{color:var(--white)}
+html.blue .contact h2::after{background:var(--white)}
+html.blue .contact .mail{border-bottom-color:var(--white)}
+header,.filters button,.contact,.contact .mail{transition:border-color .4s,background-color .4s,color .4s}
 .psns{display:flex;flex-wrap:wrap;gap:10px}
 .psns a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.35);border-radius:50%;color:var(--white);transition:background .2s,border-color .2s,transform .2s}
 .psns a:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-2px)}
@@ -672,6 +679,7 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
     });
     document.querySelector('.rhead').hidden = !y;
     document.querySelector('.rhint').hidden = !!y;
+    document.documentElement.classList.toggle('blue', y === '2024' || y === '2025');
   }
   document.querySelectorAll('.filters button').forEach(function(b){
     b.addEventListener('click', function(){
@@ -680,7 +688,10 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
       applyFilter(current);
     });
   });
-  applyFilter(null);
+  // 最初は2026年を表示
+  current = '2026';
+  document.querySelector('.filters button[data-f="2026"]').classList.add('on');
+  applyFilter(current);
 
   if (still) return;
 
