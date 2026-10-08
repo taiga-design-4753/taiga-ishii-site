@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Taiga Ishii Racing</title>
+<link rel="icon" href="logo/ti-mark-small.svg" type="image/svg+xml">
 <meta name="description" content="SIMレース出身のフォーミュラレーサー、石井大雅（#47）の公式サイト。FIA-F4・FJ1500・F110 CUPに参戦中。プロフィール、リザルト、レーススケジュールを掲載。">
 <meta property="og:title" content="Taiga Ishii Racing">
 <meta property="og:description" content="SIMレース出身のフォーミュラレーサー、石井大雅（#47）の公式サイト。FIA-F4・FJ1500・F110 CUPに参戦中。プロフィール、リザルト、レーススケジュールを掲載。">
@@ -15,8 +16,8 @@ body{word-break:auto-phrase;background:var(--black);padding-inline:0;color:var(-
 a{color:inherit;text-decoration:none}
 img{display:block;width:100%;height:100%;object-fit:cover}
 header{position:fixed;top:0;padding-top:calc(14px + env(safe-area-inset-top,0px))!important;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(11,11,11,.7);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:2px solid var(--orange)}
-.logo{white-space:nowrap;font-weight:900;letter-spacing:.12em;font-style:italic}
-.logo span{color:var(--orange)}
+.logo{display:block;line-height:0;flex:none}
+.logo svg{height:34px;width:auto;display:block}
 nav{display:flex;gap:20px;font-size:13px;letter-spacing:.1em}
 nav a:hover{color:var(--orange)}
 [id]{scroll-margin-top:70px}
@@ -157,7 +158,7 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
 .psns a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.35);border-radius:50%;color:var(--white);transition:background .2s,border-color .2s,transform .2s}
 .psns a:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-2px)}
 .psns svg{width:19px;height:19px}
-@media(max-width:720px){.gbar button[data-dir]{display:none}th{font-size:13px;padding:12px 6px 12px 4px}header{gap:12px}nav{gap:12px;font-size:11px;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 85%,transparent)}nav::-webkit-scrollbar{display:none}.profile{grid-template-columns:1fr}.logo{font-size:14px}.track div{height:38vw}}
+@media(max-width:720px){.gbar button[data-dir]{display:none}th{font-size:13px;padding:12px 6px 12px 4px}header{gap:12px}nav{gap:12px;font-size:11px;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 85%,transparent)}nav::-webkit-scrollbar{display:none}.profile{grid-template-columns:1fr}.logo svg{height:26px}.track div{height:38vw}}
 
 /* 動きを減らす設定の人には演出なしで表示 */
 .still .hero-wrap,.still .statement-wrap{height:auto!important}
@@ -171,7 +172,33 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
 </head>
 <body>
 <header>
-  <a href="#top" class="logo">TAIGA <span>ISHII</span></a>
+  <a href="#top" class="logo" aria-label="TAIGA ISHII トップへ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
+  <polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/>
+  <polygon points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/>
+  <polygon points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/>
+  <polygon points="3.6,82 147.6,82 147.3,83.5 3.3,83.5" fill="#FF6A00"/>
+  <polygon points="29,17 103,17 102,22 28,22" fill="#F5F7FA"/>
+  <polygon points="43,26 101,26 100,31 42,31" fill="#F5F7FA"/>
+  <polygon points="63,31 78,31 68,82 53,82" fill="#F5F7FA"/>
+  <polygon points="109,17 124,17 114,82 99,82" fill="#F5F7FA"/>
+  <g transform="translate(200,22) skewX(-11.31)">
+    <g fill="#F5F7FA">
+      <path transform="translate(0,0)" d="M0 0H28V7H17.5V40H10.5V7H0Z"/>
+      <path transform="translate(34,0)" fill-rule="evenodd" d="M0 40V6L6 0H28V40H21V27H7V40Z M7 7H21V20H7Z"/>
+      <path transform="translate(68,0)" d="M0 0H7V40H0Z"/>
+      <path transform="translate(81,0)" d="M28 0H6L0 6V40H28V18H14V25H21V33H7V7H28Z"/>
+      <path transform="translate(115,0)" fill-rule="evenodd" d="M0 40V6L6 0H28V40H21V27H7V40Z M7 7H21V20H7Z"/>
+    </g>
+    <g fill="#2456D8">
+      <path transform="translate(157,0)" d="M0 0H7V40H0Z"/>
+      <path transform="translate(170,0)" d="M28 0H6L0 6V23H21V33H0V40H22L28 34V16H7V7H28Z"/>
+      <path transform="translate(204,0)" d="M0 0H7V16.5H21V0H28V40H21V23.5H7V40H0Z"/>
+      <path transform="translate(238,0)" d="M0 0H7V40H0Z"/>
+      <path transform="translate(251,0)" d="M0 0H7V40H0Z"/>
+    </g>
+  </g>
+  <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
+</svg></a>
   <nav><a href="#profile">PROFILE</a><a href="#results">RESULTS</a><a href="report/">REPORT</a><a href="#schedule">SCHEDULE</a><a href="#gallery">GALLERY</a><a href="#contact">CONTACT</a></nav>
 </header>
 
