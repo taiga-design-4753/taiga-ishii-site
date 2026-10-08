@@ -36,9 +36,15 @@ nav a:hover,nav a.on{color:var(--orange)}
 .top p{max-width:640px;font-size:15px;color:#ddd}
 
 main{max-width:1100px;margin:0 auto;padding:40px 5vw 90px}
-.index{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:56px}
-.index a{border:1px solid #444;padding:6px 14px;font-size:12px;font-weight:700;letter-spacing:.08em;transition:background .2s,border-color .2s,color .2s}
-.index a:hover{background:var(--orange);border-color:var(--orange);color:var(--black)}
+/* 年ボタン（トップページのリザルトと同じ） */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filters button{background:none;border:1px solid #444;color:var(--white);padding:6px 16px;font:700 12px/1.6 inherit;letter-spacing:.12em;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.filters button:hover{border-color:var(--orange)}
+.filters button.on{background:var(--orange);border-color:var(--orange);color:var(--black)}
+.rhint{color:var(--gray);font-size:13px;letter-spacing:.06em;padding:14px 0;border-top:1px solid #2a2a2a}
+.yblock[hidden],.rhint[hidden]{display:none}
+.pop{animation:pop .5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 .rp{display:grid;grid-template-columns:5fr 6fr;gap:40px;padding:56px 0;border-top:1px solid #2a2a2a}
 .yr+.rp,.yr+.rs{border-top:none;padding-top:8px}
@@ -147,10 +153,12 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
     <p>筑波サーキットで開催されます。現地での応援をよろしくお願いします！</p>
     <a href="../#schedule">スケジュールを見る</a>
   </div>
-  <nav class="index" aria-label="年ごとのレポート">
-    <a href="#y2026">2026</a><a href="#y2025">2025</a><a href="#y2024">2024</a>
-  </nav>
+  <div class="filters reveal" role="tablist" aria-label="年ごとのレポート">
+    <button type="button" data-f="2026">2026</button><button type="button" data-f="2025">2025</button><button type="button" data-f="2024">2024</button>
+  </div>
+  <p class="rhint" hidden>年を選ぶと、その年のレポートが表示されます</p>
 
+  <div class="yblock" data-y="2026">
   <h2 class="yr reveal" id="y2026">2026</h2>
 
   <article class="rp" id="r20260927">
@@ -214,7 +222,9 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
       <p>第5戦は20番手から2つ順位を上げて18位でフィニッシュし、第6戦は16番手からスタートして22位でフィニッシュしました。</p>
     </div>
   </article>
+  </div>
 
+  <div class="yblock" data-y="2025" hidden>
   <h2 class="yr reveal" id="y2025">2025</h2>
   <article class="rs reveal">
     <div class="date">2025.12.21 SUN</div>
@@ -294,6 +304,10 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
     <p>8番手から4つ順位を上げ、4位でフィニッシュしました。スタートを決めて3位に迫る場面もありました。終盤は後続との攻防となりましたが、最終ラップまで順位を保ち、「しっかり守り切れてよかった」と振り返りました。</p>
     <a class="src" href="https://www.fmotor.jp/2025-super-fj-round-1-motegi-final-drivers-comments" target="_blank" rel="noopener">モータースポーツフォーラムの記事を読む</a>
   </article>
+  <p class="srcnote">このレポートは、モータースポーツフォーラムに掲載されたレース後のコメントをもとに要約しています。</p>
+  </div>
+
+  <div class="yblock" data-y="2024" hidden>
   <h2 class="yr reveal" id="y2024">2024</h2>
   <article class="rs reveal">
     <div class="date">2024.10.27 SUN</div>
@@ -383,8 +397,8 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
     <p>スタートで出遅れ、最後尾から追い上げる展開となりました。焦らず落ち着いて走り、多くのマシンを抜いて4位まで挽回しました。決勝ではファステストラップも記録し、自信につなげたいと話しました。</p>
     <a class="src" href="https://www.fmotor.jp/2024-super-fj-rd2-fuji-final-drivers-comments" target="_blank" rel="noopener">モータースポーツフォーラムの記事を読む</a>
   </article>
-
-  <p class="srcnote">2024・2025年のレポートは、モータースポーツフォーラムに掲載されたレース後のコメントをもとに要約しています。</p>
+  <p class="srcnote">このレポートは、モータースポーツフォーラムに掲載されたレース後のコメントをもとに要約しています。</p>
+  </div>
 
 </main>
 
@@ -421,6 +435,36 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
     }, { threshold: .15, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(function(el){ io.observe(el); });
   }
+
+  // 年の切り替え（年ボタンで開く・同じボタンで閉じる）
+  var current = null;
+  function applyFilter(y){
+    document.querySelectorAll('.yblock').forEach(function(blk){
+      var show = blk.dataset.y === y;
+      blk.hidden = !show;
+      if (!show) return;
+      var i = 0;
+      blk.querySelectorAll('.reveal').forEach(function(el){
+        el.style.transitionDelay = '0ms';
+        el.classList.add('in');
+        el.classList.remove('pop');
+        if (!still && el.matches('.yr, .rp, .rs')) { void el.offsetWidth; el.style.animationDelay = Math.min(i++, 12) * 60 + 'ms'; el.classList.add('pop'); }
+      });
+    });
+    document.querySelector('.rhint').hidden = !!y;
+  }
+  document.querySelectorAll('.filters button').forEach(function(b){
+    b.addEventListener('click', function(){
+      current = current === b.dataset.f ? null : b.dataset.f;
+      document.querySelectorAll('.filters button').forEach(function(x){ x.classList.toggle('on', x.dataset.f === current); });
+      applyFilter(current);
+    });
+  });
+  // 最初は2026年を表示
+  current = '2026';
+  document.querySelector('.filters button[data-f="2026"]').classList.add('on');
+  applyFilter(current);
+
   if (still) return;
 
   // トップ写真：スクロールでズームアウトし、文字が浮き上がって消える
