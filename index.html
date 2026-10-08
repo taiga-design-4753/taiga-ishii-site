@@ -31,9 +31,43 @@ nav a:hover{color:var(--orange)}
 .hero img{position:absolute;inset:0;z-index:0;transform:scale(1.25);filter:brightness(.6);will-change:transform,filter}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,transparent 60%)}
 .hero-text{position:relative;z-index:1;will-change:transform,opacity}
-.num{color:var(--orange);font-size:clamp(60px,14vw,160px);font-weight:900;font-style:italic;line-height:1}
 .hero h1{font-size:clamp(32px,7vw,72px);font-weight:900;letter-spacing:.08em;line-height:1.2}
 .hero p{color:var(--gray);letter-spacing:.25em;font-size:13px;margin-top:10px}
+/* HEROのTIロゴ：初回だけ黒い画面で組み上がり、写真の左下へ移る（transformとopacityだけで動かす） */
+.hlogo{display:block;width:min(78vw,620px);line-height:0}
+.hlogo svg{display:block;width:100%;height:auto;overflow:visible}
+.hlogo .lt,.hlogo .st,.hlogo .mk,.hlogo .tl,.hlogo .ul{transform-box:fill-box}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero .hsub{margin-top:14px}
+.hlogo .sweep{transform:translateX(-200px);animation:sweep 1s 1s ease-in-out both,sweep 1s 7s ease-in-out infinite}
+@keyframes sweep{from{transform:translateX(-200px)}to{transform:translateX(560px)}}
+.cover{display:none}
+html.op .cover{display:block;position:absolute;z-index:3;top:0;bottom:0;left:-30%;width:160%;background:var(--black);transform:skewX(-14deg);animation:wipe .8s 1.9s cubic-bezier(.65,0,.25,1) forwards;pointer-events:none}
+html.op .cover::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;animation:grow .5s cubic-bezier(.7,0,.2,1) forwards,fade .3s .5s forwards}
+html.op .hero-text{z-index:4}
+html.op header,html.op .hint{animation:fadein .5s 2.4s both}
+html.op .hero img{animation:zoomin 1.6s 1.9s cubic-bezier(.2,.8,.2,1) both}
+html.op .hlogo svg{transform-origin:0 0;animation:toplace .8s 1.9s cubic-bezier(.65,0,.2,1) both}
+html.op .hlogo .mk{animation:slidein .45s .35s cubic-bezier(.2,.8,.2,1) both}
+html.op .hlogo .st{transform-origin:left;animation:grow .35s .6s cubic-bezier(.2,.8,.2,1) both}
+html.op .hlogo .st2{animation-delay:.67s}html.op .hlogo .st3{animation-delay:.74s}
+html.op .hlogo .tl{animation:tipop .3s .7s ease-out both}
+html.op .hlogo .lt{animation:letter .35s cubic-bezier(.2,.8,.2,1) both}
+html.op .hlogo .ul{transform-origin:left;animation:grow .4s 1.55s cubic-bezier(.2,.8,.2,1) both}
+html.op .hsub{animation:fadein .5s 2.6s both}
+html.op .hlogo .sweep{animation-delay:2.9s,7s}
+html.skip .cover{display:none!important}
+html.skip header,html.skip .hint,html.skip .hero img,html.skip .hsub,html.skip .hlogo svg,html.skip .hlogo :not(.sweep){animation:none!important}
+@keyframes wipe{to{transform:translateX(110%) skewX(-14deg)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fade{to{opacity:0}}
+@keyframes fadein{from{opacity:0}}
+@keyframes zoomin{from{transform:scale(1.45)}}
+@keyframes toplace{from{transform:translate(var(--dx),var(--dy)) scale(var(--s))}}
+@keyframes slidein{from{transform:translateX(-140%) skewX(-20deg);opacity:0}}
+@keyframes tipop{from{opacity:0;transform:translateY(8px)}}
+@keyframes letter{from{opacity:0;transform:translateX(-30px)}}
+.still .hlogo .sweep{animation:none}
 .hint{position:absolute;z-index:1;left:50%;bottom:24px;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;color:var(--gray);text-align:center}
 .hint::after{content:"";display:block;width:1px;height:28px;background:var(--orange);margin:6px auto 0;animation:drop 1.6s ease-in-out infinite}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
@@ -225,13 +259,55 @@ header,.filters button,.contact,.contact .mail{transition:border-color .4s,backg
   <div class="hero">
     <img src="img/hero.jpg" alt="石井大雅 #47" style="object-position:45% 50%">
     <div class="hero-text">
-      <div class="num">#47</div>
-      <h1>石井大雅</h1>
-      <p>FORMULA RACING DRIVER</p>
+      <h1 class="hlogo"><span class="sr">石井大雅（TAIGA ISHII）</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
+        <defs><linearGradient id="hShine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="hMk"><polygon points="20,0 164,0 144,100 0,100"/></clipPath></defs>
+        <polygon class="mk" points="20,0 164,0 144,100 0,100" fill="#2456D8"/>
+        <g clip-path="url(#hMk)"><g transform="skewX(-20)"><rect class="sweep" x="0" y="-20" width="70" height="140" fill="url(#hShine)"/></g></g>
+        <polygon class="st" points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/>
+        <polygon class="st st2" points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/>
+        <polygon class="st st3" points="3.6,82 147.6,82 147.3,83.5 3.3,83.5" fill="#FF6A00"/>
+        <g class="tl" fill="#F5F7FA"><polygon points="29,17 103,17 102,22 28,22"/><polygon points="43,26 101,26 100,31 42,31"/><polygon points="63,31 78,31 68,82 53,82"/><polygon points="109,17 124,17 114,82 99,82"/></g>
+        <g transform="translate(200,22) skewX(-11.31)">
+          <g fill="#F5F7FA">
+            <g class="lt" style="animation-delay:.9s"><path d="M0 0H28V7H17.5V40H10.5V7H0Z"/></g>
+            <g class="lt" style="animation-delay:.96s"><path transform="translate(34,0)" fill-rule="evenodd" d="M0 40V6L6 0H28V40H21V27H7V40Z M7 7H21V20H7Z"/></g>
+            <g class="lt" style="animation-delay:1.02s"><path transform="translate(68,0)" d="M0 0H7V40H0Z"/></g>
+            <g class="lt" style="animation-delay:1.08s"><path transform="translate(81,0)" d="M28 0H6L0 6V40H28V18H14V25H21V33H7V7H28Z"/></g>
+            <g class="lt" style="animation-delay:1.14s"><path transform="translate(115,0)" fill-rule="evenodd" d="M0 40V6L6 0H28V40H21V27H7V40Z M7 7H21V20H7Z"/></g>
+          </g>
+          <g fill="#2456D8">
+            <g class="lt" style="animation-delay:1.2s"><path transform="translate(157,0)" d="M0 0H7V40H0Z"/></g>
+            <g class="lt" style="animation-delay:1.26s"><path transform="translate(170,0)" d="M28 0H6L0 6V23H21V33H0V40H22L28 34V16H7V7H28Z"/></g>
+            <g class="lt" style="animation-delay:1.32s"><path transform="translate(204,0)" d="M0 0H7V16.5H21V0H28V40H21V23.5H7V40H0Z"/></g>
+            <g class="lt" style="animation-delay:1.38s"><path transform="translate(238,0)" d="M0 0H7V40H0Z"/></g>
+            <g class="lt" style="animation-delay:1.44s"><path transform="translate(251,0)" d="M0 0H7V40H0Z"/></g>
+          </g>
+        </g>
+        <polygon class="ul" points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
+      </svg></h1>
+      <p class="hsub">#47　FORMULA RACING DRIVER</p>
     </div>
+    <div class="cover" aria-hidden="true"></div>
     <div class="hint">SCROLL</div>
   </div>
 </div>
+<script>
+(function(){
+  var d = document.documentElement, seen = false;
+  try { seen = sessionStorage.getItem('tiIntro') === '1'; sessionStorage.setItem('tiIntro', '1'); } catch (e) {}
+  if (seen || location.hash || matchMedia('(prefers-reduced-motion: reduce)').matches || scrollY > 0) return;
+  var svg = document.querySelector('.hlogo svg'), r = svg.getBoundingClientRect();
+  var tw = Math.min(innerWidth * .72, 560), k = tw / r.width;
+  svg.style.setProperty('--dx', ((innerWidth - tw) / 2 - r.left) + 'px');
+  svg.style.setProperty('--dy', ((innerHeight - r.height * k) / 2 - r.top) + 'px');
+  svg.style.setProperty('--s', k);
+  d.classList.add('op');
+  function skip(){ d.classList.add('skip'); off(); }
+  function off(){ ['pointerdown','wheel','keydown','touchstart'].forEach(function(t){ removeEventListener(t, skip); }); }
+  ['pointerdown','wheel','keydown','touchstart'].forEach(function(t){ addEventListener(t, skip, { passive: true }); });
+  setTimeout(off, 3000);
+})();
+</script>
 
 <div class="statement-wrap">
   <div class="statement">
