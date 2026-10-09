@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SUPPORT | 石井大雅 | Taiga Ishii Racing</title>
+<link rel="icon" href="../logo/ti-mark-small.svg" type="image/svg+xml">
+<meta name="description" content="石井大雅（#47）の個人スポンサー募集。1口3,000円から、マシンにあなたの名前を乗せて一緒に戦ってください。">
+<style>
+:root{color-scheme:dark;--orange:#ff6a00;--black:#0b0b0b;--dark:#151515;--white:#fff;--gray:#a8a8a8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{word-break:auto-phrase;background:var(--black);color:var(--white);font-family:"Helvetica Neue",Arial,"Hiragino Sans","Yu Gothic",sans-serif;line-height:1.8;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+header{position:fixed;top:0;padding-top:calc(14px + env(safe-area-inset-top,0px))!important;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(11,11,11,.7);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:2px solid var(--orange)}
+.logo{display:block;line-height:0;flex:none}
+.logo svg{height:34px;width:auto;display:block}
+nav{display:flex;gap:20px;font-size:13px;letter-spacing:.1em}
+nav a:hover,nav a.on{color:var(--orange)}
+.head{max-width:760px;margin:0 auto;padding:150px 5vw 36px}
+.head small{color:var(--orange);letter-spacing:.3em;font-size:12px;font-weight:700}
+.head h1{font-size:clamp(40px,8vw,72px);font-weight:900;font-style:italic;letter-spacing:.08em;line-height:1.1;margin:6px 0 18px}
+.head h1::after{content:"";display:block;width:60px;height:4px;background:var(--orange);margin-top:14px}
+.head p{color:#ddd;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:0 5vw 100px}
+/* フォーム */
+form{display:grid;gap:26px}
+.f label,.f legend{display:block;font-size:14px;font-weight:700;letter-spacing:.04em;margin-bottom:8px}
+.f em{font-style:normal;font-size:11px;font-weight:700;padding:1px 7px;margin-left:8px;border-radius:2px;vertical-align:1px;background:var(--orange);color:#000}
+.f em.opt{background:#333;color:#ccc}
+fieldset{border:none}
+input[type=text],input[type=email],textarea{width:100%;font:inherit;font-size:16px;color:var(--white);background:var(--dark);border:1px solid #3a3a3a;border-radius:6px;padding:13px 14px;transition:border-color .2s,box-shadow .2s}
+textarea{min-height:190px;resize:vertical;line-height:1.7}
+input:focus,textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,106,0,.25)}
+::placeholder{color:#666}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.types label{margin:0;font-weight:600;font-size:14px;display:flex;align-items:center;gap:10px;padding:14px 14px;background:var(--dark);border:1px solid #3a3a3a;border-radius:6px;cursor:pointer;transition:border-color .2s,background .2s}
+.types input{accent-color:var(--orange);width:18px;height:18px;flex:none}
+.types label:has(input:checked){border-color:var(--orange);background:rgba(255,106,0,.12)}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.agree input{accent-color:var(--orange);width:18px;height:18px;margin-top:4px;flex:none}
+.agree a,.txt a{color:var(--orange);border-bottom:1px solid var(--orange)}
+.hp{position:absolute;left:-9999px}
+.send{justify-self:center;display:inline-flex;align-items:center;gap:12px;font:inherit;font-weight:900;font-size:16px;letter-spacing:.12em;color:#000;background:var(--orange);border:none;border-radius:999px;padding:16px 56px;cursor:pointer;transition:transform .25s,box-shadow .25s}
+.send:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(255,106,0,.35)}
+.note{color:var(--gray);font-size:13px;text-align:center}
+/* お礼・ポリシー */
+.txt h2{font-size:17px;font-weight:900;margin:34px 0 8px;padding-left:12px;border-left:4px solid var(--orange)}
+.txt p,.txt li{font-size:15px;color:#ddd}
+.txt ul{padding-left:1.4em}
+.txt .date{margin-top:40px;color:var(--gray);font-size:13px}
+.back{display:inline-flex;margin-top:36px;padding:14px 34px;border-radius:999px;background:var(--white);color:#000;font-weight:900;letter-spacing:.1em;font-size:14px}
+footer{text-align:center;padding:30px;color:var(--gray);font-size:12px;border-top:1px solid #1f1f1f}
+footer a{margin-left:14px}
+footer a:hover{color:var(--orange)}
+@media(max-width:720px){
+ header{gap:12px}.logo svg{height:26px}
+ nav{gap:12px;font-size:11px;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 85%,transparent)}nav::-webkit-scrollbar{display:none}
+ .head{padding-top:120px}
+ .types{grid-template-columns:1fr}
+ .send{width:100%;justify-content:center}
+}
+/* 支援ページ */
+.lead{font-size:clamp(18px,3.4vw,24px);font-weight:900;line-height:1.7;margin:4px 0 18px}
+.lead span{color:var(--orange)}
+section{margin:0 0 64px}
+section>h2{font-size:22px;font-weight:900;font-style:italic;letter-spacing:.08em;margin-bottom:18px}
+section>h2 small{display:block;font-size:11px;font-style:normal;color:var(--orange);letter-spacing:.3em}
+.plans{display:grid;gap:14px}
+.plan{background:var(--dark);border:1px solid #2a2a2a;border-left:4px solid var(--orange);border-radius:8px;padding:20px 22px}
+.plan.top{border:1px solid var(--orange);border-left-width:4px;background:linear-gradient(135deg,rgba(255,106,0,.14),var(--dark) 60%)}
+.plan h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;font-size:18px;font-weight:900;margin-bottom:8px}
+.plan h3 b{font-size:24px;color:var(--orange);font-style:italic}
+.plan h3 i{font-style:normal;font-size:12px;color:var(--gray);font-weight:600}
+.plan ul{padding-left:1.3em;font-size:14px;color:#ddd}
+.plan .plus{font-size:12px;color:var(--gray);margin-bottom:4px}
+.flow{counter-reset:s;list-style:none;display:grid;gap:10px}
+.flow li{counter-increment:s;position:relative;padding:14px 16px 14px 56px;background:var(--dark);border-radius:8px;font-size:14px;color:#ddd}
+.flow li::before{content:counter(s);position:absolute;left:16px;top:12px;width:28px;height:28px;border-radius:50%;background:var(--orange);color:#000;font-weight:900;display:grid;place-items:center;font-size:14px}
+.uses{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.uses li{padding:6px 14px;border:1px solid #3a3a3a;border-radius:999px;font-size:13px}
+.board{background:var(--dark);border-radius:8px;padding:26px;text-align:center;color:var(--gray);font-size:14px}
+select,input[type=tel]{width:100%;font:inherit;font-size:16px;color:var(--white);background:var(--dark);border:1px solid #3a3a3a;border-radius:6px;padding:13px 14px}
+select:focus,input[type=tel]:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,106,0,.25)}
+.total{margin-top:10px;font-size:15px}.total b{color:var(--orange);font-size:20px;margin-left:6px}
+.hint{font-size:12px;color:var(--gray);margin-top:6px}
+.small{font-size:13px;color:var(--gray)}
+</style>
+</head>
+<body>
+<header>
+  <a href="../" class="logo" aria-label="TAIGA ISHII トップへ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
+  <polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/>
+  <polygon points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/>
+  <polygon points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/>
+  <polygon points="3.6,82 147.6,82 147.3,83.5 3.3,83.5" fill="#FF6A00"/>
+  <polygon points="29,17 103,17 102,22 28,22" fill="#F5F7FA"/>
+  <polygon points="43,26 101,26 100,31 42,31" fill="#F5F7FA"/>
+  <polygon points="63,31 78,31 68,82 53,82" fill="#F5F7FA"/>
+  <polygon points="109,17 124,17 114,82 99,82" fill="#F5F7FA"/>
+  <g transform="translate(200,22) skewX(-11.31)">
+    <g fill="#F5F7FA">
+      <path transform="translate(0,0)" d="M0 0H28V7H17.5V40H10.5V7H0Z"/>
+      <path transform="translate(34,0)" fill-rule="evenodd" d="M0 40V6L6 0H28V40H21V27H7V40Z M7 7H21V20H7Z"/>
+      <path transform="translate(68,0)" d="M0 0H7V40H0Z"/>
+      <path transform="translate(81,0)" d="M28 0H6L0 6V40H28V18H14V25H21V33H7V7H28Z"/>
+      <path transform="translate(115,0)" fill-rule="evenodd" d="M0 40V6L6 0H28V40H21V27H7V40Z M7 7H21V20H7Z"/>
+    </g>
+    <g fill="#2456D8">
+      <path transform="translate(157,0)" d="M0 0H7V40H0Z"/>
+      <path transform="translate(170,0)" d="M28 0H6L0 6V23H21V33H0V40H22L28 34V16H7V7H28Z"/>
+      <path transform="translate(204,0)" d="M0 0H7V16.5H21V0H28V40H21V23.5H7V40H0Z"/>
+      <path transform="translate(238,0)" d="M0 0H7V40H0Z"/>
+      <path transform="translate(251,0)" d="M0 0H7V40H0Z"/>
+    </g>
+  </g>
+  <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
+</svg></a>
+
+  <nav><a href="../#profile">PROFILE</a><a href="../#results">RESULTS</a><a href="../report/">REPORT</a><a href="../#schedule">SCHEDULE</a><a href="./" class="on">SUPPORT</a><a href="../#contact">CONTACT</a></nav>
+</header>
+<div class="head">
+  <small>PERSONAL SPONSOR</small>
+  <h1>SUPPORT</h1>
+  <p class="lead">SIMレースから始まった夢を、本物のサーキットで。<br><span>ル・マンへの道を、一緒に走ってください。</span></p>
+  <p>石井大雅の個人スポンサーを募集しています。1口3,000円から、何口でもお申し込みいただけます。支援してくださった方のお名前は、マシンに貼るステッカーとこのページに掲載し、一緒にサーキットを走ります。</p>
+</div>
+<main>
+<section>
+  <h2><small>PLAN</small>支援プラン</h2>
+  <div class="plans">
+    <div class="plan"><h3>1口から<b>3,000円〜</b></h3>
+      <ul><li>マシンの連名ステッカー「TAIGA SUPPORTERS」にお名前を掲載</li><li>このページの支援者ボードにお名前を掲載（ニックネーム可・掲載なしも可）</li><li>レースの前と後に、メールでご報告</li></ul></div>
+    <div class="plan"><h3>4口から<b>12,000円〜</b></h3>
+      <p class="plus">1口の特典に加えて</p>
+      <ul><li>サイン入りドライバーズカード</li><li>オリジナルステッカー</li></ul></div>
+    <div class="plan"><h3>10口から<b>30,000円〜</b></h3>
+      <p class="plus">4口の特典に加えて</p>
+      <ul><li>マシンにあなた個人のお名前ステッカー</li><li>サーキットでのピット・パドックのご案内（パスを用意できる範囲で）</li></ul></div>
+    <div class="plan top"><h3>限定プラン<b>100,000円</b><i>3名様限定</i></h3>
+      <p class="plus">10口の特典に加えて</p>
+      <ul><li>マシンに大きなお名前ステッカー</li><li>ゲストパス（用意できる範囲で）</li></ul></div>
+  </div>
+  <p class="small" style="margin-top:14px">支援期間：お申し込みから2027年シーズン終了まで（2026年の残りのレースにもお名前を掲載します）。</p>
+</section>
+<section>
+  <h2><small>USE</small>支援金の使い道</h2>
+  <ul class="uses"><li>タイヤ代</li><li>車両のメンテナンス・パーツ</li><li>燃料費</li><li>エントリー費</li><li>テスト走行</li><li>サーキットへの移動・宿泊</li></ul>
+  <p class="small" style="margin-top:12px">いただいた支援金は、すべてレース活動に使います。</p>
+</section>
+<section>
+  <h2><small>FLOW</small>お申し込みの流れ</h2>
+  <ol class="flow">
+    <li>下のフォームから、口数とお名前をお送りください。</li>
+    <li>振込先をメールでお知らせします。お振込みをお願いします（振込手数料はご負担ください）。</li>
+    <li>入金を確認したら、ステッカーと特典の準備を始め、お名前を掲載します。</li>
+  </ol>
+</section>
+<section>
+  <h2><small>SUPPORTERS</small>支援者ボード</h2>
+  <div class="board">支援してくださった方のお名前を、ここに掲載します。</div>
+</section>
+<section id="form">
+  <h2><small>APPLY</small>お申し込みフォーム</h2>
+<form name="support" method="POST" action="/support/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+  <p class="hp"><label>入力しないでください<input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+  <div class="f"><label for="units">口数<em>必須</em></label>
+    <select id="units" name="units" required>
+      <option value="">選択してください</option>
+    </select>
+    <p class="total">お支払い金額<b id="total">—</b></p></div>
+  <div class="f"><label for="name">お名前<em>必須</em></label><input type="text" id="name" name="name" autocomplete="name" required placeholder="例）石井 太郎"></div>
+  <div class="f"><label for="nick">掲載するお名前<em class="opt">任意</em></label><input type="text" id="nick" name="display_name" maxlength="15" placeholder="例）タロウ（15文字まで）"><p class="hint">ステッカーと支援者ボードに載せるお名前です。空欄の場合は掲載しません。</p></div>
+  <div class="f"><label for="email">メールアドレス<em>必須</em></label><input type="email" id="email" name="email" autocomplete="email" required placeholder="例）name@example.com"></div>
+  <div class="f"><label for="addr">ご住所<em class="opt">4口以上は必須</em></label><textarea id="addr" name="address" autocomplete="street-address" style="min-height:90px" placeholder="〒000-0000 都道府県 市区町村 番地 建物名"></textarea><p class="hint">特典の発送にのみ使います。</p></div>
+  <div class="f"><label for="msg">応援メッセージ<em class="opt">任意</em></label><textarea id="msg" name="message" style="min-height:120px"></textarea></div>
+  <label class="agree"><input type="checkbox" name="agree" value="同意する" required><span><a href="../privacy/" target="_blank">プライバシーポリシー</a>に同意する</span></label>
+  <button class="send" type="submit">申し込む</button>
+  <p class="note">お申し込み後、振込先をメールでお知らせします。<br>入金後のキャンセル・返金はお受けできません。</p>
+</form>
+<script>
+(function(){
+  var s=document.getElementById('units'),t=document.getElementById('total'),a=document.getElementById('addr');
+  for(var i=1;i<=30;i++){var o=document.createElement('option');o.value=i+'口';o.textContent=i+'口（'+(i*3000).toLocaleString()+'円）';s.appendChild(o)}
+  var o=document.createElement('option');o.value='限定プラン';o.textContent='限定プラン（100,000円・3名様限定）';s.appendChild(o);
+  s.addEventListener('change',function(){
+    var v=s.value,n=v==='限定プラン'?100000:parseInt(v,10)*3000;
+    t.textContent=v?n.toLocaleString()+'円':'—';
+    a.required=!!v&&(v==='限定プラン'||parseInt(v,10)>=4);
+  });
+})();
+</script>
+</section>
+</main>
+<footer>© Taiga Ishii Racing<a href="../privacy/">プライバシーポリシー</a></footer>
+</body>
+</html>
