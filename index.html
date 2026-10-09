@@ -168,7 +168,7 @@ th{color:var(--orange);width:7em;font-weight:700;white-space:nowrap}
 .card h3{margin:4px 0 6px;font-size:18px}
 .card p{color:var(--gray)}
 
-/* GALLERY：グリッド。3秒ごとに3枚ずつ入れ替わる。カテゴリ切り替え・拡大表示つき */
+/* GALLERY：グリッド。5.5秒ごとに3枚ずつ入れ替わる。カテゴリ切り替え・拡大表示つき */
 .gallery-sec h2{margin-bottom:28px}
 .gtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .gtabs button{background:none;border:1px solid #444;color:var(--white);padding:6px 14px;font:inherit;font-weight:700;font-size:12px;line-height:1.6;letter-spacing:.1em;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s}
@@ -236,6 +236,20 @@ header,.filters button,.contact,.contact .mail{transition:border-color .4s,backg
 .still .hero img{transform:none}
 .still .hint{display:none}
 .still .reveal{opacity:1;transform:none}
+/* デザイン調整：ナビ・ボタンを押しやすく、操作の見え方をページ間でそろえる */
+nav a{display:inline-flex;align-items:center;min-height:44px;white-space:nowrap}
+nav a.on{color:var(--orange)}
+.filters button,.gtabs button{min-height:44px}
+.next a,.toreport b{display:inline-flex;align-items:center;min-height:44px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.reveal{transform:translateY(28px);transition-duration:.65s}
+.reveal.in{transform:none}
+::placeholder{color:#888}
+footer a{text-decoration:underline;text-underline-offset:3px;transition:color .2s}
+footer a:hover{color:var(--orange)}
+.statement-wrap{height:190vh}
+@media(max-width:840px){.profile{grid-template-columns:1fr;gap:24px}}
+@media(max-width:720px){section{padding:60px 5vw}h2{margin-bottom:24px}}
 </style>
 </head>
 <body>
@@ -743,7 +757,7 @@ header,.filters button,.contact,.contact .mail{transition:border-color .4s,backg
     }, { threshold: .15, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(function(el){ io.observe(el); });
   }
-  // ギャラリー：12枚（スマホは6枚）を並べ、3秒ごとに3枚ずつ入れ替える。カテゴリ切り替え・すべて見る・拡大表示
+  // ギャラリー：12枚（スマホは6枚）を並べ、5.5秒ごとに3枚ずつ入れ替える。カテゴリ切り替え・すべて見る・拡大表示
   var gsec = document.querySelector('.gallery-sec');
   var grid = gsec.querySelector('.ggrid');
   var gplay = gsec.querySelector('.gplay'), gall = gsec.querySelector('.gall');
@@ -807,7 +821,7 @@ header,.filters button,.contact,.contact .mail{transition:border-color .4s,backg
   var lastN = slotCount();
   addEventListener('resize', function(){ if (slotCount() !== lastN) { lastN = slotCount(); gRender(); } });
   gSetPlay(gplaying); gRender();
-  gtimer = setInterval(swap, 3000);
+  gtimer = setInterval(swap, 5500);
 
   // 拡大表示（左右ボタン・スワイプ・矢印キーでめくる）
   var glb = document.querySelector('.glb'), glbImg = glb.querySelector('img'), glbCap = glb.querySelector('p'), gcur = 0, glbFrom = null;
