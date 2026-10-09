@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THANK YOU | 石井大雅 | Taiga Ishii Racing</title>
+<link rel="icon" href="../../logo/ti-mark-small.svg" type="image/svg+xml">
+<meta name="description" content="お問い合わせありがとうございました。">
+<style>
+:root{color-scheme:dark;--orange:#ff6a00;--black:#0b0b0b;--dark:#151515;--white:#fff;--gray:#a8a8a8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{word-break:auto-phrase;background:var(--black);color:var(--white);font-family:"Helvetica Neue",Arial,"Hiragino Sans","Yu Gothic",sans-serif;line-height:1.8;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+header{position:fixed;top:0;padding-top:calc(14px + env(safe-area-inset-top,0px))!important;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(11,11,11,.7);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:2px solid var(--orange)}
+.logo{display:block;line-height:0;flex:none}
+.logo svg{height:34px;width:auto;display:block}
+nav{display:flex;gap:20px;font-size:13px;letter-spacing:.1em}
+nav a:hover,nav a.on{color:var(--orange)}
+.head{max-width:760px;margin:0 auto;padding:150px 5vw 36px}
+.head small{color:var(--orange);letter-spacing:.3em;font-size:12px;font-weight:700}
+.head h1{font-size:clamp(40px,8vw,72px);font-weight:900;font-style:italic;letter-spacing:.08em;line-height:1.1;margin:6px 0 18px}
+.head h1::after{content:"";display:block;width:60px;height:4px;background:var(--orange);margin-top:14px}
+.head p{color:#ddd;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:0 5vw 100px}
+/* フォーム */
+form{display:grid;gap:26px}
+.f label,.f legend{display:block;font-size:14px;font-weight:700;letter-spacing:.04em;margin-bottom:8px}
+.f em{font-style:normal;font-size:11px;font-weight:700;padding:1px 7px;margin-left:8px;border-radius:2px;vertical-align:1px;background:var(--orange);color:#000}
+.f em.opt{background:#333;color:#ccc}
+fieldset{border:none}
+input[type=text],input[type=email],textarea{width:100%;font:inherit;font-size:16px;color:var(--white);background:var(--dark);border:1px solid #3a3a3a;border-radius:6px;padding:13px 14px;transition:border-color .2s,box-shadow .2s}
+textarea{min-height:190px;resize:vertical;line-height:1.7}
+input:focus,textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,106,0,.25)}
+::placeholder{color:#666}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.types label{margin:0;font-weight:600;font-size:14px;display:flex;align-items:center;gap:10px;padding:14px 14px;background:var(--dark);border:1px solid #3a3a3a;border-radius:6px;cursor:pointer;transition:border-color .2s,background .2s}
+.types input{accent-color:var(--orange);width:18px;height:18px;flex:none}
+.types label:has(input:checked){border-color:var(--orange);background:rgba(255,106,0,.12)}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.agree input{accent-color:var(--orange);width:18px;height:18px;margin-top:4px;flex:none}
+.agree a,.txt a{color:var(--orange);border-bottom:1px solid var(--orange)}
+.hp{position:absolute;left:-9999px}
+.send{justify-self:center;display:inline-flex;align-items:center;gap:12px;font:inherit;font-weight:900;font-size:16px;letter-spacing:.12em;color:#000;background:var(--orange);border:none;border-radius:999px;padding:16px 56px;cursor:pointer;transition:transform .25s,box-shadow .25s}
+.send:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(255,106,0,.35)}
+.note{color:var(--gray);font-size:13px;text-align:center}
+/* お礼・ポリシー */
+.txt h2{font-size:17px;font-weight:900;margin:34px 0 8px;padding-left:12px;border-left:4px solid var(--orange)}
+.txt p,.txt li{font-size:15px;color:#ddd}
+.txt ul{padding-left:1.4em}
+.txt .date{margin-top:40px;color:var(--gray);font-size:13px}
+.back{display:inline-flex;margin-top:36px;padding:14px 34px;border-radius:999px;background:var(--white);color:#000;font-weight:900;letter-spacing:.1em;font-size:14px}
+footer{text-align:center;padding:30px;color:var(--gray);font-size:12px;border-top:1px solid #1f1f1f}
+footer a{margin-left:14px}
+footer a:hover{color:var(--orange)}
+@media(max-width:720px){
+ header{gap:12px}.logo svg{height:26px}
+ nav{gap:12px;font-size:11px;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 85%,transparent)}nav::-webkit-scrollbar{display:none}
+ .head{padding-top:120px}
+ .types{grid-template-columns:1fr}
+ .send{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../../" class="logo" aria-label="TAIGA ISHII トップへ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
+  <polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/>
+  <polygon points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/>
+  <polygon points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/>
+  <polygon points="3.6,82 147.6,82 147.3,83.5 3.3,83.5" fill="#FF6A00"/>
+  <polygon points="29,17 103,17 102,22 28,22" fill="#F5F7FA"/>
+  <polygon points="43,26 101,26 100,31 42,31" fill="#F5F7FA"/>
+  <polygon points="63,31 78,31 68,82 53,82" fill="#F5F7FA"/>
+  <polygon points="109,17 124,17 114,82 99,82" fill="#F5F7FA"/>
+  <g transform="translate(200,22) skewX(-11.31)">
+    <g fill="#F5F7FA">
+      <path transform="translate(0,0)" d="M0 0H28V7H17.5V40H10.5V7H0Z"/>
+      <path transform="translate(34,0)" fill-rule="evenodd" d="M0 40V6L6 0H28V40H21V27H7V40Z M7 7H21V20H7Z"/>
+      <path transform="translate(68,0)" d="M0 0H7V40H0Z"/>
+      <path transform="translate(81,0)" d="M28 0H6L0 6V40H28V18H14V25H21V33H7V7H28Z"/>
+      <path transform="translate(115,0)" fill-rule="evenodd" d="M0 40V6L6 0H28V40H21V27H7V40Z M7 7H21V20H7Z"/>
+    </g>
+    <g fill="#2456D8">
+      <path transform="translate(157,0)" d="M0 0H7V40H0Z"/>
+      <path transform="translate(170,0)" d="M28 0H6L0 6V23H21V33H0V40H22L28 34V16H7V7H28Z"/>
+      <path transform="translate(204,0)" d="M0 0H7V16.5H21V0H28V40H21V23.5H7V40H0Z"/>
+      <path transform="translate(238,0)" d="M0 0H7V40H0Z"/>
+      <path transform="translate(251,0)" d="M0 0H7V40H0Z"/>
+    </g>
+  </g>
+  <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
+</svg></a>
+
+  <nav><a href="../../#profile">PROFILE</a><a href="../../#results">RESULTS</a><a href="../../report/">REPORT</a><a href="../../#schedule">SCHEDULE</a><a href="../../#contact">CONTACT</a></nav>
+</header>
+<div class="head">
+  <small>CONTACT FORM</small>
+  <h1>THANK YOU</h1>
+  
+</div>
+<main>
+<div class="txt">
+<p>お問い合わせを受け付けました。内容を確認のうえ、ご入力いただいたメールアドレスにご連絡します。</p>
+<p>応援メッセージをお送りくださった方、本当にありがとうございます。走る力になります。</p>
+<a class="back" href="../../">トップへ戻る</a>
+</div>
+</main>
+<footer>© Taiga Ishii Racing<a href="../../privacy/">プライバシーポリシー</a></footer>
+</body>
+</html>

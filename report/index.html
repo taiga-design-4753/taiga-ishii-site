@@ -103,6 +103,10 @@ header,.filters button,.next,.next a,.next small,.top small{transition:border-co
 .contact h2.in::after,.still .contact h2::after{transform:scaleX(1)}
 .contact p{margin-bottom:24px;font-weight:600}
 .contact .mail{border-bottom:2px solid var(--black);padding-bottom:2px}
+.toform{display:inline-flex;align-items:center;justify-content:center;gap:14px;width:min(100%,420px);padding:18px 30px;background:var(--black);color:var(--white);border-radius:999px;font-size:16px;font-weight:900;letter-spacing:.08em;transition:transform .25s,box-shadow .25s}
+.toform i{font-style:normal;color:var(--orange);transition:transform .25s}
+.toform:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.toform:hover i{transform:translateX(4px)}
 .contact .follow{margin:44px 0 16px;font-size:12px;letter-spacing:.3em}
 .contact,.contact .mail{transition:background-color .4s,color .4s,border-color .4s}
 html.blue .contact{color:var(--white)}
@@ -456,7 +460,7 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
 <section class="contact" id="contact">
   <h2 class="reveal">CONTACT</h2>
   <p class="reveal">取材のご依頼、スポンサーのご相談、応援メッセージは、お気軽にこちらへどうぞ。</p>
-  <p class="reveal" style="font-size:18px"><a class="mail" href="mailto:taiga10racing@gmail.com">taiga10racing@gmail.com</a></p>
+  <p class="reveal"><a class="toform" href="../contact/">お問い合わせフォームへ<i aria-hidden="true">→</i></a></p>
   <p class="follow reveal">FOLLOW</p>
   <div class="sns reveal">
     <a href="https://x.com/T_Ishii_10" data-sns="x" target="_blank" rel="noopener" aria-label="Xを見る"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><b>X</b><span>@T_Ishii_10</span></a>
@@ -465,7 +469,7 @@ footer{text-align:center;padding:30px;color:var(--gray);font-size:12px}
   </div>
 </section>
 
-<footer>© Taiga Ishii Racing</footer>
+<footer>© Taiga Ishii Racing<a href="../privacy/" style="margin-left:14px">プライバシーポリシー</a></footer>
 
 <script>
 (function(){
