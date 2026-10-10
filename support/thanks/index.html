@@ -59,6 +59,12 @@ footer a:hover{color:var(--orange)}
  .types{grid-template-columns:1fr}
  .send{width:100%;justify-content:center}
 }
+/* 日英併記：英語の見出し・メニューの下に日本語を小さく添える */
+.ja{display:block;font-size:13px;font-weight:700;font-style:normal;letter-spacing:.2em;opacity:.72;margin-top:4px;line-height:1.4}
+h1 .ja{font-size:14px;margin-top:10px}
+nav a{flex-direction:column;justify-content:center;line-height:1.1}
+nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opacity:.65}
+@media(max-width:720px){.ja{font-size:12px}nav a .ja{font-size:8px}}
 </style>
 </head>
 <body>
@@ -91,11 +97,11 @@ footer a:hover{color:var(--orange)}
   <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
 </svg></a>
 
-  <nav><a href="../../#profile">PROFILE</a><a href="../../#results">RESULTS</a><a href="../../report/">REPORT</a><a href="../../#schedule">SCHEDULE</a><a href="../" class="on">SUPPORT</a><a href="../../#contact">CONTACT</a></nav>
+  <nav><a href="../../#profile">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../../#results">RESULTS<span class="ja" lang="ja">戦績</span></a><a href="../../report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../../#schedule">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../" class="on">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../../#contact">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav>
 </header>
 <div class="head">
   <small>PERSONAL SPONSOR</small>
-  <h1>THANK YOU</h1>
+  <h1>THANK YOU<span class="ja" lang="ja">送信完了</span></h1>
   
 </div>
 <main>

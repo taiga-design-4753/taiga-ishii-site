@@ -251,6 +251,12 @@ footer a:hover{color:var(--orange)}
 .statement-wrap{height:190vh}
 @media(max-width:840px){.profile{grid-template-columns:1fr;gap:24px}}
 @media(max-width:720px){section{padding:60px 5vw}h2{margin-bottom:24px}}
+/* 日英併記：英語の見出し・メニューの下に日本語を小さく添える */
+.ja{display:block;font-size:13px;font-weight:700;font-style:normal;letter-spacing:.2em;opacity:.72;margin-top:4px;line-height:1.4}
+h1 .ja{font-size:14px;margin-top:10px}
+nav a{flex-direction:column;justify-content:center;line-height:1.1}
+nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opacity:.65}
+@media(max-width:720px){.ja{font-size:12px}nav a .ja{font-size:8px}}
 </style>
 </head>
 <body>
@@ -282,7 +288,7 @@ footer a:hover{color:var(--orange)}
   </g>
   <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
 </svg></a>
-  <nav><a href="#profile">PROFILE</a><a href="#results">RESULTS</a><a href="report/">REPORT</a><a href="#schedule">SCHEDULE</a><a href="#gallery">GALLERY</a><a href="support/">SUPPORT</a><a href="#contact">CONTACT</a></nav>
+  <nav><a href="#profile">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="#results">RESULTS<span class="ja" lang="ja">戦績</span></a><a href="report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="#schedule">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="#gallery">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="#contact">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav>
 </header>
 
 <div class="hero-wrap" id="top">
@@ -346,7 +352,7 @@ footer a:hover{color:var(--orange)}
 </div>
 
 <section id="profile">
-  <h2 class="reveal">PROFILE</h2>
+  <h2 class="reveal">PROFILE<span class="ja" lang="ja">プロフィール</span></h2>
   <div class="profile">
     <div class="photo reveal"><img loading="lazy" srcset="img/profile-800.webp 800w, img/profile.webp 1567w" sizes="(max-width:720px) 100vw, 50vw" src="img/profile.webp" alt="石井大雅" style="object-position:40% 30%"></div>
     <div class="reveal">
@@ -362,7 +368,7 @@ footer a:hover{color:var(--orange)}
       <p class="note brandnote"><i style="background:#2456D8"></i><i style="background:var(--orange)"></i>ロゴの青とオレンジは、ヘルメットの色。<br>以前の青から、いまのオレンジへ。</p>
     </div>
   </div>
-  <h3 class="career-h reveal">CAREER</h3>
+  <h3 class="career-h reveal">CAREER<span class="ja" lang="ja">経歴</span></h3>
   <ol class="career">
     <li class="reveal"><time>2017</time><p>グランツーリスモSPORTでSIMレースを始める</p></li>
     <li class="reveal"><time>2019</time><p>茨城国体のeスポーツ（グランツーリスモSPORT）に千葉県代表として出場</p></li>
@@ -380,7 +386,7 @@ footer a:hover{color:var(--orange)}
 <figure class="band reveal"><img srcset="img/band1-1200.webp 1200w, img/band1-1600.webp 1600w, img/band1.webp 2400w" sizes="100vw" src="img/band1.webp" alt="表彰台でシャンパンファイトをする石井大雅" loading="lazy" style="object-position:62% 32%"></figure>
 
 <section id="results">
-  <h2 class="reveal">RESULTS</h2>
+  <h2 class="reveal">RESULTS<span class="ja" lang="ja">戦績</span></h2>
   <div class="hl">
     <div class="hl-card reveal"><small>2026 FJ1500 第7戦 筑波</small><strong>POLE TO WIN</strong><p>ポールポジションから逃げ切って優勝</p></div>
     <div class="hl-card reveal"><small>2025 S-FJ日本一決定戦 富士</small><strong>SEMI-FINAL P1</strong><p>予選3位から1周目でトップに浮上し、そのままトップでチェッカーを受けた</p></div>
@@ -623,7 +629,7 @@ footer a:hover{color:var(--orange)}
 <figure class="band reveal"><img srcset="img/band2-1200.webp 1200w, img/band2-1600.webp 1600w, img/band2.webp 2400w" sizes="100vw" src="img/band2.webp" alt="マシンに乗り込む石井大雅" loading="lazy" style="object-position:45% 8%"></figure>
 
 <section id="schedule">
-  <h2 class="reveal">SCHEDULE</h2>
+  <h2 class="reveal">SCHEDULE<span class="ja" lang="ja">スケジュール</span></h2>
   <div class="cards">
     <div class="card reveal"><small>10.25 SUN</small><h3>FJ1500 筑波・富士</h3><p>筑波サーキット</p></div>
     <div class="card reveal"><small>11.07 SAT – 11.08 SUN</small><h3>FIA-F4 第13・14戦</h3><p>モビリティリゾートもてぎ</p></div>
@@ -633,7 +639,7 @@ footer a:hover{color:var(--orange)}
 </section>
 
 <section class="gallery-sec" id="gallery">
-  <h2 class="reveal">GALLERY</h2>
+  <h2 class="reveal">GALLERY<span class="ja" lang="ja">ギャラリー</span></h2>
   <div class="gtabs reveal" role="group" aria-label="写真のカテゴリ">
     <button type="button" data-c="all" class="on">ALL</button><button type="button" data-c="f4">FIA-F4</button><button type="button" data-c="fj">FJ1500 / F110</button><button type="button" data-c="sfj">SUPER FJ</button><button type="button" data-c="off">OFF TRACK</button>
   </div>
@@ -707,13 +713,13 @@ footer a:hover{color:var(--orange)}
 <div class="glb" hidden><button type="button" class="x" aria-label="閉じる">&#10005;</button><button type="button" class="p" aria-label="前の写真">&#8592;</button><img alt=""><p></p><button type="button" class="n" aria-label="次の写真">&#8594;</button></div>
 
 <section id="support">
-  <h2 class="reveal">SUPPORT</h2>
+  <h2 class="reveal">SUPPORT<span class="ja" lang="ja">支援</span></h2>
   <p class="reveal">SIMレースから始まった夢を、本物のサーキットで。ル・マンへの道を、一緒に走ってください。</p>
   <a class="toreport reveal" href="support/"><span><small>PERSONAL SPONSOR</small>1口3,000円から、マシンにあなたの名前を乗せて走ります</span><b>個人スポンサーについて →</b></a>
 </section>
 
 <section class="contact" id="contact">
-  <h2 class="reveal">CONTACT</h2>
+  <h2 class="reveal">CONTACT<span class="ja" lang="ja">お問い合わせ</span></h2>
   <p class="reveal">取材のご依頼、スポンサーのご相談、応援メッセージは、お気軽にこちらへどうぞ。</p>
   <p class="reveal"><a class="toform" href="contact/">お問い合わせフォームへ<i aria-hidden="true">→</i></a></p>
   <p class="follow reveal">FOLLOW</p>
