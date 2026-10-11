@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>石井大雅 | Taiga Ishii Racing</title>
 <link rel="icon" href="logo/ti-mark-small.svg" type="image/svg+xml">
+<link rel="icon" href="logo/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="logo/apple-touch-icon.png">
 <meta name="description" content="SIMレース出身のフォーミュラレーサー、石井大雅（#47）の公式サイト。FIA-F4・FJ1500・F110 CUPに参戦中。プロフィール、リザルト、レーススケジュールを掲載。">
 <meta property="og:title" content="石井大雅 | Taiga Ishii Racing">
 <meta property="og:description" content="SIMレース出身のフォーミュラレーサー、石井大雅（#47）の公式サイト。FIA-F4・FJ1500・F110 CUPに参戦中。プロフィール、リザルト、レーススケジュールを掲載。">
@@ -251,6 +253,8 @@ footer a{text-decoration:underline;text-underline-offset:3px;transition:color .2
 footer a:hover{color:var(--orange)}
 .statement-wrap{height:190vh}
 @media(max-width:840px){.profile{grid-template-columns:1fr;gap:24px}}
+.profile>*{min-width:0}
+@media(max-width:360px){th{width:auto;font-size:12px}td{font-size:14px;overflow-wrap:anywhere}}
 @media(max-width:720px){section{padding:60px 5vw}h2{margin-bottom:24px}}
 /* 日英併記：英語の見出し・メニューの下に日本語を小さく添える */
 .ja{display:block;font-size:13px;font-weight:700;font-style:normal;letter-spacing:.2em;opacity:.72;margin-top:4px;line-height:1.4}
