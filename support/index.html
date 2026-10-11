@@ -108,7 +108,7 @@ h1 .ja{font-size:14px;margin-top:10px}
 nav a{flex-direction:column;justify-content:center;line-height:1.1}
 nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opacity:.65}
 @media(max-width:720px){.ja{font-size:12px}nav a .ja{font-size:8px}}
-</style>
+/* 公開前デザイン修正：ナビの日本語を大きく、スマホのナビに続きの合図、押しやすいリンク、青モードの小さい字を明るく */nav a .ja{font-size:11px}footer a{display:inline-block;padding:10px 4px}.src{padding-top:10px}@media(max-width:720px){nav a .ja{font-size:10px}nav{-webkit-mask-image:linear-gradient(to right,#000 72%,transparent);mask-image:linear-gradient(to right,#000 72%,transparent)}nav.end{-webkit-mask-image:none;mask-image:none}header::after{content:"›";position:absolute;right:8px;top:calc(50% + env(safe-area-inset-top,0px)/2);transform:translateY(-50%);color:var(--orange);font-size:22px;font-weight:700;line-height:1;pointer-events:none;transition:opacity .2s}header.navend::after{opacity:0}}</style>
 </head>
 <body>
 <header>
@@ -140,7 +140,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
 </svg></a>
 
-  <nav><a href="../#profile">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../#results">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="../report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../#schedule">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../#gallery">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="./" class="on">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../#contact">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav>
+  <nav><a href="../#profile">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../#results">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="../report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../#schedule">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../#gallery">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="./" class="on">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../#contact">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on&&on.offsetLeft+on.offsetWidth>n.clientWidth)n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2;function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
 </header>
 <div class="head">
   <small>PERSONAL SPONSOR</small>
