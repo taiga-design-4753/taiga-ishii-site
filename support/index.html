@@ -156,7 +156,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
       <ul><li>マシンの連名ステッカー「TAIGA SUPPORTERS」にお名前を掲載（掲載なしも可）</li><li>このページの支援者ボードにお名前を掲載（ニックネーム可・掲載なしも可）</li><li>レースの前と後に、メールでご報告</li></ul></div>
     <div class="plan"><h3>4口から<b>12,000円〜</b></h3>
       <p class="plus">1口の特典に加えて</p>
-      <ul><li>オリジナルステッカー</li></ul></div>
+      <ul><li>連名ステッカーのお名前を大きく掲載</li><li>サイン入りのスマホ壁紙（画像データ）をメールでお届け</li></ul></div>
     <div class="plan"><h3>10口から<b>30,000円〜</b></h3>
       <p class="plus">4口の特典に加えて</p>
       <ul><li>マシンにあなた個人のお名前ステッカー</li><li>サーキットでのピット・パドックのご案内（パスを用意できる範囲で）</li></ul></div>
@@ -195,7 +195,6 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   <div class="f"><label for="name">お名前<em>必須</em></label><input type="text" id="name" name="name" autocomplete="name" required placeholder="例）石井 太郎"></div>
   <div class="f"><label for="nick">掲載するお名前<em class="opt">任意</em></label><input type="text" id="nick" name="display_name" maxlength="15" placeholder="例）タロウ（15文字まで）"><p class="hint">ステッカーと支援者ボードに載せるお名前です。空欄の場合は掲載しません。</p></div>
   <div class="f"><label for="email">メールアドレス<em>必須</em></label><input type="email" id="email" name="email" autocomplete="email" required placeholder="例）name@example.com"></div>
-  <div class="f"><label for="addr">ご住所<em class="opt">4口以上・限定プランは必須</em></label><textarea id="addr" name="address" autocomplete="street-address" style="min-height:90px" placeholder="〒000-0000 都道府県 市区町村 番地 建物名"></textarea><p class="hint">特典の発送にのみ使います。</p></div>
   <div class="f"><label for="msg">応援メッセージ<em class="opt">任意</em></label><textarea id="msg" name="message" style="min-height:120px"></textarea></div>
   <label class="agree"><input type="checkbox" name="agree" value="同意する" required><span><a href="../privacy/" target="_blank">プライバシーポリシー</a>に同意する</span></label>
   <button class="send" type="submit">申し込む</button>
@@ -203,13 +202,12 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
 </form>
 <script>
 (function(){
-  var s=document.getElementById('units'),t=document.getElementById('total'),a=document.getElementById('addr');
+  var s=document.getElementById('units'),t=document.getElementById('total');
   for(var i=1;i<=30;i++){var o=document.createElement('option');o.value=i+'口';o.textContent=i+'口（'+(i*3000).toLocaleString()+'円）';s.appendChild(o)}
   var o=document.createElement('option');o.value='限定プラン';o.textContent='限定プラン（100,000円・3名様限定）';s.appendChild(o);
   s.addEventListener('change',function(){
     var v=s.value,n=v==='限定プラン'?100000:parseInt(v,10)*3000;
     t.textContent=v?n.toLocaleString()+'円':'—';
-    a.required=!!v&&(v==='限定プラン'||parseInt(v,10)>=4);
   });
 })();
 </script>
