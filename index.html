@@ -40,7 +40,9 @@ nav a:hover{color:var(--orange)}
 /* HERO：スクロールで写真がズームアウトし、文字が浮き上がって消える */
 .hero-wrap{height:220vh;position:relative}
 .hero{position:sticky;top:0;height:100vh;min-height:520px;overflow:hidden;display:flex;align-items:flex-end;padding:0 5vw 11vh}
-.hero img{position:absolute;inset:0;z-index:0;transform:scale(1.25);filter:brightness(.6);will-change:transform,filter}
+.hero img{position:absolute;inset:0;z-index:0;transform:scale(1.25);will-change:transform}
+/* 写真の暗さは filter ではなく黒い幕の濃さで変える（スマホでかくつかないように） */
+.hero .shade{position:absolute;inset:0;z-index:0;background:#000;opacity:.4;will-change:opacity;pointer-events:none}
 /* スマホのトップ写真は、くっきりしていてヘルメットが中央に来る p2 を使う（PCは hero のまま） */
 @media(max-width:720px){.hero img{object-position:60% 50%!important}}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,transparent 60%)}
@@ -286,7 +288,8 @@ h1 .ja{font-size:14px;margin-top:10px}
 nav a{flex-direction:column;justify-content:center;line-height:1.1}
 nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opacity:.65}
 @media(max-width:720px){.ja{font-size:12px}nav a .ja{font-size:8px}}
-/* 公開前デザイン修正：ナビの日本語を大きく、スマホのナビに続きの合図、押しやすいリンク、青モードの小さい字を明るく */nav a .ja{font-size:11px}footer a{display:inline-block;padding:10px 4px}.src{padding-top:10px}@media(max-width:720px){nav a .ja{font-size:10px}nav{-webkit-mask-image:linear-gradient(to right,#000 72%,transparent);mask-image:linear-gradient(to right,#000 72%,transparent)}nav.end{-webkit-mask-image:none;mask-image:none}header::after{content:"›";position:absolute;right:8px;top:calc(50% + env(safe-area-inset-top,0px)/2);transform:translateY(-50%);color:var(--orange);font-size:22px;font-weight:700;line-height:1;pointer-events:none;transition:opacity .2s}header.navend::after{opacity:0}}html.blue th,html.blue .career time,html.blue .rrace .note,html.blue .toreport small,html.blue .card small,html.blue nav a.on,html.blue nav a:hover,html.blue .tag.sfj,html.blue .brandnote summary::after{color:#5B86FF}html.blue .tag.sfj{border-color:#5B86FF}</style>
+/* 公開前デザイン修正：ナビの日本語を大きく、スマホのナビに続きの合図、押しやすいリンク、青モードの小さい字を明るく */nav a .ja{font-size:11px}footer a{display:inline-block;padding:10px 4px}.src{padding-top:10px}@media(max-width:720px){nav a .ja{font-size:10px}nav{-webkit-mask-image:linear-gradient(to right,#000 72%,transparent);mask-image:linear-gradient(to right,#000 72%,transparent)}nav.end{-webkit-mask-image:none;mask-image:none}header::after{content:"›";position:absolute;right:8px;top:calc(50% + env(safe-area-inset-top,0px)/2);transform:translateY(-50%);color:var(--orange);font-size:22px;font-weight:700;line-height:1;pointer-events:none;transition:opacity .2s}header.navend::after{opacity:0}}html.blue th,html.blue .career time,html.blue .rrace .note,html.blue .toreport small,html.blue .card small,html.blue nav a.on,html.blue nav a:hover,html.blue .tag.sfj,html.blue .brandnote summary::after{color:#5B86FF}html.blue .tag.sfj{border-color:#5B86FF}
+/* スマホではヘッダーのぼかしを止める（下の写真を毎回ぼかし直すのが重く、スクロールがかくつくため） */@media(max-width:720px){header{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(11,11,11,.94)}}</style>
 </head>
 <body>
 <header>
@@ -322,7 +325,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
 
 <div class="hero-wrap" id="top">
   <div class="hero">
-    <picture><source media="(max-width:720px)" srcset="img/p2.webp"><img fetchpriority="high" src="img/hero.webp" alt="石井大雅 #47" style="object-position:45% 50%"></picture>
+    <picture><source media="(max-width:720px)" srcset="img/p2.webp"><img fetchpriority="high" src="img/hero.webp" alt="石井大雅 #47" style="object-position:45% 50%"></picture><div class="shade" aria-hidden="true"></div>
     <div class="hero-text">
       <h1 class="hlogo"><span class="sr">石井大雅（TAIGA ISHII）</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
         <defs><linearGradient id="hShine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="hMk"><polygon points="20,0 164,0 144,100 0,100"/></clipPath></defs>
@@ -818,12 +821,14 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   function slotCount(){ return matchMedia('(max-width:720px)').matches ? 6 : 12; }
   function setPh(b, i, fade){
     var p = list[i], old = b.querySelector('img'), im = document.createElement('img');
-    im.src = p.t; im.alt = p.a; if (p.pos) im.setAttribute('style', p.pos);
+    im.decoding = 'async'; im.src = p.t; im.alt = p.a; if (p.pos) im.setAttribute('style', p.pos);
     function mark(){ b.dataset.i = i; b.setAttribute('aria-label', p.a + '（拡大）'); }
     if (!fade || !old) { mark(); b.innerHTML = ''; b.appendChild(im); return; }
     im.className = 'fade';
     var g = gen;
-    im.onload = function(){ if (g !== gen) return; mark(); b.appendChild(im); requestAnimationFrame(function(){ requestAnimationFrame(function(){ im.className = ''; }); }); setTimeout(function(){ if (old.parentNode === b) b.removeChild(old); }, 1500); };
+    function put(){ if (g !== gen) return; mark(); b.appendChild(im); requestAnimationFrame(function(){ requestAnimationFrame(function(){ im.className = ''; }); }); setTimeout(function(){ if (old.parentNode === b) b.removeChild(old); }, 1500); }
+    // 先に裏で画像を展開してから差し込む（スクロール中に止まらないように）
+    if (im.decode) im.decode().then(put, put); else im.onload = put;
   }
   function gRender(){
     gen++; // 切り替え前に予約された入れ替えを無効にする
@@ -933,18 +938,27 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
     var total = r.height - innerHeight;
     return total > 0 ? clamp(-r.top / total) : 0;
   }
+  var heroShade = document.querySelector('.hero .shade');
+  var lastP = -1, lastS = -1;
+  // 値が変わったときだけ書き換える（画面外に出たあとは何もしない）
   function frame(){
     var p = progress(heroWrap);
-    heroImg.style.transform = 'scale(' + (1.25 - .25 * p) + ')';
-    heroImg.style.filter = 'brightness(' + (.6 - .3 * p) + ')';
-    var t = clamp((p - .3) / .5);
-    heroText.style.opacity = 1 - t;
-    heroText.style.transform = 'translateY(' + (-80 * t) + 'px)';
-    hint.style.opacity = 1 - clamp(p * 6);
+    if (p !== lastP) {
+      lastP = p;
+      heroImg.style.transform = 'scale(' + (1.25 - .25 * p) + ')';
+      heroShade.style.opacity = .4 + .3 * p;
+      var t = clamp((p - .3) / .5);
+      heroText.style.opacity = 1 - t;
+      heroText.style.transform = 'translateY(' + (-80 * t) + 'px)';
+      hint.style.opacity = 1 - clamp(p * 6);
+    }
 
-    var s = progress(stWrap) * 1.15;
-    for (var i = 0; i < words.length; i++) {
-      words[i].style.opacity = .15 + .85 * clamp(s * words.length - i);
+    var s = clamp(progress(stWrap) * 1.15);
+    if (s !== lastS) {
+      lastS = s;
+      for (var i = 0; i < words.length; i++) {
+        words[i].style.opacity = .15 + .85 * clamp(s * words.length - i);
+      }
     }
 
     ticking = false;
