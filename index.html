@@ -131,6 +131,8 @@ h2.in::after{transform:scaleX(1)}
 .profile .photo{aspect-ratio:4/3;border-left:4px solid var(--orange);overflow:hidden}
 .profile .photo img{transform:scale(1.15);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
 .profile .photo.in img{transform:scale(1)}
+/* スマホではプロフィール写真もはじめから表示し、拡大の動きをなくす（写真帯と同じく、スクロール中のかくつきを防ぐ） */
+@media(max-width:720px){.profile .photo.reveal{opacity:1;transform:none;transition:none}.profile .photo img{transform:none;transition:none}}
 table{width:100%;border-collapse:collapse}
 th,td{text-align:left;padding:12px 8px;border-bottom:1px solid #2a2a2a;font-size:15px}
 th{color:var(--orange);width:7em;font-weight:700;white-space:nowrap}
@@ -404,7 +406,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
 <section id="profile">
   <h2 class="reveal">PROFILE<span class="ja" lang="ja">プロフィール</span></h2>
   <div class="profile">
-    <div class="photo reveal"><img decoding="async" loading="lazy" srcset="img/profile-800.webp 800w, img/profile.webp 1567w" sizes="(max-width:720px) 100vw, 50vw" src="img/profile.webp" alt="石井大雅" style="object-position:40% 30%"></div>
+    <div class="photo reveal"><img decoding="async" srcset="img/profile-800.webp 800w, img/profile.webp 1567w" sizes="(max-width:720px) 100vw, 50vw" src="img/profile.webp" alt="石井大雅" style="object-position:40% 30%"></div>
     <div class="reveal">
       <table>
         <tr><th>名前</th><td>石井大雅（いしい たいが）</td></tr>
