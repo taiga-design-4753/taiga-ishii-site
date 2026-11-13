@@ -92,17 +92,24 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
 /* スマホではヘッダーのぼかしを止める（下の写真を毎回ぼかし直すのが重く、スクロールがかくつくため） */@media(max-width:720px){header{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(11,11,11,.94)}}</style>
 <style id="pt-css">
 .pt{position:fixed;inset:0;z-index:999;pointer-events:none;overflow:hidden}
-.pt b{position:absolute;inset:0;background:#FF6A00;clip-path:polygon(calc(50% - 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% + 0.0vmax),calc(50% - 0.0vmax) calc(50% + 0.0vmax));will-change:clip-path}
+.pt b{position:absolute;left:50%;top:50%;width:300vmax;height:208vmax;margin:-104vmax 0 0 -150vmax;background:#FF6A00;transform:skewX(-11.3deg) scale(0);will-change:transform}
+.pt u{position:absolute;top:-10%;bottom:-10%;width:112%;background:#FF6A00;display:none;will-change:transform;transform:skewX(-11.3deg)}
+.pt u:nth-of-type(1){right:calc(50% - 3px)}
+.pt u:nth-of-type(2){left:50%}
 .pt svg{position:absolute;left:50%;top:50%;width:132px;margin:-40px 0 0 -66px;opacity:0}
 .pt svg .s{transform-box:fill-box;transform-origin:left center}
-html.pt-out .pt b{transition:clip-path .5s cubic-bezier(.7,0,.25,1);clip-path:polygon(calc(50% - 155.0vmax) calc(50% - 125.0vmax),calc(50% + 205.0vmax) calc(50% - 125.0vmax),calc(50% + 155.0vmax) calc(50% + 125.0vmax),calc(50% - 205.0vmax) calc(50% + 125.0vmax))}
-html.pt-out .pt svg{transition:opacity .15s .05s;opacity:1}
-html.pt-in .pt b{animation:ptin .6s cubic-bezier(.7,0,.25,1) .3s both}
+html.pt-out .pt b{transition:transform .6s cubic-bezier(.55,0,.25,1);transform:skewX(-11.3deg) scale(1)}
+html.pt-out .pt svg{transition:opacity .25s .2s;opacity:1}
+html.pt-in .pt b{display:none}
+html.pt-in .pt u{display:block}
+html.pt-in .pt u:nth-of-type(1){animation:ptl .6s cubic-bezier(.65,0,.25,1) .3s both}
+html.pt-in .pt u:nth-of-type(2){animation:ptr .6s cubic-bezier(.65,0,.25,1) .3s both}
 html.pt-in .pt svg{animation:ptlogo .42s both}
 html.pt-in .pt svg .s{animation:ptline .3s cubic-bezier(.2,.8,.2,1) both}
 html.pt-in .pt svg .s2{animation-delay:.05s}
 html.pt-in .pt svg .s3{animation-delay:.1s}
-@keyframes ptin{from{clip-path:polygon(evenodd,-10% -10%,110% -10%,110% 110%,-10% 110%,-10% -10%,calc(50% - 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% + 0.0vmax),calc(50% - 0.0vmax) calc(50% + 0.0vmax),calc(50% - 0.0vmax) calc(50% - 0.0vmax))}to{clip-path:polygon(evenodd,-10% -10%,110% -10%,110% 110%,-10% 110%,-10% -10%,calc(50% - 155.0vmax) calc(50% - 125.0vmax),calc(50% + 205.0vmax) calc(50% - 125.0vmax),calc(50% + 155.0vmax) calc(50% + 125.0vmax),calc(50% - 205.0vmax) calc(50% + 125.0vmax),calc(50% - 155.0vmax) calc(50% - 125.0vmax))}}
+@keyframes ptl{from{transform:translateX(0) skewX(-11.3deg)}to{transform:translateX(-100%) skewX(-11.3deg)}}
+@keyframes ptr{from{transform:translateX(0) skewX(-11.3deg)}to{transform:translateX(100%) skewX(-11.3deg)}}
 @keyframes ptlogo{0%,70%{opacity:1}100%{opacity:0}}
 @keyframes ptline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (prefers-reduced-motion:reduce){.pt{display:none}}
@@ -110,7 +117,7 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
 <script>try{if(sessionStorage.getItem('ptx')==='1'){sessionStorage.removeItem('ptx');document.documentElement.classList.add('pt-in')}}catch(e){}</script>
 </head>
 <body>
-<div class="pt" aria-hidden="true"><b></b><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 100"><polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/><polygon class="s" points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/><polygon class="s s2" points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/><polygon class="s s3" points="3.6,82 147.6,82 147.3,83.5 3.3,83.5" fill="#FF6A00"/><g fill="#F5F7FA"><polygon points="29,17 103,17 102,22 28,22"/><polygon points="43,26 101,26 100,31 42,31"/><polygon points="63,31 78,31 68,82 53,82"/><polygon points="109,17 124,17 114,82 99,82"/></g></svg></div>
+<div class="pt" aria-hidden="true"><b></b><u></u><u></u><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 100"><polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/><polygon class="s" points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/><polygon class="s s2" points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/><polygon class="s s3" points="3.6,82 147.6,82 147.3,83.5 3.3,83.5" fill="#FF6A00"/><g fill="#F5F7FA"><polygon points="29,17 103,17 102,22 28,22"/><polygon points="43,26 101,26 100,31 42,31"/><polygon points="63,31 78,31 68,82 53,82"/><polygon points="109,17 124,17 114,82 99,82"/></g></svg></div>
 
 <header>
   <a href="/" class="logo" aria-label="TAIGA ISHII トップへ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
@@ -141,7 +148,7 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
   <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
 </svg></a>
 
-  <nav><a href="/profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="/results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="/report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="/schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="/gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="/support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="/contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on&&on.offsetLeft+on.offsetWidth>n.clientWidth)n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2;function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
+  <nav><a href="/">HOME<span class="ja" lang="ja">ホーム</span></a><a href="/profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="/results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="/report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="/schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="/gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="/support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="/contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on&&on.offsetLeft+on.offsetWidth>n.clientWidth)n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2;function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
 </header>
 <div class="head">
   <small>404</small>
@@ -169,7 +176,7 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
     e.preventDefault();
     try{sessionStorage.setItem('ptx','1')}catch(x){}
     d.classList.remove('pt-in'); d.classList.add('pt-out');
-    setTimeout(function(){location.href=u.href},680);
+    setTimeout(function(){location.href=u.href},720);
   });
   // 「戻る」で帰ってきたときに帯が残らないように
   addEventListener('pageshow',function(e){if(e.persisted){d.classList.remove('pt-out');try{sessionStorage.removeItem('ptx')}catch(x){}}});
