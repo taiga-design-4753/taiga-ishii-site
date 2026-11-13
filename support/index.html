@@ -122,8 +122,11 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
 <style id="pt-css">
 .pt{position:fixed;inset:0;z-index:999;pointer-events:none;overflow:hidden}
 .pt span{position:absolute;top:-10%;bottom:-10%;width:112%;background:#FF6A00;box-sizing:border-box}
-.pt span:nth-of-type(1){right:calc(50% - 3px);border-right:7px solid #2456D8;transform:translateX(-101%) skewX(-11.3deg)}
-.pt span:nth-of-type(2){left:50%;border-left:7px solid #2456D8;transform:translateX(101%) skewX(-11.3deg)}
+.pt span:nth-of-type(1){right:calc(50% - 3px);transform:translateX(-101%) skewX(-11.3deg)}
+.pt span:nth-of-type(2){left:50%;transform:translateX(101%) skewX(-11.3deg)}
+.pt span::after{content:"";position:absolute;top:0;bottom:0;width:13px}
+.pt span:nth-of-type(1)::after{right:0;background:linear-gradient(90deg,#FF6A00,#2456D8 35%,#fff)}
+.pt span:nth-of-type(2)::after{left:0;background:linear-gradient(90deg,#fff,#ffd9bf 40%,#FF6A00)}
 .pt svg{position:absolute;left:50%;top:50%;width:132px;margin:-40px 0 0 -66px;opacity:0}
 .pt svg .s{transform-box:fill-box;transform-origin:left center}
 @media (prefers-reduced-motion:no-preference){
