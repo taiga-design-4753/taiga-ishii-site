@@ -141,22 +141,6 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
 @media (prefers-reduced-motion:reduce){.pt{display:none}}
 </style>
 <script>try{if(sessionStorage.getItem('ptx')==='1'){sessionStorage.removeItem('ptx');document.documentElement.classList.add('pt-in')}}catch(e){}</script>
-<style id="ph-css">
-/* その3（タイガ：「文字透過して画像置いてくれ。変な黒い部分がある」）：今までの帯の写真をいちばん上に置き、見出しを写真の上に重ねる。下の黒いすき間は詰める */
-.pband{position:relative;margin:0;min-height:calc(clamp(240px,40vw,560px) + 60px);box-sizing:border-box;padding-top:110px;display:flex;align-items:flex-end;overflow:hidden;background:#000}
-.pband>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.pband .pshade{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.9) 0%,rgba(11,11,11,.45) 38%,rgba(11,11,11,.12) 75%);pointer-events:none}
-.pband-in{position:relative;z-index:1;width:100%;max-width:1100px;margin:0 auto;padding:0 5vw 30px;box-sizing:border-box}
-.pband h2{margin:0;color:#fff;opacity:1!important;transform:none!important;text-shadow:0 2px 14px rgba(0,0,0,.55)}
-.pband h2::after{transform:none!important}
-.pband+main.page-top{padding-top:0}
-.pband+main.page-top>section:first-child{padding-top:44px}
-.pband .head{position:relative;z-index:1;width:100%;max-width:760px;margin:0 auto;padding:0 5vw 28px;box-sizing:border-box;text-shadow:0 2px 14px rgba(0,0,0,.55)}
-.pband .head .lead{margin-bottom:0}
-.head-after{max-width:760px;margin:0 auto;padding:36px 5vw 30px;color:#ddd;font-size:15px}
-/* スマホ：写真をメニューの下から始め、縦を広くして上が切れて見えないように */
-@media(max-width:720px){.pband{padding-top:96px;min-height:calc(80vw + var(--hh,74px))}.pband>img{top:var(--hh,74px);height:calc(100% - var(--hh,74px))}.pband-in{padding-bottom:22px}.pband+main.page-top>section:first-child{padding-top:30px}.head-after{padding-top:26px}}
-</style>
 </head>
 <body>
 <div class="pt" aria-hidden="true"><u></u><u></u><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 100"><polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/><polygon class="s" points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/><polygon class="s s2" points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/><polygon class="s s3" points="3.6,82 147.6,82 147.3,83.5 3.3,83.5" fill="#FF6A00"/><g fill="#F5F7FA"><polygon points="29,17 103,17 102,22 28,22"/><polygon points="43,26 101,26 100,31 42,31"/><polygon points="63,31 78,31 68,82 53,82"/><polygon points="109,17 124,17 114,82 99,82"/></g></svg></div>
@@ -192,13 +176,12 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
 
   <nav><a href="../">HOME<span class="ja" lang="ja">ホーム</span></a><a href="../profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="../report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="./" class="on">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on&&on.offsetLeft+on.offsetWidth>n.clientWidth)n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2;function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
 </header>
-<div class="pband"><img decoding="async" fetchpriority="high" srcset="../img/p2-800.webp 800w, ../img/p2-1080.webp 1080w, ../img/p2.webp 1600w" sizes="100vw" src="../img/p2.webp" alt="FIA-F4マシン #47 で走る石井大雅" style="object-position:50% 45%"><div class="pshade" aria-hidden="true"></div><div class="head">
+<div class="head">
   <small>PERSONAL SPONSOR</small>
   <h1>SUPPORT<span class="ja" lang="ja">個人スポンサー</span></h1>
   <p class="lead">SIMレースから始まった夢を、本物のサーキットで。<br><span>ル・マンへの道を、一緒に走ってください。</span></p>
-  
-</div></div>
-<div class="head-after"><p>石井大雅の個人スポンサーを募集しています。1口3,000円から、何口でもお申し込みいただけます。支援してくださった方のうち、掲載を希望された方のお名前は、マシンに貼るステッカーとこのページに掲載し、一緒にサーキットを走ります。</p></div>
+  <p>石井大雅の個人スポンサーを募集しています。1口3,000円から、何口でもお申し込みいただけます。支援してくださった方のうち、掲載を希望された方のお名前は、マシンに貼るステッカーとこのページに掲載し、一緒にサーキットを走ります。</p>
+</div>
 <main>
 <section>
   <h2><small>PLAN</small>支援プラン</h2>
