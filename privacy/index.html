@@ -126,40 +126,56 @@ html.pt-in .pt svg .s3{animation-delay:.08s}
 </style>
 <script>try{var _p=sessionStorage.getItem('ptx');if(_p){sessionStorage.removeItem('ptx');_p=_p.split('|');if(Date.now()-(+_p[0])<5000&&_p[1]===location.pathname)document.documentElement.classList.add('pt-in')}}catch(e){}</script>
 <style id="menu-css">
-.mbtn,.msns{display:none}
+.mbtn,.msns,.mbg,.mnext,.mlast{display:none}
 @media(max-width:720px){
 header::after{content:none!important}
-.mbtn{display:flex;align-items:center;gap:10px;flex:none;min-height:44px;padding:0 4px 0 12px;margin:0;background:none;border:0;color:var(--white);font:inherit;font-size:13px;font-weight:700;letter-spacing:.08em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,106,0,.3)}
+.mbtn{display:flex;align-items:center;gap:10px;flex:none;min-height:44px;padding:0 4px 0 12px;margin:0;background:none;border:0;color:var(--white);font:inherit;font-size:13px;font-weight:700;letter-spacing:.08em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,106,0,.3);position:relative;z-index:11}
 .mbtn i{display:block;position:relative;width:22px;height:14px}
 .mbtn i b{position:absolute;left:0;right:0;height:2px;background:var(--orange);transition:transform .2s,opacity .2s}
 .mbtn i b:nth-child(1){top:0}.mbtn i b:nth-child(2){top:6px}.mbtn i b:nth-child(3){top:12px}
 html.menu-open .mbtn i b:nth-child(1){transform:translateY(6px) rotate(45deg)}
 html.menu-open .mbtn i b:nth-child(2){opacity:0}
 html.menu-open .mbtn i b:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-header nav{display:flex!important;visibility:hidden;pointer-events:none;clip-path:polygon(100% 0,100% 0,100% 100%,130% 100%);position:fixed;left:0;right:0;top:var(--mt,70px);bottom:0;z-index:9;flex-direction:column;gap:0!important;padding:6px 6vw calc(40px + env(safe-area-inset-bottom,0px));background:#0b0b0b;overflow-x:hidden!important;overflow-y:auto;-webkit-mask-image:none!important;mask-image:none!important;overscroll-behavior:contain}
-html.menu-open header nav{visibility:visible;pointer-events:auto;clip-path:polygon(-30% 0,100% 0,100% 100%,0 100%)}
-header nav::before,header nav::after{content:"";position:absolute;inset:0;pointer-events:none}
-header nav::before{background:var(--orange);clip-path:polygon(100% 0,102.4% 0,132.4% 100%,130% 100%)}
-header nav::after{background:#2456D8;clip-path:polygon(103.4% 0,105% 0,135% 100%,133.4% 100%)}
-html.menu-open header nav::before{clip-path:polygon(-42% 0,-39.6% 0,-9.6% 100%,-12% 100%)}
-html.menu-open header nav::after{clip-path:polygon(-38.6% 0,-37% 0,-7% 100%,-8.6% 100%)}
-header nav>a{clip-path:inset(0 0 100% 0);transform:translateY(26px)}
-html.menu-open header nav>a{clip-path:inset(0 0 -2px 0);transform:none}
-@media (prefers-reduced-motion:no-preference){
-header nav{transition:clip-path .3s cubic-bezier(.7,0,.2,1),visibility 0s .3s}
-html.menu-open header nav{transition:clip-path .46s cubic-bezier(.7,0,.2,1),visibility 0s}
-header nav::before,header nav::after{transition:clip-path .3s cubic-bezier(.7,0,.2,1)}
-html.menu-open header nav::before{transition:clip-path .46s cubic-bezier(.7,0,.2,1)}
-html.menu-open header nav::after{transition:clip-path .46s cubic-bezier(.7,0,.2,1) .05s}
-html.menu-open header nav>a{transition:clip-path .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.18s + var(--i,0)*.05s)}
-html.menu-open .msns{transition:opacity .4s .62s}
-}
 html.menu-open,html.menu-open body{overflow:hidden}
-header nav>a{flex-direction:row!important;justify-content:space-between!important;align-items:center;flex:none;min-height:62px!important;padding:0 4px;border-bottom:1px solid #2a2a2a;font-size:20px;font-weight:700;letter-spacing:.08em}
-header nav>a .ja{font-size:13px!important;margin:0!important;opacity:.7;letter-spacing:.05em}
-.msns{display:flex;gap:22px;flex:none;padding:26px 4px 0;opacity:0}
-.msns a{min-height:44px;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--gray)}
-html.menu-open .msns{opacity:1}
+.mbg{display:block;position:fixed;left:0;right:0;top:var(--mt,70px);bottom:0;z-index:8;overflow:hidden;pointer-events:none;visibility:hidden}
+.mbg i{position:absolute;left:-10%;width:120%;height:62%;background:#0b0b0b}
+.mbg i.t{bottom:calc(50% - 2px);transform-origin:50% 100%;transform:rotate(-5deg) scaleY(0)}
+.mbg i.u{top:50%;transform-origin:50% 0;transform:rotate(-5deg) scaleY(0)}
+.mbg b{position:absolute;left:-10%;width:120%;top:50%;height:12px;margin-top:-6px;background:linear-gradient(180deg,#2456D8,#5d86ee 50%,#2456D8);transform-origin:0 50%;transform:rotate(-5deg) scaleX(0)}
+html.menu-open .mbg{visibility:visible}
+html.menu-open .mbg i{transform:rotate(-5deg) scaleY(1.3)}
+html.menu-open .mbg b{transform:translateY(calc(-50vh + var(--mt,70px)/2 + 6px)) rotate(0deg) scaleX(1) scaleY(.34)}
+header nav{display:flex!important;visibility:hidden;pointer-events:none;position:fixed;left:0;right:0;top:var(--mt,70px);bottom:0;z-index:9;flex-direction:column;gap:0!important;padding:0 0 calc(24px + env(safe-area-inset-bottom,0px));background:none;overflow-x:hidden!important;overflow-y:auto;-webkit-mask-image:none!important;mask-image:none!important;overscroll-behavior:contain;counter-reset:mi}
+html.menu-open header nav{visibility:visible;pointer-events:auto}
+header nav>a{counter-increment:mi;flex-direction:row!important;justify-content:flex-start!important;align-items:center;flex:none;min-height:54px!important;padding:0 20px 0 0;border-bottom:1px solid #1e1e1e;font-size:20px;font-weight:700;letter-spacing:.08em;line-height:1;background:linear-gradient(var(--orange),var(--orange)) left center/4px 64% no-repeat;opacity:0;transform:translateY(18px)}
+header nav>a::before{content:counter(mi);width:46px;flex:none;text-align:center;color:var(--gray);font-size:13px;font-weight:700;letter-spacing:0;font-variant-numeric:tabular-nums}
+header nav>a.on{color:var(--white)!important;background-image:linear-gradient(#2456D8,#2456D8);background-size:6px 64%}
+header nav>a .ja{font-size:12px!important;margin:0 0 0 auto!important;opacity:.7;letter-spacing:.05em;font-weight:500}
+.mnext,.mlast{display:block;flex:none;padding:0 20px;font-size:12px;line-height:1.5;color:var(--gray);letter-spacing:.04em;opacity:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mnext:empty,.mlast:empty{display:none}
+.mnext{padding-top:22px;padding-bottom:14px;border-bottom:1px solid #2a2a2a}
+.mlast{padding-top:20px}
+.mnext b,.mlast b{color:var(--orange);letter-spacing:.14em;margin-right:10px}
+.mnext strong,.mlast strong{color:var(--white);margin-right:10px}
+.msns{display:flex;gap:22px;flex:none;padding:8px 20px 0;opacity:0}
+.msns a{display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--gray)}
+html.menu-open header nav>a{opacity:1;transform:none}
+html.menu-open .mnext,html.menu-open .mlast,html.menu-open .msns{opacity:1}
+@media (prefers-reduced-motion:no-preference){
+.mbg{transition:visibility 0s .3s}
+.mbg i{transition:transform .22s cubic-bezier(.7,0,.2,1)}
+.mbg b{transition:transform .2s cubic-bezier(.7,0,.2,1) .08s}
+html.menu-open .mbg{transition:visibility 0s}
+html.menu-open .mbg i{transition:transform .3s cubic-bezier(.7,0,.2,1) .13s}
+html.menu-open .mbg b{animation:mband .64s cubic-bezier(.7,0,.2,1) both;transition:none}
+header nav{transition:visibility 0s .12s}
+html.menu-open header nav{transition:visibility 0s}
+header nav>a{transition:opacity .1s}
+html.menu-open header nav>a{transition:opacity .28s,transform .36s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.32s + var(--i,0)*.04s)}
+html.menu-open .mnext{transition:opacity .3s .26s}
+html.menu-open .mlast,html.menu-open .msns{transition:opacity .35s .66s}
+}
+@keyframes mband{0%{transform:rotate(-5deg) scaleX(0)}34%{transform:rotate(-5deg) scaleX(1)}52%{transform:rotate(-5deg) scaleX(1)}100%{transform:translateY(calc(-50vh + var(--mt,70px)/2 + 6px)) rotate(0deg) scaleX(1) scaleY(.34)}}
 }
 </style>
 <style id="tap-css">@media (hover:none){header nav a:not(.on):hover{color:inherit}}header nav a,header a.logo{touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,106,0,.3)}header nav{overscroll-behavior-x:contain}header nav a:active{color:var(--orange)}</style>
@@ -196,7 +212,7 @@ html.menu-open .msns{opacity:1}
   <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
 </svg></a>
 
-  <nav id="gnav"><a href="../">HOME<span class="ja" lang="ja">ホーム</span></a><a href="../profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="../report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="../support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a><div class="msns"><a href="https://x.com/T_Ishii_10" target="_blank" rel="noopener">X</a><a href="https://www.instagram.com/taiga.ishii20/" target="_blank" rel="noopener">INSTAGRAM</a><a href="https://www.youtube.com/@石井大雅-x6b" target="_blank" rel="noopener">YOUTUBE</a></div></nav><button type="button" class="mbtn" aria-expanded="false" aria-controls="gnav"><i aria-hidden="true"><b></b><b></b><b></b></i><span>メニュー</span></button><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on){var ol=on.offsetLeft-n.offsetLeft;if(ol+on.offsetWidth>n.clientWidth)n.scrollLeft=ol-(n.clientWidth-on.offsetWidth)/2;}function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
+  <nav id="gnav"><a href="../">HOME<span class="ja" lang="ja">ホーム</span></a><a href="../profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="../report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="../support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a><div class="mlast"></div><div class="msns"><a href="https://x.com/T_Ishii_10" target="_blank" rel="noopener">X</a><a href="https://www.instagram.com/taiga.ishii20/" target="_blank" rel="noopener">INSTAGRAM</a><a href="https://www.youtube.com/@石井大雅-x6b" target="_blank" rel="noopener">YOUTUBE</a></div></nav><div class="mbg" aria-hidden="true"><i class="t"></i><i class="u"></i><b></b></div><button type="button" class="mbtn" aria-expanded="false" aria-controls="gnav"><i aria-hidden="true"><b></b><b></b><b></b></i><span>メニュー</span></button><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on){var ol=on.offsetLeft-n.offsetLeft;if(ol+on.offsetWidth>n.clientWidth)n.scrollLeft=ol-(n.clientWidth-on.offsetWidth)/2;}function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
 </header>
 <div class="head">
   <small>PRIVACY POLICY</small>
@@ -258,12 +274,39 @@ html.menu-open .msns{opacity:1}
 (function(){
   var d=document.documentElement,b=document.querySelector('.mbtn'),n=document.getElementById('gnav'),h=document.querySelector('header');
   if(!b||!n) return;
-  [].forEach.call(n.children,function(x,i){x.style.setProperty('--i',i)});
+  var links=[].filter.call(n.children,function(x){return x.tagName==='A'});
+  links.forEach(function(x,i){x.style.setProperty('--i',i)});
+  var nx=document.createElement('div');nx.className='mnext';n.insertBefore(nx,n.firstChild);
+  var ls=n.querySelector('.mlast'),loaded=false;
+  function txt(e,q){var x=e.querySelector(q);return x?x.textContent.replace(/\s+/g,' ').trim():''}
+  function line(el,k,dt,t){el.textContent='';var a=document.createElement('b');a.textContent=k;var s=document.createElement('strong');s.textContent=dt;el.appendChild(a);el.appendChild(s);el.appendChild(document.createTextNode(t))}
+  // 次のレース／前のレース：トップの帯と同じく、スケジュールとリザルトのページから読む
+  function load(){
+    if(loaded||!window.fetch||!links[0]) return; loaded=true;
+    var base=links[0].getAttribute('href'); if(base.slice(-1)!=='/') base+='/';
+    function get(u){return fetch(base+u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){return new DOMParser().parseFromString(t,'text/html')})}
+    Promise.all([get('schedule/'),get('results/')]).then(function(D){
+      var now=new Date();now.setHours(0,0,0,0);
+      var rows=[].slice.call(D[1].querySelectorAll('.rrow[data-y]')),last=null;
+      rows.forEach(function(r){var x=txt(r,'.rdate').split('.');if(x.length<2)return;var dt=new Date(+r.dataset.y,+x[0]-1,+x[1]);if(dt<=now&&(!last||dt>last.dt))last={dt:dt,r:r}});
+      var y=now.getFullYear(),pm=0,next=null,c0=D[0].querySelector('#schedule .card small');
+      if(c0){var f0=(c0.textContent.match(/\d{1,2}/)||[1])[0];if(+f0-(now.getMonth()+1)>6)y--;}
+      [].slice.call(D[0].querySelectorAll('#schedule .card')).some(function(c){
+        var ds=(txt(c,'small').match(/\d{1,2}\.\d{1,2}/g)||[]);if(!ds.length)return false;
+        var a=ds[0].split('.'),e=(ds[1]||ds[0]).split('.');if(c.dataset.y)y=+c.dataset.y;else if(+a[0]<pm)y++;pm=+a[0];
+        var en=new Date(+e[0]<+a[0]?y+1:y,+e[0]-1,+e[1]);if(en>=now){next={c:c,d:ds[0]};return true}return false});
+      if(next) line(nx,'NEXT',next.d,txt(next.c,'h3'));
+      if(last&&ls){var r=last.r,tag=txt(r,'.tag'),em=txt(r,'.rrace em'),name=txt(r,'.rrace').replace(tag,'').replace(em,'').replace(txt(r,'.rrace .note'),'').trim(),
+        f=r.querySelector('.rf').cloneNode(true),sm=f.querySelector('small');if(sm)sm.remove();
+        line(ls,'LAST',txt(r,'.rdate'),tag+' '+name+'　'+f.textContent.replace(/\s+/g,''))}
+    }).catch(function(){});
+  }
   function set(o){d.classList.toggle('menu-open',o);b.setAttribute('aria-expanded',o?'true':'false');b.querySelector('span').textContent=o?'閉じる':'メニュー';
-    if(o)n.style.setProperty('--mt',Math.round(h.getBoundingClientRect().bottom)+'px')}
+    if(o){h.style.setProperty('--mt',Math.round(h.getBoundingClientRect().bottom)+'px');n.scrollTop=0;load()}}
   b.addEventListener('click',function(){set(!d.classList.contains('menu-open'))});
+  if(window.matchMedia&&matchMedia('(max-width:720px)').matches){if(document.readyState==='complete')load();else addEventListener('load',load)}
   n.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&a.classList.contains('on')&&a.hasAttribute('aria-current'))set(false)});
-  addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&d.classList.contains('menu-open')){set(false);b.focus()}});
   addEventListener('pageshow',function(){set(false)});
   if(window.matchMedia)matchMedia('(min-width:721px)').addEventListener('change',function(){set(false)});
 })();
