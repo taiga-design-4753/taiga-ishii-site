@@ -411,12 +411,19 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
 </style>
 <script>try{if(sessionStorage.getItem('ptx')==='1'){sessionStorage.removeItem('ptx');document.documentElement.classList.add('pt-in')}}catch(e){}</script>
 <style id="ph-css">
-/* その2（タイガ：「今のまま画像を上に表示してほしい」）：大きなタイトルは載せず、今までと同じ帯の写真をページのいちばん上に置く */
-.pband{position:relative;margin:0;height:calc(clamp(240px,40vw,560px) + 60px);overflow:hidden;background:#000}
-.pband img{width:100%;height:100%;object-fit:cover;display:block}
-.pband+main.page-top{padding-top:64px}
-.pband+.head{padding-top:64px}
-@media(max-width:720px){.pband+main.page-top,.pband+.head{padding-top:44px}}
+/* その3（タイガ：「文字透過して画像置いてくれ。変な黒い部分がある」）：今までの帯の写真をいちばん上に置き、見出しを写真の上に重ねる。下の黒いすき間は詰める */
+.pband{position:relative;margin:0;min-height:calc(clamp(240px,40vw,560px) + 60px);box-sizing:border-box;padding-top:110px;display:flex;align-items:flex-end;overflow:hidden;background:#000}
+.pband>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pband .pshade{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.9) 0%,rgba(11,11,11,.45) 38%,rgba(11,11,11,.12) 75%);pointer-events:none}
+.pband-in{position:relative;z-index:1;width:100%;max-width:1100px;margin:0 auto;padding:0 5vw 30px;box-sizing:border-box}
+.pband h2{margin:0;color:#fff;opacity:1!important;transform:none!important;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.pband h2::after{transform:none!important}
+.pband+main.page-top{padding-top:0}
+.pband+main.page-top>section:first-child{padding-top:44px}
+.pband .head{position:relative;z-index:1;width:100%;max-width:760px;margin:0 auto;padding:0 5vw 28px;box-sizing:border-box;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.pband .head .lead{margin-bottom:0}
+.head-after{max-width:760px;margin:0 auto;padding:36px 5vw 30px;color:#ddd;font-size:15px}
+@media(max-width:720px){.pband{padding-top:96px}.pband-in{padding-bottom:22px}.pband+main.page-top>section:first-child{padding-top:30px}.head-after{padding-top:26px}}
 </style>
 </head>
 <body>
@@ -453,10 +460,10 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
 </header>
 
 
-<figure class="pband"><img decoding="async" fetchpriority="high" srcset="../img/band2-1200.webp 1200w, ../img/band2-1600.webp 1600w, ../img/band2.webp 2400w" sizes="100vw" src="../img/band2.webp" alt="マシンに乗り込む石井大雅" style="object-position:45% 8%"></figure>
+<div class="pband"><img decoding="async" fetchpriority="high" srcset="../img/band2-1200.webp 1200w, ../img/band2-1600.webp 1600w, ../img/band2.webp 2400w" sizes="100vw" src="../img/band2.webp" alt="マシンに乗り込む石井大雅" style="object-position:45% 8%"><div class="pshade" aria-hidden="true"></div><div class="pband-in"><h2>SCHEDULE<span class="ja" lang="ja">スケジュール</span></h2></div></div>
 <main class="page-top">
 <section id="schedule">
-  <h2 class="reveal">SCHEDULE<span class="ja" lang="ja">スケジュール</span></h2>
+  
   <div class="tick" id="tick" data-base="../" style="margin-bottom:36px" aria-label="次のレースと前のレース">
     <a href="../schedule/" class="tn"><span class="k">NEXT<b>次のレース</b></span><span class="w"><b>FJ1500 もてぎ・菅生 最終戦</b><span>11.22 SUN　モビリティリゾートもてぎ</span></span><span class="n">9<small>日</small></span></a>
     <a href="../results/" class="tl"><span class="k">LAST<b>前のレース</b></span><span class="w"><b>FIA-F4 第14戦</b><span>11.08　モビリティリゾートもてぎ</span></span><span class="n">17<small>位</small></span></a>
