@@ -353,7 +353,7 @@ html:not(.still) .hero-text{animation:none!important}
 }
 .page-top{padding-top:110px}
 .nextlast{padding-top:56px;padding-bottom:24px}
-.tick{display:grid;grid-template-columns:1fr 1fr;border:1px solid #2a2a2a}
+.tick{display:grid;grid-template-columns:1fr;border:1px solid #2a2a2a}
 .tick a{display:flex;align-items:center;gap:18px;padding:18px 24px;color:inherit;text-decoration:none;min-width:0}
 .tick a+a{border-left:1px solid #2a2a2a}
 .tick .k{font-weight:700;font-size:11px;letter-spacing:.12em;color:var(--gray);white-space:nowrap}
@@ -536,9 +536,8 @@ html.menu-open .mlast,html.menu-open .msns{transition:opacity .35s .66s}
 <main class="page-top">
 <section id="schedule">
   
-  <div class="tick" id="tick" data-base="../" style="margin-bottom:36px" aria-label="次のレースと前のレース">
+  <div class="tick" id="tick" data-base="../" style="margin-bottom:36px" aria-label="次のレース">
     <a href="../schedule/" class="tn"><span class="k">NEXT<b>次のレース</b></span><span class="w"><b>FJ1500 もてぎ・菅生 最終戦</b><span>11.22 SUN　モビリティリゾートもてぎ</span></span><span class="n"></span></a>
-    <a href="../results/" class="tl"><span class="k">LAST<b>前のレース</b></span><span class="w"><b>FIA-F4 第14戦</b><span>11.08　モビリティリゾートもてぎ</span></span><span class="n">17<small>位</small></span></a>
   </div>
   <div class="cards">
     <div class="card reveal"><small>11.22 SUN</small><h3>FJ1500 もてぎ・菅生 最終戦</h3><p>モビリティリゾートもてぎ</p></div>
@@ -804,7 +803,7 @@ html.menu-open .mlast,html.menu-open .msns{transition:opacity .35s .66s}
       var n=tn.querySelector('.n');
       if(days>0){n.className='n';n.innerHTML='<small>あと</small>'+days+'<small>日</small>'}else{n.className='n t';n.textContent='レース当日'}
     } else {tn.querySelector('.w b').textContent='来シーズンの日程は準備中です';tn.querySelector('.w span').textContent='決まり次第お知らせします';tn.querySelector('.n').textContent=''}
-    if(last){var r=last.r,tag=txt(r,'.tag'),em=txt(r,'.rrace em'),
+    if(last&&tl){var r=last.r,tag=txt(r,'.tag'),em=txt(r,'.rrace em'),
         name=txt(r,'.rrace').replace(tag,'').replace(em,'').replace(txt(r,'.rrace .note'),'').trim(),
         f=r.querySelector('.rf').cloneNode(true),sm=f.querySelector('small');if(sm)sm.remove();
       tl.querySelector('.w b').textContent=tag+' '+name;
