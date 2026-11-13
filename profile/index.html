@@ -805,8 +805,7 @@ html.menu-open .mlast,html.menu-open .msns{transition:opacity .35s .66s}
   if(!b||!n) return;
   var links=[].filter.call(n.children,function(x){return x.tagName==='A'});
   links.forEach(function(x,i){x.style.setProperty('--i',i)});
-  var nx=document.createElement('div');nx.className='mnext';n.insertBefore(nx,n.firstChild);
-  var ls=n.querySelector('.mlast'),loaded=false;
+  var nx=n.querySelector('.mlast'),loaded=false;
   function txt(e,q){var x=e.querySelector(q);return x?x.textContent.replace(/\s+/g,' ').trim():''}
   function line(el,k,dt,t){el.textContent='';var a=document.createElement('b');a.textContent=k;var s=document.createElement('strong');s.textContent=dt;el.appendChild(a);el.appendChild(s);el.appendChild(document.createTextNode(t))}
   // 次のレース／前のレース：トップの帯と同じく、スケジュールとリザルトのページから読む
@@ -825,7 +824,7 @@ html.menu-open .mlast,html.menu-open .msns{transition:opacity .35s .66s}
         var a=ds[0].split('.'),e=(ds[1]||ds[0]).split('.');if(c.dataset.y)y=+c.dataset.y;else if(+a[0]<pm)y++;pm=+a[0];
         var en=new Date(+e[0]<+a[0]?y+1:y,+e[0]-1,+e[1]);if(en>=now){next={c:c,d:ds[0]};return true}return false});
       if(next) line(nx,'NEXT',next.d,txt(next.c,'h3'));
-      if(last&&ls){var r=last.r,tag=txt(r,'.tag'),em=txt(r,'.rrace em'),name=txt(r,'.rrace').replace(tag,'').replace(em,'').replace(txt(r,'.rrace .note'),'').trim(),
+      if(false){var r=last.r,tag=txt(r,'.tag'),em=txt(r,'.rrace em'),name=txt(r,'.rrace').replace(tag,'').replace(em,'').replace(txt(r,'.rrace .note'),'').trim(),
         f=r.querySelector('.rf').cloneNode(true),sm=f.querySelector('small');if(sm)sm.remove();
         line(ls,'LAST',txt(r,'.rdate'),tag+' '+name+'　'+f.textContent.replace(/\s+/g,''))}
     }).catch(function(){});
