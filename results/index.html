@@ -1057,7 +1057,7 @@ html.menu-open .mlast,html.menu-open .msns{transition:opacity .35s .66s}
   // 次のレース／前のレース：トップの帯と同じく、スケジュールとリザルトのページから読む
   function load(){
     if(loaded||!window.fetch||!links[0]) return; loaded=true;
-    var base=links[0].getAttribute('href'); if(base.slice(-1)!=='/') base+='/';
+    var base=links[0].getAttribute('href').replace(/index\.html$/,''); if(base&&base.slice(-1)!=='/') base+='/';
     function get(u){return fetch(base+u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){return new DOMParser().parseFromString(t,'text/html')})}
     Promise.all([get('schedule/'),get('results/')]).then(function(D){
       var now=new Date();now.setHours(0,0,0,0);
