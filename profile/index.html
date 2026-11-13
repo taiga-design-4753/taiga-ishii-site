@@ -840,5 +840,23 @@ html.menu-open .mlast,html.menu-open .msns{transition:opacity .35s .66s}
   if(window.matchMedia)matchMedia('(min-width:721px)').addEventListener('change',function(){set(false)});
 })();
 </script>
+<script id="top-js">
+(function(){
+  var d=document.documentElement;
+  // リンクで移動してきたときは必ずページの先頭から（途中の位置が復元されないように）
+  if(d.classList.contains('pt-in')&&!location.hash){try{history.scrollRestoration='manual'}catch(e){} scrollTo(0,0)}
+  // 今いるページ自身へのリンク（トップでのロゴやHOMEなど）は、読み込み直さずにページの先頭へ戻る
+  document.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+    var a=e.target.closest&&e.target.closest('a'); if(!a||a.hasAttribute('download')) return;
+    var t=a.getAttribute('target'); if(t&&t!=='_self') return;
+    var u; try{u=new URL(a.href,location.href)}catch(x){return}
+    if(u.origin!==location.origin||u.pathname!==location.pathname||u.search!==location.search||u.hash) return;
+    e.preventDefault();
+    var still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    scrollTo({top:0,behavior:still?'auto':'smooth'});
+  },true);
+})();
+</script>
 </body>
 </html>
