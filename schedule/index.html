@@ -410,6 +410,24 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
 @media (prefers-reduced-motion:reduce){.pt{display:none}}
 </style>
 <script>try{if(sessionStorage.getItem('ptx')==='1'){sessionStorage.removeItem('ptx');document.documentElement.classList.add('pt-in')}}catch(e){}</script>
+<style id="ph-css">
+.phero{position:relative;height:72vh;min-height:420px;max-height:860px;display:flex;align-items:flex-end;padding:120px 5vw 8vh;overflow:hidden;background:#000}
+.phero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;animation:phz 1.8s cubic-bezier(.2,.7,.2,1) both}
+.phero .shade{position:absolute;inset:0;z-index:0;background:linear-gradient(to top,rgba(11,11,11,.92) 0%,rgba(11,11,11,.35) 45%,rgba(11,11,11,.25) 100%);pointer-events:none}
+.phero .phero-text{position:relative;z-index:1;max-width:1100px;margin:0 auto;width:100%}
+.phero small{color:var(--orange);letter-spacing:.3em;font-size:12px;font-weight:700}
+.phero h1{font-size:clamp(44px,9vw,96px);font-weight:900;font-style:italic;letter-spacing:.08em;line-height:1.1;margin:6px 0 0;color:#fff}
+.phero h1 .ja{display:block;font-size:14px;font-weight:700;font-style:normal;letter-spacing:.2em;opacity:.8;margin-top:10px;line-height:1.4}
+.phero .head{position:relative;z-index:1;max-width:760px;margin:0 auto;width:100%;padding:0}
+.phero .head h1{margin-bottom:18px}
+.phero .head .lead{margin-bottom:0}
+.head-after{max-width:760px;margin:0 auto;padding:40px 5vw 36px;color:#ddd;font-size:15px}
+.head-after+main{padding-top:0}
+.phero+main.page-top,.phero+main{padding-top:56px}
+@keyframes phz{from{transform:scale(1.12)}to{transform:scale(1)}}
+@media(max-width:720px){.phero{height:62vh;min-height:380px;padding-bottom:6vh}.phero+main.page-top,.phero+main{padding-top:36px}}
+@media (prefers-reduced-motion:reduce){.phero>img{animation:none}}
+</style>
 </head>
 <body>
 <div class="pt" aria-hidden="true"><u></u><u></u><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 100"><polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/><polygon class="s" points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/><polygon class="s s2" points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/><polygon class="s s3" points="3.6,82 147.6,82 147.3,83.5 3.3,83.5" fill="#FF6A00"/><g fill="#F5F7FA"><polygon points="29,17 103,17 102,22 28,22"/><polygon points="43,26 101,26 100,31 42,31"/><polygon points="63,31 78,31 68,82 53,82"/><polygon points="109,17 124,17 114,82 99,82"/></g></svg></div>
@@ -445,9 +463,10 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
 </header>
 
 
+<div class="phero"><img decoding="async" fetchpriority="high" srcset="../img/band2-1200.webp 1200w, ../img/band2-1600.webp 1600w, ../img/band2.webp 2400w" sizes="100vw" src="../img/band2.webp" alt="マシンに乗り込む石井大雅" style="object-position:45% 8%"><div class="shade" aria-hidden="true"></div><div class="phero-text"><small>RACE SCHEDULE</small><h1>SCHEDULE<span class="ja" lang="ja">スケジュール</span></h1></div></div>
 <main class="page-top">
 <section id="schedule">
-  <h2 class="reveal">SCHEDULE<span class="ja" lang="ja">スケジュール</span></h2>
+  
   <div class="tick" id="tick" data-base="../" style="margin-bottom:36px" aria-label="次のレースと前のレース">
     <a href="../schedule/" class="tn"><span class="k">NEXT<b>次のレース</b></span><span class="w"><b>FJ1500 もてぎ・菅生 最終戦</b><span>11.22 SUN　モビリティリゾートもてぎ</span></span><span class="n">9<small>日</small></span></a>
     <a href="../results/" class="tl"><span class="k">LAST<b>前のレース</b></span><span class="w"><b>FIA-F4 第14戦</b><span>11.08　モビリティリゾートもてぎ</span></span><span class="n">17<small>位</small></span></a>
@@ -459,8 +478,6 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
   </div>
   <p class="note reveal">サーキットでの応援、よろしくお願いします！</p>
 </section>
-
-<figure class="band reveal"><img decoding="async" srcset="../img/band2-1200.webp 1200w, ../img/band2-1600.webp 1600w, ../img/band2.webp 2400w" sizes="100vw" src="../img/band2.webp" alt="マシンに乗り込む石井大雅" style="object-position:45% 8%"></figure>
 
 
 </main>
