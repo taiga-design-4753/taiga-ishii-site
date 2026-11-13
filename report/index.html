@@ -268,7 +268,7 @@ html.blue .pband h2::after{background:#2456D8}
   </g>
   <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
 </svg></a>
-  <nav><a href="../">HOME<span class="ja" lang="ja">ホーム</span></a><a href="../profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="./" class="on">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="../support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="#contact">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on&&on.offsetLeft+on.offsetWidth>n.clientWidth)n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2;function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
+  <nav><a href="../">HOME<span class="ja" lang="ja">ホーム</span></a><a href="../profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="./" class="on" aria-current="page">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="../support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on){var ol=on.offsetLeft-n.offsetLeft;if(ol+on.offsetWidth>n.clientWidth)n.scrollLeft=ol-(n.clientWidth-on.offsetWidth)/2;}function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
 </header>
 
 <script>(function(){var h=document.querySelector("header");function f(){if(h)document.documentElement.style.setProperty("--hh",h.offsetHeight+"px")}f();addEventListener("resize",f)})();</script><div class="pband"><img decoding="async" fetchpriority="high" src="../img/p6.webp" alt="" style="object-position:50% 45%"><div class="pshade" aria-hidden="true"></div><div class="pband-in"><h2>REPORT<span class="ja" lang="ja">レースレポート</span></h2></div></div>
@@ -683,13 +683,14 @@ html.blue .pband h2::after{background:#2456D8}
 <script id="next-js">
 (function(){
   var box=document.querySelector('main .next'); if(!box||!window.fetch) return;
-  fetch('../schedule/',{cache:'no-cache'}).then(function(r){return r.text()}).then(function(h){
+  fetch('../schedule/',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(h){
     var d=new DOMParser().parseFromString(h,'text/html'),now=new Date();now.setHours(0,0,0,0);
     var y=now.getFullYear(),pm=0,hit=null,cs=d.querySelectorAll('#schedule .card');
+    if(!cs.length)return;
     if(cs.length){var f=(cs[0].querySelector('small').textContent.match(/\d{1,2}/)||[1])[0]; if(+f-(now.getMonth()+1)>6) y--;}
     [].some.call(cs,function(c){
       var sm=c.querySelector('small').textContent,ds=sm.match(/\d{1,2}\.\d{1,2}/g)||[];if(!ds.length)return false;
-      var a=ds[0].split('.'),b=(ds[1]||ds[0]).split('.');if(+a[0]<pm)y++;pm=+a[0];
+      var a=ds[0].split('.'),b=(ds[1]||ds[0]).split('.');if(c.dataset.y)y=+c.dataset.y;else if(+a[0]<pm)y++;pm=+a[0];
       var en=new Date(+b[0]<+a[0]?y+1:y,+b[0]-1,+b[1]);
       if(en>=now){hit={sm:sm.trim(),h:c.querySelector('h3').textContent.trim(),p:c.querySelector('p').textContent.trim()};return true}return false});
     if(!hit){box.style.display='none';return}

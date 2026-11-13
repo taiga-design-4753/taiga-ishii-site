@@ -17,7 +17,7 @@
 <link rel="icon" href="../logo/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="../logo/apple-touch-icon.png">
 <meta name="description" content="石井大雅の今後のレーススケジュール。">
-<meta property="og:title" content="石井大雅 | Taiga Ishii Racing">
+<meta property="og:title" content="SCHEDULE | 石井大雅 | Taiga Ishii Racing">
 <meta property="og:description" content="石井大雅の今後のレーススケジュール。">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://taigarace.com/img/hero.jpg">
@@ -359,6 +359,7 @@ html.blue .best-n,html.blue .toprace .pos{color:#2456D8}
 .tick .n{font-weight:900;font-size:40px;line-height:.9;color:var(--orange);white-space:nowrap;text-align:right}
 .tick .n small{font-size:12px;font-weight:700;color:var(--gray);margin-left:2px}
 .tick .n.t{font-size:18px}
+.tick .n small:first-child{margin:0 4px 0 0}
 .intro{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:center}
 .intro .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
 .intro .name{font-size:28px;font-weight:900;letter-spacing:.04em}
@@ -468,7 +469,7 @@ html.blue .pband h2::after{background:#2456D8}
   </g>
   <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
 </svg></a>
-  <nav><a href="../">HOME<span class="ja" lang="ja">ホーム</span></a><a href="../profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="../report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../schedule/" class="on" aria-current="page">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="../support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on&&on.offsetLeft+on.offsetWidth>n.clientWidth)n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2;function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
+  <nav><a href="../">HOME<span class="ja" lang="ja">ホーム</span></a><a href="../profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="../report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../schedule/" class="on" aria-current="page">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="../support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on){var ol=on.offsetLeft-n.offsetLeft;if(ol+on.offsetWidth>n.clientWidth)n.scrollLeft=ol-(n.clientWidth-on.offsetWidth)/2;}function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
 </header>
 
 
@@ -477,7 +478,7 @@ html.blue .pband h2::after{background:#2456D8}
 <section id="schedule">
   
   <div class="tick" id="tick" data-base="../" style="margin-bottom:36px" aria-label="次のレースと前のレース">
-    <a href="../schedule/" class="tn"><span class="k">NEXT<b>次のレース</b></span><span class="w"><b>FJ1500 もてぎ・菅生 最終戦</b><span>11.22 SUN　モビリティリゾートもてぎ</span></span><span class="n">9<small>日</small></span></a>
+    <a href="../schedule/" class="tn"><span class="k">NEXT<b>次のレース</b></span><span class="w"><b>FJ1500 もてぎ・菅生 最終戦</b><span>11.22 SUN　モビリティリゾートもてぎ</span></span><span class="n"></span></a>
     <a href="../results/" class="tl"><span class="k">LAST<b>前のレース</b></span><span class="w"><b>FIA-F4 第14戦</b><span>11.08　モビリティリゾートもてぎ</span></span><span class="n">17<small>位</small></span></a>
   </div>
   <div class="cards">
@@ -724,15 +725,17 @@ html.blue .pband h2::after{background:#2456D8}
   var base=t.dataset.base||'';
   var now=new Date(); now.setHours(0,0,0,0);
   function txt(e,q){var x=e.querySelector(q);return x?x.textContent.replace(/\s+/g,' ').trim():''}
-  function get(u){return fetch(base+u,{cache:'no-cache'}).then(function(r){return r.text()}).then(function(h){return new DOMParser().parseFromString(h,'text/html')})}
+  function get(u){return fetch(base+u,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(h){return new DOMParser().parseFromString(h,'text/html')})}
   Promise.all([get('schedule/'),get('results/')]).then(function(d){
     var rows=[].slice.call(d[1].querySelectorAll('.rrow[data-y]')),last=null;
+    if(!rows.length||!d[0].querySelector('#schedule .card'))return;
     rows.forEach(function(r){var x=txt(r,'.rdate').split('.');if(x.length<2)return;
       var dt=new Date(+r.dataset.y,+x[0]-1,+x[1]);if(dt<=now&&(!last||dt>last.dt))last={dt:dt,r:r}});
-    var y=rows.length?Math.max.apply(null,rows.map(function(r){return +r.dataset.y})):now.getFullYear(),pm=0,next=null;
+    var y=now.getFullYear(),pm=0,next=null,c0=d[0].querySelector('#schedule .card small');
+    if(c0){var f0=(c0.textContent.match(/\d{1,2}/)||[1])[0];if(+f0-(now.getMonth()+1)>6)y--;}
     [].slice.call(d[0].querySelectorAll('#schedule .card')).some(function(c){
       var ds=(txt(c,'small').match(/\d{1,2}\.\d{1,2}/g)||[]);if(!ds.length)return false;
-      var a=ds[0].split('.'),b=(ds[1]||ds[0]).split('.');if(+a[0]<pm)y++;pm=+a[0];
+      var a=ds[0].split('.'),b=(ds[1]||ds[0]).split('.');if(c.dataset.y)y=+c.dataset.y;else if(+a[0]<pm)y++;pm=+a[0];
       var st=new Date(y,+a[0]-1,+a[1]),en=new Date(+b[0]<+a[0]?y+1:y,+b[0]-1,+b[1]);
       if(en>=now){next={st:st,c:c};return true}return false});
     var tn=t.querySelector('.tn'),tl=t.querySelector('.tl');
@@ -740,7 +743,7 @@ html.blue .pband h2::after{background:#2456D8}
       tn.querySelector('.w b').textContent=txt(c,'h3');
       tn.querySelector('.w span').textContent=txt(c,'small')+'　'+txt(c,'p');
       var n=tn.querySelector('.n');
-      if(days>0){n.className='n';n.innerHTML=days+'<small>日</small>'}else{n.className='n t';n.textContent='レース当日'}
+      if(days>0){n.className='n';n.innerHTML='<small>あと</small>'+days+'<small>日</small>'}else{n.className='n t';n.textContent='レース当日'}
     } else {tn.querySelector('.w b').textContent='来シーズンの日程は準備中です';tn.querySelector('.w span').textContent='決まり次第お知らせします';tn.querySelector('.n').textContent=''}
     if(last){var r=last.r,tag=txt(r,'.tag'),em=txt(r,'.rrace em'),
         name=txt(r,'.rrace').replace(tag,'').replace(em,'').replace(txt(r,'.rrace .note'),'').trim(),
