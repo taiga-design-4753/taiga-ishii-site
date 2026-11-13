@@ -16,9 +16,9 @@
 <link rel="icon" href="logo/ti-mark-small.svg" type="image/svg+xml">
 <link rel="icon" href="logo/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="logo/apple-touch-icon.png">
-<meta name="description" content="SIMレース出身のフォーミュラレーサー、石井大雅（#47）の公式サイト。FIA-F4・FJ1500・F110 CUPに参戦中。プロフィール、リザルト、レーススケジュールを掲載。">
+<meta name="description" content="SIMレース出身のフォーミュラレーサー、石井大雅の公式サイト。FIA-F4・FJ1500・F110 CUPに参戦中。プロフィール、リザルト、レーススケジュールを掲載。">
 <meta property="og:title" content="石井大雅 | Taiga Ishii Racing">
-<meta property="og:description" content="SIMレース出身のフォーミュラレーサー、石井大雅（#47）の公式サイト。FIA-F4・FJ1500・F110 CUPに参戦中。プロフィール、リザルト、レーススケジュールを掲載。">
+<meta property="og:description" content="SIMレース出身のフォーミュラレーサー、石井大雅の公式サイト。FIA-F4・FJ1500・F110 CUPに参戦中。プロフィール、リザルト、レーススケジュールを掲載。">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://taigarace.com/img/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -310,10 +310,107 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
 @media(max-width:720px){.ja{font-size:12px}nav a .ja{font-size:8px}}
 /* 公開前デザイン修正：ナビの日本語を大きく、スマホのナビに続きの合図、押しやすいリンク、青モードの小さい字を明るく */nav a .ja{font-size:11px}footer a{display:inline-block;padding:10px 4px}.src{padding-top:10px}@media(max-width:720px){nav a .ja{font-size:10px}nav{-webkit-mask-image:linear-gradient(to right,#000 72%,transparent);mask-image:linear-gradient(to right,#000 72%,transparent)}nav.end{-webkit-mask-image:none;mask-image:none}header::after{content:"›";position:absolute;right:8px;top:calc(50% + env(safe-area-inset-top,0px)/2);transform:translateY(-50%);color:var(--orange);font-size:22px;font-weight:700;line-height:1;pointer-events:none;transition:opacity .2s}header.navend::after{opacity:0}}html.blue th,html.blue .career time,html.blue .rrace .note,html.blue .toreport small,html.blue .card small,html.blue nav a.on,html.blue nav a:hover,html.blue .tag.sfj,html.blue .brandnote summary::after{color:#5B86FF}html.blue .tag.sfj{border-color:#5B86FF}
 /* スマホではヘッダーのぼかしを止める（下の写真を毎回ぼかし直すのが重く、スクロールがかくつくため） */@media(max-width:720px){header{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(11,11,11,.94)}}</style>
+<style id="mp-css">
+/* 3. リザルト：ベストだけ */
+.best{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #333;border-bottom:1px solid #333;margin-bottom:40px}
+.best div{padding:26px 20px 22px 0}
+.best div+div{border-left:1px solid #333;padding-left:24px}
+.best-n{display:block;font-weight:900;font-stretch:65%;font-size:clamp(64px,9vw,104px);line-height:.9;color:var(--orange)}
+.best-n small{font-size:.32em;font-stretch:90%;margin-left:4px;color:var(--white)}
+.best b{display:block;font-size:15px;margin-top:10px}
+.best p{font-size:13px;color:var(--gray);line-height:1.6;margin-top:2px}
+.toprace{list-style:none;margin:0 0 28px}
+.toprace li{display:grid;grid-template-columns:96px 1fr auto;gap:4px 18px;align-items:center;padding:16px 0;border-bottom:1px solid #2a2a2a}
+.toprace .pos{font-weight:900;font-stretch:65%;font-size:44px;line-height:1;color:var(--orange)}
+.toprace .pos.w{font-family:inherit;font-size:30px;font-stretch:normal}
+.toprace .what b{display:block;font-size:16px}
+.toprace .what>span{font-size:13px;color:var(--gray)}
+.toprace .when{font-weight:600;font-size:13px;color:var(--gray);text-align:right}
+.allres{margin-top:8px}
+.allres>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border:1px solid #555;font-weight:700;font-size:14px}
+.allres>summary::-webkit-details-marker{display:none}
+.allres>summary::after{content:"＋";color:var(--orange)}
+.allres[open]>summary::after{content:"－"}
+.allres[open]>summary{margin-bottom:24px}
+html.blue .best-n,html.blue .toprace .pos{color:#2456D8}
+@media (max-width:720px){
+  .best{grid-template-columns:1fr}
+  .best div,.best div+div{border-left:0;padding:18px 0;display:grid;grid-template-columns:auto 1fr;gap:0 16px;align-items:center}
+  .best div+div{border-top:1px solid #2a2a2a}
+  .best-n{font-size:64px;grid-row:span 2}
+  .best b{margin-top:0}
+  .toprace li{grid-template-columns:64px 1fr;padding:14px 0}
+  .toprace .pos{font-size:38px}.toprace .pos.w{font-size:24px}
+  .toprace .when{grid-column:2;text-align:left;margin-top:-2px}
+}
+
+/* ページ分け */
+.hero-wrap{height:140vh!important}
+.page-top{padding-top:110px}
+.nextlast{padding-top:56px;padding-bottom:24px}
+.tick{display:grid;grid-template-columns:1fr 1fr;border:1px solid #2a2a2a}
+.tick a{display:flex;align-items:center;gap:18px;padding:18px 24px;color:inherit;text-decoration:none;min-width:0}
+.tick a+a{border-left:1px solid #2a2a2a}
+.tick .k{font-weight:700;font-size:11px;letter-spacing:.12em;color:var(--gray);white-space:nowrap}
+.tick .k b{display:block;font-size:13px;letter-spacing:.02em;color:var(--white);margin-top:2px}
+.tick .w{min-width:0;flex:1}
+.tick .w b{display:block;font-size:15px;line-height:1.45}
+.tick .w span{font-size:12px;color:var(--gray)}
+.tick .n{font-weight:900;font-size:40px;line-height:.9;color:var(--orange);white-space:nowrap;text-align:right}
+.tick .n small{font-size:12px;font-weight:700;color:var(--gray);margin-left:2px}
+.tick .n.t{font-size:18px}
+.intro{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:center}
+.intro .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.intro .name{font-size:28px;font-weight:900;letter-spacing:.04em}
+.intro .name small{display:block;font-size:12px;color:var(--gray);letter-spacing:.2em;font-weight:400;margin-top:4px}
+.intro p.txt{margin-top:20px;line-height:2;color:#ddd}
+.intro p.goal{margin-top:20px;font-size:18px;font-weight:700;border-left:3px solid var(--orange);padding-left:14px}
+.more{display:inline-flex;align-items:center;gap:10px;margin-top:26px;min-height:48px;padding:0 22px;border:1px solid #555;color:inherit;text-decoration:none;font-weight:700;font-size:14px}
+.more::after{content:"→";color:var(--orange)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.hl{margin-bottom:36px}
+.tile{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;color:#fff;text-decoration:none;background:#111}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transition:transform .6s,opacity .3s}
+.tile:hover img{transform:scale(1.05);opacity:.7}
+.tile span{position:absolute;left:18px;bottom:16px;font-size:22px;font-weight:900;font-style:italic;letter-spacing:.06em}
+.tile span small{display:block;font-size:12px;font-style:normal;font-weight:700;color:#ccc;letter-spacing:.1em;margin-top:4px}
+.tile::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--orange)}
+header nav a.on{color:var(--orange)}
+@media (max-width:720px){
+  .tick{grid-template-columns:1fr}
+  .tick a{padding:14px 16px;gap:14px}
+  .tick a+a{border-left:0;border-top:1px solid #2a2a2a}
+  .tick .n{font-size:34px}
+  .intro{grid-template-columns:1fr;gap:24px}
+  .intro .photo img{aspect-ratio:4/3}
+  .tiles{grid-template-columns:1fr 1fr;gap:8px}
+  .tile span{left:12px;bottom:10px;font-size:17px}
+  .page-top{padding-top:96px}
+}
+</style>
+<style id="pt-css">
+.pt{position:fixed;inset:0;z-index:999;pointer-events:none;overflow:hidden}
+.pt b{position:absolute;inset:0;background:#FF6A00;clip-path:polygon(calc(50% - 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% + 0.0vmax),calc(50% - 0.0vmax) calc(50% + 0.0vmax));will-change:clip-path}
+.pt svg{position:absolute;left:50%;top:50%;width:132px;margin:-40px 0 0 -66px;opacity:0}
+.pt svg .s{transform-box:fill-box;transform-origin:left center}
+html.pt-out .pt b{transition:clip-path .5s cubic-bezier(.7,0,.25,1);clip-path:polygon(calc(50% - 155.0vmax) calc(50% - 125.0vmax),calc(50% + 205.0vmax) calc(50% - 125.0vmax),calc(50% + 155.0vmax) calc(50% + 125.0vmax),calc(50% - 205.0vmax) calc(50% + 125.0vmax))}
+html.pt-out .pt svg{transition:opacity .15s .05s;opacity:1}
+html.pt-in .pt b{animation:ptin .6s cubic-bezier(.7,0,.25,1) .3s both}
+html.pt-in .pt svg{animation:ptlogo .42s both}
+html.pt-in .pt svg .s{animation:ptline .3s cubic-bezier(.2,.8,.2,1) both}
+html.pt-in .pt svg .s2{animation-delay:.05s}
+html.pt-in .pt svg .s3{animation-delay:.1s}
+@keyframes ptin{from{clip-path:polygon(evenodd,-10% -10%,110% -10%,110% 110%,-10% 110%,-10% -10%,calc(50% - 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% + 0.0vmax),calc(50% - 0.0vmax) calc(50% + 0.0vmax),calc(50% - 0.0vmax) calc(50% - 0.0vmax))}to{clip-path:polygon(evenodd,-10% -10%,110% -10%,110% 110%,-10% 110%,-10% -10%,calc(50% - 155.0vmax) calc(50% - 125.0vmax),calc(50% + 205.0vmax) calc(50% - 125.0vmax),calc(50% + 155.0vmax) calc(50% + 125.0vmax),calc(50% - 205.0vmax) calc(50% + 125.0vmax),calc(50% - 155.0vmax) calc(50% - 125.0vmax))}}
+@keyframes ptlogo{0%,70%{opacity:1}100%{opacity:0}}
+@keyframes ptline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.pt{display:none}}
+</style>
+<script>try{if(sessionStorage.getItem('ptx')==='1'){sessionStorage.removeItem('ptx');document.documentElement.classList.add('pt-in')}}catch(e){}</script>
 </head>
 <body>
+<div class="pt" aria-hidden="true"><b></b><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 100"><polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/><polygon class="s" points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/><polygon class="s s2" points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/><polygon class="s s3" points="3.6,82 147.6,82 147.3,83.5 3.3,83.5" fill="#FF6A00"/><g fill="#F5F7FA"><polygon points="29,17 103,17 102,22 28,22"/><polygon points="43,26 101,26 100,31 42,31"/><polygon points="63,31 78,31 68,82 53,82"/><polygon points="109,17 124,17 114,82 99,82"/></g></svg></div>
 <header>
-  <a href="#top" class="logo" aria-label="TAIGA ISHII トップへ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
+  <a href="./" class="logo" aria-label="TAIGA ISHII トップへ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
   <polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/>
   <polygon points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/>
   <polygon points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/>
@@ -340,12 +437,13 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   </g>
   <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
 </svg></a>
-  <nav><a href="#profile">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="#results">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="#schedule">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="#gallery">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="#contact">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on&&on.offsetLeft+on.offsetWidth>n.clientWidth)n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2;function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
+  <nav><a href="profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on&&on.offsetLeft+on.offsetWidth>n.clientWidth)n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2;function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
 </header>
+
 
 <div class="hero-wrap" id="top">
   <div class="hero">
-    <picture><source media="(max-width:720px)" srcset="img/p2.webp"><img decoding="async" fetchpriority="high" src="img/hero.webp" alt="石井大雅 #47" style="object-position:45% 50%"></picture><div class="shade" aria-hidden="true"></div>
+    <picture><source media="(max-width:720px)" srcset="img/p2.webp"><img decoding="async" fetchpriority="high" src="img/hero.webp" alt="石井大雅" style="object-position:45% 50%"></picture><div class="shade" aria-hidden="true"></div>
     <div class="hero-text">
       <h1 class="hlogo"><span class="sr">石井大雅（TAIGA ISHII）</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
         <defs><linearGradient id="hShine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="hMk"><polygon points="20,0 164,0 144,100 0,100"/></clipPath></defs>
@@ -373,7 +471,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
         </g>
         <polygon class="ul" points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
       </svg></h1>
-      <p class="hsub">#47　FORMULA RACING DRIVER</p>
+      <p class="hsub">FORMULA RACING DRIVER</p>
     </div>
     <div class="cover" aria-hidden="true"></div>
     <div class="hint">SCROLL</div>
@@ -397,400 +495,48 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
 })();
 </script>
 
-<div class="statement-wrap">
-  <div class="statement">
-    <p data-words>夢は、 SIMレースから <b><em>ル・マン</em>へ。</b> <em>#47</em> 石井大雅、 2026年 FIA-F4に 挑戦中。</p>
+<section class="nextlast">
+  <div class="tick" id="tick" data-base="" aria-label="次のレースと前のレース">
+    <a href="schedule/" class="tn"><span class="k">NEXT<b>次のレース</b></span><span class="w"><b>FJ1500 もてぎ・菅生 最終戦</b><span>11.22 SUN　モビリティリゾートもてぎ</span></span><span class="n">9<small>日</small></span></a>
+    <a href="results/" class="tl"><span class="k">LAST<b>前のレース</b></span><span class="w"><b>FIA-F4 第14戦</b><span>11.08　モビリティリゾートもてぎ</span></span><span class="n">17<small>位</small></span></a>
   </div>
-</div>
-
-<section id="profile">
-  <h2 class="reveal">PROFILE<span class="ja" lang="ja">プロフィール</span></h2>
-  <div class="profile">
-    <div class="photo reveal"><img decoding="async" srcset="img/profile-800.webp 800w, img/profile.webp 1567w" sizes="(max-width:720px) 100vw, 50vw" src="img/profile.webp" alt="石井大雅" style="object-position:40% 30%"></div>
-    <div class="reveal">
-      <table>
-        <tr><th>名前</th><td>石井大雅（いしい たいが）</td></tr>
-        <tr><th>生年月日</th><td>2001年10月</td></tr>
-        <tr><th>出身地</th><td>千葉県</td></tr>
-        <tr><th>参戦カテゴリー</th><td>FIA-F4 / FJ1500 / F110 CUP</td></tr>
-        <tr><th>所属チーム</th><td>Bellonaフジタ薬局レーシング（FIA-F4 #47 / F110 CUP #8）<br>ファーストガレージ（FJ1500）</td></tr>
-        <tr><th>マシン</th><td>MCS4-24（FIA-F4）<br>MYST KK-F（FJ1500）<br>童夢 F110（F110 CUP）</td></tr>
-        <tr><th>SNS</th><td class="psns"><a href="https://x.com/T_Ishii_10" target="_blank" rel="noopener" aria-label="X（@T_Ishii_10）" title="X @T_Ishii_10"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.instagram.com/taiga.ishii20/" target="_blank" rel="noopener" aria-label="Instagram（@taiga.ishii20）" title="Instagram @taiga.ishii20"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></a><a href="https://www.youtube.com/@石井大雅-x6b" target="_blank" rel="noopener" aria-label="YouTube（@石井大雅-x6b）" title="YouTube @石井大雅-x6b"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6z"/></svg></a></td></tr>
-      </table>
-      <details class="note brandnote"><summary><i style="background:#2456D8"></i><i style="background:var(--orange)"></i>ロゴの青とオレンジは、ヘルメットの色。<br>以前の青から、いまのオレンジへ。</summary><div class="helmets"><figure><img decoding="async" src="img/helmet_blue.webp" alt="以前の青いヘルメット" width="400" height="400" loading="lazy"><figcaption>以前の青</figcaption></figure><figure><img decoding="async" src="img/helmet_orange.webp" alt="いまのオレンジのヘルメット" width="400" height="400" loading="lazy"><figcaption>いまのオレンジ</figcaption></figure></div></details>
-    </div>
-  </div>
-  <h3 class="career-h reveal">CAREER<span class="ja" lang="ja">経歴</span></h3>
-  <ol class="career">
-    <li class="reveal"><time>2017</time><p>グランツーリスモSPORTでSIMレースを始める</p></li>
-    <li class="reveal"><time>2019</time><p>茨城国体のeスポーツ（グランツーリスモSPORT）に千葉県代表として出場</p></li>
-    <li class="reveal"><time>2024.03</time><p>ファーストガレージからスーパーFJでレースデビュー（筑波）</p></li>
-    <li class="reveal"><time>2024.05</time><p>筑波・富士 第3戦で初表彰台</p></li>
-    <li class="reveal"><time>2024.07</time><p>筑波・富士 第6戦で4戦連続の表彰台、ランキング首位に浮上</p></li>
-    <li class="reveal"><time>2024.10</time><p>第3戦から5戦連続表彰台。デビューイヤーで筑波・富士スーパーFJ選手権 シリーズ2位</p></li>
-    <li class="reveal"><time>2025.12</time><p>S-FJ日本一決定戦（富士）セミファイナルA組で1位、ファイナルをポールからスタート</p></li>
-    <li class="reveal"><time>2026.03</time><p>Bellonaフジタ薬局レーシング #8 でF110 CUPに参戦開始</p></li>
-    <li class="reveal"><time>2026.08</time><p>Bellonaフジタ薬局レーシング #47 でFIA-F4デビュー（富士 第5・6戦）</p></li>
-    <li class="reveal"><time>2026.09</time><p>FJ1500 第7戦（筑波）でポールトゥウィン、初優勝</p></li>
-  </ol>
 </section>
 
-<figure class="band reveal"><img decoding="async" srcset="img/band1-1200.webp 1200w, img/band1-1600.webp 1600w, img/band1.webp 2400w" sizes="100vw" src="img/band1.webp" alt="表彰台でシャンパンファイトをする石井大雅" style="object-position:62% 32%"></figure>
+<section id="about">
+  <h2 class="reveal">PROFILE<span class="ja" lang="ja">プロフィール</span></h2>
+  <div class="intro">
+    <div class="photo reveal"><img decoding="async" srcset="img/profile-800.webp 800w, img/profile.webp 1567w" sizes="(max-width:720px) 100vw, 40vw" src="img/profile.webp" alt="石井大雅" style="object-position:40% 30%" loading="lazy"></div>
+    <div class="reveal">
+      <p class="name">石井大雅<small>TAIGA ISHII ／ 2001年生まれ・千葉県出身</small></p>
+      <p class="txt">2017年、グランツーリスモSPORTでレースを始める。2019年の茨城国体ではeスポーツの千葉県代表に。2024年にスーパーFJで実車デビューし、その年にシリーズ2位。2026年はFIA-F4、FJ1500、F110 CUPに参戦。</p>
+      <p class="goal">目標は、ル・マン24時間レース。</p>
+      <a class="more" href="profile/">プロフィールと経歴を見る</a>
+    </div>
+  </div>
+</section>
 
-<section id="results">
-  <h2 class="reveal">RESULTS<span class="ja" lang="ja">リザルト</span></h2>
+<section id="record">
+  <h2 class="reveal">RESULTS<span class="ja" lang="ja">実績</span></h2>
   <div class="hl">
     <div class="hl-card reveal"><small>2026 FJ1500 第7戦 筑波</small><strong>POLE TO WIN</strong><p>ポールポジションから逃げ切って優勝</p></div>
     <div class="hl-card reveal"><small>2025 S-FJ日本一決定戦 富士</small><strong>SEMI-FINAL P1</strong><p>予選3位から1周目でトップに浮上し、そのままトップでチェッカーを受けた</p></div>
     <div class="hl-card reveal"><small>2024 筑波・富士スーパーFJ選手権</small><strong>SERIES P2</strong><p>デビューイヤーでシリーズ2位。第3戦から5戦連続表彰台</p></div>
   </div>
-  <div class="filters reveal" role="tablist">
-    <button data-f="2026">2026</button><button data-f="2025">2025</button><button data-f="2024">2024</button>
-  </div>
-  <p class="rhint">年を選ぶと、その年のリザルトが表示されます</p>
-  <div class="rhead" hidden><span>日付</span><span>レース</span><span>予選</span><span></span><span>決勝</span><span></span></div>
-  <div class="ryear" data-y="2026">2026</div>
-  <div class="rrow " data-cat="f4" data-y="2026">
-    <span class="rdate">11.08</span>
-    <span class="rrace"><i class="tag f4">FIA-F4</i>第14戦<em>モビリティリゾートもてぎ</em></span>
-    <span class="rq"><small>予選</small>P26</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>17<span class="i">位</span></span><span class="dl up">▲9</span>
-  </div>
-  <div class="rrow " data-cat="f4" data-y="2026">
-    <span class="rdate">11.07</span>
-    <span class="rrace"><i class="tag f4">FIA-F4</i>第13戦<em>モビリティリゾートもてぎ</em></span>
-    <span class="rq"><small>予選</small>P26</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small><span class="dns">リタイア</span></span><span class="dl"></span>
-  </div>
-  <div class="rrow pod" data-cat="fj" data-y="2026">
-    <span class="rdate">10.25</span>
-    <span class="rrace"><i class="tag fj">FJ1500</i>筑波・富士 第8戦<em>筑波サーキット</em><b class="note">表彰台</b></span>
-    <span class="rq"><small>予選</small>P3</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>2<span class="i">位</span></span><span class="dl up">▲1</span>
-  </div>
-  <div class="rrow win" data-cat="fj" data-y="2026">
-    <span class="rdate">9.27</span>
-    <span class="rrace"><i class="tag fj">FJ1500</i>筑波・富士 第7戦<em>筑波サーキット</em><b class="note">ポールトゥウィン</b></span>
-    <span class="rq"><small>予選</small>P1</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>優勝</span><span class="dl">±0</span>
-  </div>
-  <div class="rrow " data-cat="f4" data-y="2026">
-    <span class="rdate">9.20</span>
-    <span class="rrace"><i class="tag f4">FIA-F4</i>第10戦<em>スポーツランドSUGO</em></span>
-    <span class="rq"><small>予選</small>P19</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>19<span class="i">位</span></span><span class="dl">±0</span>
-  </div>
-  <div class="rrow " data-cat="f4" data-y="2026">
-    <span class="rdate">9.19</span>
-    <span class="rrace"><i class="tag f4">FIA-F4</i>第9戦<em>スポーツランドSUGO</em></span>
-    <span class="rq"><small>予選</small>P18</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>19<span class="i">位</span></span><span class="dl down">▼1</span>
-  </div>
-  <div class="rrow pod" data-cat="fj" data-y="2026">
-    <span class="rdate">8.30</span>
-    <span class="rrace"><i class="tag fj">FJ1500</i>筑波・富士 第6戦<em>筑波サーキット</em><b class="note">表彰台</b></span>
-    <span class="rq"><small>予選</small>P4</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>3<span class="i">位</span></span><span class="dl up">▲1</span>
-  </div>
-  <div class="rrow " data-cat="f4" data-y="2026">
-    <span class="rdate">8.02</span>
-    <span class="rrace"><i class="tag f4">FIA-F4</i>第6戦<em>富士スピードウェイ</em></span>
-    <span class="rq"><small>予選</small>P16</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>22<span class="i">位</span></span><span class="dl down">▼6</span>
-  </div>
-  <div class="rrow " data-cat="f4" data-y="2026">
-    <span class="rdate">8.01</span>
-    <span class="rrace"><i class="tag f4">FIA-F4</i>第5戦<em>富士スピードウェイ</em></span>
-    <span class="rq"><small>予選</small>P20</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>18<span class="i">位</span></span><span class="dl up">▲2</span>
-  </div>
-  <div class="rrow " data-cat="f110" data-y="2026">
-    <span class="rdate">5.17</span>
-    <span class="rrace"><i class="tag f110">F110 CUP</i>西日本王者決定戦 レース4<em>岡山国際サーキット</em></span>
-    <span class="rq"><small>予選</small>P15</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>11<span class="i">位</span></span><span class="dl up">▲4</span>
-  </div>
-  <div class="rrow " data-cat="f110" data-y="2026">
-    <span class="rdate">5.16</span>
-    <span class="rrace"><i class="tag f110">F110 CUP</i>西日本王者決定戦 レース3<em>岡山国際サーキット</em></span>
-    <span class="rq"><small>予選</small>P17</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>15<span class="i">位</span></span><span class="dl up">▲2</span>
-  </div>
-  <div class="rrow pod" data-cat="fj" data-y="2026">
-    <span class="rdate">3.15</span>
-    <span class="rrace"><i class="tag fj">FJ1500</i>もてぎ・菅生 開幕戦<em>モビリティリゾートもてぎ</em><b class="note">表彰台</b></span>
-    <span class="rq"><small>予選</small>P2</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>2<span class="i">位</span></span><span class="dl">±0</span>
-  </div>
-  <div class="rrow " data-cat="f110" data-y="2026">
-    <span class="rdate">3.15</span>
-    <span class="rrace"><i class="tag f110">F110 CUP</i>東日本王者決定戦 レース2<em>モビリティリゾートもてぎ</em></span>
-    <span class="rq"><small>予選</small>P7</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>16<span class="i">位</span></span><span class="dl down">▼9</span>
-  </div>
-  <div class="rrow " data-cat="f110" data-y="2026">
-    <span class="rdate">3.14</span>
-    <span class="rrace"><i class="tag f110">F110 CUP</i>東日本王者決定戦 レース1<em>モビリティリゾートもてぎ</em></span>
-    <span class="rq"><small>予選</small>P10</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>5<span class="i">位</span></span><span class="dl up">▲5</span>
-  </div>
-  <div class="ryear" data-y="2025">2025</div>
-  <div class="rrow " data-cat="sfj" data-y="2025">
-    <span class="rdate">12.21</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>日本一決定戦 ファイナル<em>富士スピードウェイ</em><b class="note">準決勝1位でポールポジションからスタート</b></span>
-    <span class="rq"><small>グリッド</small>P1</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>12<span class="i">位</span></span><span class="dl down">▼11</span>
-  </div>
-  <div class="rrow win" data-cat="sfj" data-y="2025">
-    <span class="rdate">12.21</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>日本一決定戦 セミファイナルA組<em>富士スピードウェイ</em><b class="note">トップチェッカー</b></span>
-    <span class="rq"><small>予選</small>P3</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>1<span class="i">位</span></span><span class="dl up">▲2</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2025">
-    <span class="rdate">11.30</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>もてぎ・菅生 第7戦<em>モビリティリゾートもてぎ</em></span>
-    <span class="rq"><small>予選</small>P4</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>5<span class="i">位</span></span><span class="dl down">▼1</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2025">
-    <span class="rdate">11.08</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>筑波・富士 第8戦<em>富士スピードウェイ</em></span>
-    <span class="rq"><small>予選</small>P5</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>17<span class="i">位</span></span><span class="dl down">▼12</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2025">
-    <span class="rdate">10.05</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>鈴鹿・岡山 第5戦<em>鈴鹿サーキット</em></span>
-    <span class="rq"><small>予選</small>P18</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>15<span class="i">位</span></span><span class="dl up">▲3</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2025">
-    <span class="rdate">8.31</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>もてぎ・菅生 第6戦<em>モビリティリゾートもてぎ</em></span>
-    <span class="rq"><small>グリッド</small>P14</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>11<span class="i">位</span></span><span class="dl up">▲3</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2025">
-    <span class="rdate">8.30</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>もてぎ・菅生 第5戦<em>モビリティリゾートもてぎ</em></span>
-    <span class="rq"><small>予選</small>P7</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small><span class="dns">リタイア</span></span><span class="dl"></span>
-  </div>
-  <div class="rrow pod" data-cat="sfj" data-y="2025">
-    <span class="rdate">7.20</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>もてぎ・菅生 第4戦<em>スポーツランドSUGO</em><b class="note">表彰台</b></span>
-    <span class="rq"><small>グリッド</small>P3</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>3<span class="i">位</span></span><span class="dl">±0</span>
-  </div>
-  <div class="rrow pod" data-cat="sfj" data-y="2025">
-    <span class="rdate">7.19</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>もてぎ・菅生 第3戦<em>スポーツランドSUGO</em><b class="note">表彰台</b></span>
-    <span class="rq"><small>予選</small>P6</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>3<span class="i">位</span></span><span class="dl up">▲3</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2025">
-    <span class="rdate">7.13</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>鈴鹿・岡山 第4戦<em>鈴鹿サーキット</em></span>
-    <span class="rq"><small>グリッド</small>P24</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>12<span class="i">位</span></span><span class="dl up">▲12</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2025">
-    <span class="rdate">7.13</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>鈴鹿・岡山 第3戦<em>鈴鹿サーキット</em></span>
-    <span class="rq"><small>予選</small>P12</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>24<span class="i">位</span></span><span class="dl down">▼12</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2025">
-    <span class="rdate">6.29</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>筑波・富士 第4戦<em>富士スピードウェイ</em><b class="note">ファステストラップ</b></span>
-    <span class="rq"><small>予選</small>P5</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>5<span class="i">位</span></span><span class="dl">±0</span>
-  </div>
-  <div class="rrow pod" data-cat="sfj" data-y="2025">
-    <span class="rdate">5.11</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>もてぎ・菅生 第2戦<em>スポーツランドSUGO</em><b class="note">表彰台</b></span>
-    <span class="rq"><small>予選</small>P6</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>3<span class="i">位</span></span><span class="dl up">▲3</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2025">
-    <span class="rdate">3.09</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>もてぎ・菅生 第1戦<em>モビリティリゾートもてぎ</em></span>
-    <span class="rq"><small>予選</small>P8</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>4<span class="i">位</span></span><span class="dl up">▲4</span>
-  </div>
-  <div class="ryear" data-y="2024">2024</div>
-  <div class="rrow " data-cat="sfj" data-y="2024">
-    <span class="rdate">12.01</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>日本一決定戦 ファイナル<em>鈴鹿サーキット</em></span>
-    <span class="rq"><small>グリッド</small>P41</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>32<span class="i">位</span></span><span class="dl up">▲9</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2024">
-    <span class="rdate">12.01</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>日本一決定戦 セミファイナルA組<em>鈴鹿サーキット</em></span>
-    <span class="rq"><small>予選</small>P9</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>21<span class="i">位</span></span><span class="dl down">▼12</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2024">
-    <span class="rdate">10.27</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>筑波・富士 第8戦<em>筑波サーキット</em><b class="note">シリーズランキング2位</b></span>
-    <span class="rq"><small>予選</small>P9</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>5<span class="i">位</span></span><span class="dl up">▲4</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2024">
-    <span class="rdate">10.06</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>鈴鹿・岡山 第7戦<em>鈴鹿サーキット</em></span>
-    <span class="rq"><small>予選</small>P16</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>10<span class="i">位</span></span><span class="dl up">▲6</span>
-  </div>
-  <div class="rrow pod" data-cat="sfj" data-y="2024">
-    <span class="rdate">9.15</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>筑波・富士 第7戦<em>筑波サーキット</em><b class="note">表彰台</b></span>
-    <span class="rq"><small>予選</small>P3</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>2<span class="i">位</span></span><span class="dl up">▲1</span>
-  </div>
-  <div class="rrow pod" data-cat="sfj" data-y="2024">
-    <span class="rdate">8.11</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>もてぎ・菅生 第5戦<em>モビリティリゾートもてぎ</em><b class="note">表彰台</b></span>
-    <span class="rq"><small>予選</small>P3</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>3<span class="i">位</span></span><span class="dl">±0</span>
-  </div>
-  <div class="rrow pod" data-cat="sfj" data-y="2024">
-    <span class="rdate">7.28</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>筑波・富士 第6戦<em>筑波サーキット</em><b class="note">表彰台・ランキング首位に浮上</b></span>
-    <span class="rq"><small>予選</small>P2</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>2<span class="i">位</span></span><span class="dl">±0</span>
-  </div>
-  <div class="rrow pod" data-cat="sfj" data-y="2024">
-    <span class="rdate">6.23</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>筑波・富士 第5戦<em>富士スピードウェイ</em><b class="note">3戦連続表彰台</b></span>
-    <span class="rq"><small>予選</small>P3</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>3<span class="i">位</span></span><span class="dl">±0</span>
-  </div>
-  <div class="rrow pod" data-cat="sfj" data-y="2024">
-    <span class="rdate">5.26</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>筑波・富士 第4戦<em>筑波サーキット</em><b class="note">表彰台</b></span>
-    <span class="rq"><small>予選</small>P2</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>2<span class="i">位</span></span><span class="dl">±0</span>
-  </div>
-  <div class="rrow pod" data-cat="sfj" data-y="2024">
-    <span class="rdate">5.05</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>筑波・富士 第3戦<em>筑波サーキット</em><b class="note">初表彰台</b></span>
-    <span class="rq"><small>予選</small>P4</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>3<span class="i">位</span></span><span class="dl up">▲1</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2024">
-    <span class="rdate">4.13</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>筑波・富士 第2戦<em>富士スピードウェイ</em></span>
-    <span class="rq"><small>予選</small>P4</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>4<span class="i">位</span></span><span class="dl">±0</span>
-  </div>
-  <div class="rrow " data-cat="sfj" data-y="2024">
-    <span class="rdate">3.17</span>
-    <span class="rrace"><i class="tag sfj">S-FJ</i>筑波・富士 第1戦<em>筑波サーキット</em><b class="note">JAF公認レースデビュー</b></span>
-    <span class="rq"><small>予選</small>P7</span><span class="arrow">→</span>
-    <span class="rf"><small>決勝</small>7<span class="i">位</span></span><span class="dl">±0</span>
-  </div>
-  <p class="note">FIA-F4には、2026年の富士大会（第5・6戦）からBellonaフジタ薬局レーシング #47で参戦しています。<br>FJ1500の予選順位はクラス内の順位です。2024年日本一決定戦の予選・セミファイナルはA組内の順位で、ファイナルのグリッドはセミファイナルの結果で決まりました。<br>「グリッド」は、前のレースの結果などで決まったスタート位置です。▲▼は予選（グリッド）からの順位の上下を表します。</p>
-  <a class="toreport reveal" href="report/"><span><small>RACE REPORT</small>レースごとの振り返りは、レポートページで紹介しています</span><b>レポートを見る →</b></a>
+  
+  <a class="more" href="results/">全40レースの戦績を見る</a>
 </section>
 
-<figure class="band reveal"><img decoding="async" srcset="img/band2-1200.webp 1200w, img/band2-1600.webp 1600w, img/band2.webp 2400w" sizes="100vw" src="img/band2.webp" alt="マシンに乗り込む石井大雅" style="object-position:45% 8%"></figure>
-
-<section id="schedule">
-  <h2 class="reveal">SCHEDULE<span class="ja" lang="ja">スケジュール</span></h2>
-  <div class="cards">
-    <div class="card reveal"><small>11.22 SUN</small><h3>FJ1500 もてぎ・菅生 最終戦</h3><p>モビリティリゾートもてぎ</p></div>
-    <div class="card reveal"><small>11.28 SAT</small><h3>FJ1500 筑波・富士 最終戦</h3><p>富士スピードウェイ</p></div>
-    <div class="card reveal"><small>12.05 SAT – 12.06 SUN</small><h3>F110 CUP Winter Cup</h3><p>モビリティリゾートもてぎ</p></div>
-  </div>
-  <p class="note reveal">サーキットでの応援、よろしくお願いします！</p>
-</section>
-
-<section class="gallery-sec" id="gallery">
-  <h2 class="reveal">GALLERY<span class="ja" lang="ja">ギャラリー</span></h2>
-  <div class="gtabs reveal" role="group" aria-label="写真のカテゴリ">
-    <button type="button" data-c="all" class="on">ALL</button><button type="button" data-c="f4">FIA-F4</button><button type="button" data-c="fj">FJ1500 / F110</button><button type="button" data-c="sfj">SUPER FJ</button><button type="button" data-c="off">OFF TRACK</button>
-  </div>
-  <div class="ggrid reveal">
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/p2.webp" data-full="img/p2.webp" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g47.webp" data-full="gal/g47.webp" alt="F110 CUPのコックピットに座る石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g68.webp" data-full="gal/g68.webp" alt="ヘルメットのあごひもを締める石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g74.webp" data-full="gal/g74.webp" alt="石井大雅のFIA-F4マシン（#47）のノーズ" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g75.webp" data-full="gal/g75.webp" alt="石井大雅のヘルメット（Bellonaのバイザー）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g76.webp" data-full="gal/g76.webp" alt="窓辺に置かれた石井大雅のヘルメット" loading="lazy"></button>
-    <button type="button" class="ph" data-c="fj"><img decoding="async" src="gal/t/g30.webp" data-full="gal/g30.webp" alt="F110 CUPを走る石井大雅（#8）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g48.webp" data-full="gal/g48.webp" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g69.webp" data-full="gal/g69.webp" alt="もてぎのストレートを走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g33.webp" data-full="gal/g33.webp" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="fj"><img decoding="async" src="gal/t/p1.webp" data-full="img/p1.webp" data-credit="モータースポーツフォーラム" data-credit-url="https://www.fmotor.jp/2026-fj1500-superfj-round-7-tsukuba-qualifying-ishii-and-sudo-takes-pole-position" alt="FJ1500を走る石井大雅（#52）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g49.webp" data-full="gal/g49.webp" data-credit="モータースポーツフォーラム" data-credit-url="https://www.fmotor.jp/2026-fj1500-superfj-round-7-tsukuba-qualifying-drivers-comments" alt="笑顔でポーズをとる石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/p6.webp" data-full="img/p6.webp" alt="FIA-F4でバトルする石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="fj"><img decoding="async" src="gal/t/g50.webp" data-full="gal/g50.webp" alt="F110 CUPでバトルする石井大雅（#8）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g34.webp" data-full="gal/g34.webp" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g51.webp" data-full="gal/g51.webp" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g70.webp" data-full="gal/g70.webp" alt="縁石をかすめて走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g26.webp" data-full="gal/g26.webp" alt="ヘルメットを持ってパドックを歩く石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g52.webp" data-full="gal/g52.webp" alt="ピットで笑顔を見せる石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="fj"><img decoding="async" src="gal/t/g31.webp" data-full="gal/g31.webp" alt="FJ1500を走る石井大雅（#52）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g53.webp" data-full="gal/g53.webp" alt="FIA-F4でバトルする石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g71.webp" data-full="gal/g71.webp" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g35.webp" data-full="gal/g35.webp" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g54.webp" data-full="gal/g54.webp" alt="グリッドで応援してくれるファン" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/p4.webp" data-full="img/p4.webp" alt="FIA-F4のコックピットに座る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g55.webp" data-full="gal/g55.webp" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g72.webp" data-full="gal/g72.webp" alt="コーナーを攻める石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g36.webp" data-full="gal/g36.webp" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g56.webp" data-full="gal/g56.webp" alt="スーパーFJのマシンに乗り込む石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g21.webp" data-full="gal/g21.webp" alt="コックピットで出走を待つ石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g57.webp" data-full="gal/g57.webp" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g73.webp" data-full="gal/g73.webp" alt="もてぎのコーナーを走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g46.webp" data-full="gal/g46.webp" alt="スーパーFJのコックピットに座る石井大雅（#53）" loading="lazy" style="object-position:50% 30%"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g58.webp" data-full="gal/g58.webp" alt="雨のFIA-F4の隊列" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/p3.webp" data-full="img/p3.webp" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g59.webp" data-full="gal/g59.webp" alt="ピットでスーパーFJのマシンに乗り込む石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g37.webp" data-full="gal/g37.webp" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="fj"><img decoding="async" src="gal/t/g32.webp" data-full="gal/g32.webp" alt="F110 CUPを走る石井大雅（#8）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g38.webp" data-full="gal/g38.webp" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g27.webp" data-full="gal/g27.webp" alt="ピットでレーシングスーツを着る石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g39.webp" data-full="gal/g39.webp" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g07.webp" data-full="gal/g07.webp" alt="スーパーFJのコックピットに座る石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="f4"><img decoding="async" src="gal/t/g40.webp" data-full="gal/g40.webp" alt="雨のFIA-F4を走る石井大雅（#47）" loading="lazy" style="object-position:50% 75%"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g60.webp" data-full="gal/g60.webp" alt="ファーストガレージのスーパーFJ 3台" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g18.webp" data-full="gal/g18.webp" alt="パドックでチームと話す石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g06.webp" data-full="gal/g06.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g61.webp" data-full="gal/g61.webp" alt="鈴鹿の観覧車を背にスーパーFJを走る石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g44.webp" data-full="gal/g44.webp" alt="スーパーFJでバトルする石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g29.webp" data-full="gal/g29.webp" alt="スーパーFJで集団の先頭を走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g62.webp" data-full="gal/g62.webp" alt="雨のスーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g08.webp" data-full="gal/g08.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g19.webp" data-full="gal/g19.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g63.webp" data-full="gal/g63.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g43.webp" data-full="gal/g43.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g23.webp" data-full="gal/g23.webp" alt="スタート前のグリッドで準備する石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g17.webp" data-full="gal/g17.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g64.webp" data-full="gal/g64.webp" alt="雨のスーパーFJでバトルする石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g09.webp" data-full="gal/g09.webp" alt="スーパーFJの集団の中を走る石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g24.webp" data-full="gal/g24.webp" alt="スーパーFJのレース序盤の集団" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g65.webp" data-full="gal/g65.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g45.webp" data-full="gal/g45.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g14.webp" data-full="gal/g14.webp" alt="スーパーFJの集団の中を走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g66.webp" data-full="gal/g66.webp" alt="雨のスーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g04.webp" data-full="gal/g04.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g16.webp" data-full="gal/g16.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g67.webp" data-full="gal/g67.webp" alt="雨のスーパーFJを走る石井大雅" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g42.webp" data-full="gal/g42.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="sfj"><img decoding="async" src="gal/t/g20.webp" data-full="gal/g20.webp" alt="スーパーFJを走る石井大雅（#53）" loading="lazy"></button>
-    <button type="button" class="ph" data-c="off"><img decoding="async" src="gal/t/g15.webp" data-full="gal/g15.webp" alt="スーパーFJのマシンに乗り込んだ石井大雅" loading="lazy"></button>
-  </div>
-  <div class="gbar reveal">
-    <button type="button" class="gplay" aria-label="自動の入れ替えを一時停止">&#10074;&#10074;</button>
-    <button type="button" class="gall">すべて見る</button>
+<section id="pages">
+  <h2 class="reveal">MORE<span class="ja" lang="ja">もっと見る</span></h2>
+  <div class="tiles reveal">
+    <a class="tile" href="profile/"><img src="img/profile-800.webp" alt="" loading="lazy" style="object-position:40% 30%"><span>PROFILE<small>プロフィール・経歴</small></span></a>
+    <a class="tile" href="results/"><img src="img/band1-1200.webp" alt="" loading="lazy" style="object-position:62% 32%"><span>RESULTS<small>リザルト</small></span></a>
+    <a class="tile" href="report/"><img src="img/p6.webp" alt="" loading="lazy"><span>REPORT<small>レースレポート</small></span></a>
+    <a class="tile" href="schedule/"><img src="img/band2-1200.webp" alt="" loading="lazy" style="object-position:45% 8%"><span>SCHEDULE<small>スケジュール</small></span></a>
+    <a class="tile" href="gallery/"><img src="gal/t/g69.webp" alt="" loading="lazy"><span>GALLERY<small>ギャラリー</small></span></a>
+    <a class="tile" href="support/"><img src="img/p2.webp" alt="" loading="lazy"><span>SUPPORT<small>個人スポンサー</small></span></a>
   </div>
 </section>
-<div class="glb" hidden><button type="button" class="x" aria-label="閉じる">&#10005;</button><button type="button" class="p" aria-label="前の写真">&#8592;</button><img decoding="async" alt=""><p></p><a class="cr" target="_blank" rel="noopener" hidden></a><button type="button" class="n" aria-label="次の写真">&#8594;</button></div>
-
 <section id="partners" hidden>
   <h2 class="reveal">PARTNERS<span class="ja" lang="ja">パートナー</span></h2>
   <p class="pt-thanks reveal">石井大雅の挑戦を、一緒に支えてくださっている皆さまです。心より感謝申し上げます。</p>
@@ -829,7 +575,9 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   if (still) { document.documentElement.classList.add('still'); }
 
   // 文字を1語ずつ span に分ける
+  var words = [];
   var sp = document.querySelector('[data-words]');
+  if (sp) {
   var html = '';
   sp.childNodes.forEach(function(n){
     if (n.nodeType === 3) {
@@ -839,7 +587,8 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
     }
   });
   sp.innerHTML = html;
-  var words = sp.querySelectorAll('span');
+    words = sp.querySelectorAll('span');
+  }
 
   // ふわっと出てくる演出（同じ親の中で少しずつ遅らせる）
   var reveals = document.querySelectorAll('.reveal');
@@ -855,6 +604,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
     }, { threshold: .15, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(function(el){ io.observe(el); });
   }
+  if (document.querySelector('.gallery-sec')) {
   // ギャラリー：12枚（スマホは6枚）を並べ、5.5秒ごとに3枚ずつ入れ替える。カテゴリ切り替え・すべて見る・拡大表示
   var gsec = document.querySelector('.gallery-sec');
   var grid = gsec.querySelector('.ggrid');
@@ -945,6 +695,8 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
     if (e.key === 'Escape') lbClose(); else if (e.key === 'ArrowRight') lbStep(1); else if (e.key === 'ArrowLeft') lbStep(-1);
   });
 
+  }
+  if (document.querySelector('.filters')) {
   // リザルトの年切り替え（年ボタンで開く・同じボタンで閉じる）
   var current = null;
   function applyFilter(y){
@@ -971,7 +723,8 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   document.querySelector('.filters button[data-f="2026"]').classList.add('on');
   applyFilter(current);
 
-  if (still) return;
+  }
+  if (still || !document.querySelector('.hero-wrap')) return;
 
   var heroWrap = document.querySelector('.hero-wrap');
   var heroImg = document.querySelector('.hero img');
@@ -1012,7 +765,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
       hint.style.opacity = 1 - clamp(p * 6);
     }
 
-    var s = byCss ? lastS : clamp(progress(stWrap) * 1.15);
+    var s = (byCss || !stWrap) ? lastS : clamp(progress(stWrap) * 1.15);
     if (s !== lastS) {
       lastS = s;
       for (var i = 0; i < words.length; i++) {
@@ -1045,6 +798,59 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   band.addEventListener('mouseenter',function(){clearInterval(timer)});band.addEventListener('mouseleave',start);
   addEventListener('resize',function(){go(i,false)});
   start();
+})();
+</script>
+<script id="ticker-js">
+(function(){
+  var t=document.getElementById('tick'); if(!t||!window.fetch) return;
+  var base=t.dataset.base||'';
+  var now=new Date(); now.setHours(0,0,0,0);
+  function txt(e,q){var x=e.querySelector(q);return x?x.textContent.replace(/\s+/g,' ').trim():''}
+  function get(u){return fetch(base+u,{cache:'no-cache'}).then(function(r){return r.text()}).then(function(h){return new DOMParser().parseFromString(h,'text/html')})}
+  Promise.all([get('schedule/'),get('results/')]).then(function(d){
+    var rows=[].slice.call(d[1].querySelectorAll('.rrow[data-y]')),last=null;
+    rows.forEach(function(r){var x=txt(r,'.rdate').split('.');if(x.length<2)return;
+      var dt=new Date(+r.dataset.y,+x[0]-1,+x[1]);if(dt<=now&&(!last||dt>last.dt))last={dt:dt,r:r}});
+    var y=rows.length?Math.max.apply(null,rows.map(function(r){return +r.dataset.y})):now.getFullYear(),pm=0,next=null;
+    [].slice.call(d[0].querySelectorAll('#schedule .card')).some(function(c){
+      var ds=(txt(c,'small').match(/\d{1,2}\.\d{1,2}/g)||[]);if(!ds.length)return false;
+      var a=ds[0].split('.'),b=(ds[1]||ds[0]).split('.');if(+a[0]<pm)y++;pm=+a[0];
+      var st=new Date(y,+a[0]-1,+a[1]),en=new Date(+b[0]<+a[0]?y+1:y,+b[0]-1,+b[1]);
+      if(en>=now){next={st:st,c:c};return true}return false});
+    var tn=t.querySelector('.tn'),tl=t.querySelector('.tl');
+    if(next){var c=next.c,days=Math.round((next.st-now)/864e5);
+      tn.querySelector('.w b').textContent=txt(c,'h3');
+      tn.querySelector('.w span').textContent=txt(c,'small')+'　'+txt(c,'p');
+      var n=tn.querySelector('.n');
+      if(days>0){n.className='n';n.innerHTML=days+'<small>日</small>'}else{n.className='n t';n.textContent='レース当日'}
+    } else {tn.querySelector('.w b').textContent='来シーズンの日程は準備中です';tn.querySelector('.w span').textContent='決まり次第お知らせします';tn.querySelector('.n').textContent=''}
+    if(last){var r=last.r,tag=txt(r,'.tag'),em=txt(r,'.rrace em'),
+        name=txt(r,'.rrace').replace(tag,'').replace(em,'').replace(txt(r,'.rrace .note'),'').trim(),
+        f=r.querySelector('.rf').cloneNode(true),sm=f.querySelector('small');if(sm)sm.remove();
+      tl.querySelector('.w b').textContent=tag+' '+name;
+      tl.querySelector('.w span').textContent=txt(r,'.rdate')+'　'+em;
+      var res=f.textContent.trim(),nn=tl.querySelector('.n'),mm=res.match(/^(\d+)位$/);
+      if(mm){nn.className='n';nn.innerHTML=mm[1]+'<small>位</small>'}else{nn.className='n t';nn.textContent=res}
+    }
+  }).catch(function(){});
+})();
+</script><script id="pt-js">
+(function(){
+  var d=document.documentElement;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+    var a=e.target.closest&&e.target.closest('a'); if(!a||a.target==='_blank'||a.hasAttribute('download')) return;
+    var u; try{u=new URL(a.href,location.href)}catch(x){return}
+    if(u.origin!==location.origin) return;
+    if(u.pathname===location.pathname&&u.search===location.search) return; // 同じページ内の移動はそのまま
+    e.preventDefault();
+    try{sessionStorage.setItem('ptx','1')}catch(x){}
+    d.classList.remove('pt-in'); d.classList.add('pt-out');
+    setTimeout(function(){location.href=u.href},680);
+  });
+  // 「戻る」で帰ってきたときに帯が残らないように
+  addEventListener('pageshow',function(e){if(e.persisted){d.classList.remove('pt-out');try{sessionStorage.removeItem('ptx')}catch(x){}}});
 })();
 </script>
 </body>

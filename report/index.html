@@ -16,9 +16,9 @@
 <link rel="icon" href="../logo/ti-mark-small.svg" type="image/svg+xml">
 <link rel="icon" href="../logo/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="../logo/apple-touch-icon.png">
-<meta name="description" content="石井大雅（#47）のレースレポート。応援してくださる皆さまへ、2024年のデビューからのレースごとの結果と振り返りをお届けします。">
+<meta name="description" content="石井大雅のレースレポート。応援してくださる皆さまへ、2024年のデビューからのレースごとの結果と振り返りをお届けします。">
 <meta property="og:title" content="REPORT | 石井大雅 | Taiga Ishii Racing">
-<meta property="og:description" content="石井大雅（#47）のレースレポート。レースごとの結果と振り返りをお届けします。">
+<meta property="og:description" content="石井大雅のレースレポート。レースごとの結果と振り返りをお届けします。">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://taigarace.com/img/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -187,8 +187,28 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
 @media(max-width:720px){.ja{font-size:12px}nav a .ja{font-size:8px}}
 /* 公開前デザイン修正：ナビの日本語を大きく、スマホのナビに続きの合図、押しやすいリンク、青モードの小さい字を明るく */nav a .ja{font-size:11px}footer a{display:inline-block;padding:10px 4px}.src{padding-top:10px}@media(max-width:720px){nav a .ja{font-size:10px}nav{-webkit-mask-image:linear-gradient(to right,#000 72%,transparent);mask-image:linear-gradient(to right,#000 72%,transparent)}nav.end{-webkit-mask-image:none;mask-image:none}header::after{content:"›";position:absolute;right:8px;top:calc(50% + env(safe-area-inset-top,0px)/2);transform:translateY(-50%);color:var(--orange);font-size:22px;font-weight:700;line-height:1;pointer-events:none;transition:opacity .2s}header.navend::after{opacity:0}}html.blue .top small,html.blue .rp h3,html.blue .next small,html.blue .tag.sfj,html.blue nav a.on,html.blue nav a:hover{color:#5B86FF}html.blue .tag.sfj{border-color:#5B86FF}
 /* スマホではヘッダーのぼかしを止める（下の写真を毎回ぼかし直すのが重く、スクロールがかくつくため） */@media(max-width:720px){header{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(11,11,11,.94)}}</style>
+<style id="pt-css">
+.pt{position:fixed;inset:0;z-index:999;pointer-events:none;overflow:hidden}
+.pt b{position:absolute;inset:0;background:#FF6A00;clip-path:polygon(calc(50% - 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% + 0.0vmax),calc(50% - 0.0vmax) calc(50% + 0.0vmax));will-change:clip-path}
+.pt svg{position:absolute;left:50%;top:50%;width:132px;margin:-40px 0 0 -66px;opacity:0}
+.pt svg .s{transform-box:fill-box;transform-origin:left center}
+html.pt-out .pt b{transition:clip-path .5s cubic-bezier(.7,0,.25,1);clip-path:polygon(calc(50% - 155.0vmax) calc(50% - 125.0vmax),calc(50% + 205.0vmax) calc(50% - 125.0vmax),calc(50% + 155.0vmax) calc(50% + 125.0vmax),calc(50% - 205.0vmax) calc(50% + 125.0vmax))}
+html.pt-out .pt svg{transition:opacity .15s .05s;opacity:1}
+html.pt-in .pt b{animation:ptin .6s cubic-bezier(.7,0,.25,1) .3s both}
+html.pt-in .pt svg{animation:ptlogo .42s both}
+html.pt-in .pt svg .s{animation:ptline .3s cubic-bezier(.2,.8,.2,1) both}
+html.pt-in .pt svg .s2{animation-delay:.05s}
+html.pt-in .pt svg .s3{animation-delay:.1s}
+@keyframes ptin{from{clip-path:polygon(evenodd,-10% -10%,110% -10%,110% 110%,-10% 110%,-10% -10%,calc(50% - 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% - 0.0vmax),calc(50% + 0.0vmax) calc(50% + 0.0vmax),calc(50% - 0.0vmax) calc(50% + 0.0vmax),calc(50% - 0.0vmax) calc(50% - 0.0vmax))}to{clip-path:polygon(evenodd,-10% -10%,110% -10%,110% 110%,-10% 110%,-10% -10%,calc(50% - 155.0vmax) calc(50% - 125.0vmax),calc(50% + 205.0vmax) calc(50% - 125.0vmax),calc(50% + 155.0vmax) calc(50% + 125.0vmax),calc(50% - 205.0vmax) calc(50% + 125.0vmax),calc(50% - 155.0vmax) calc(50% - 125.0vmax))}}
+@keyframes ptlogo{0%,70%{opacity:1}100%{opacity:0}}
+@keyframes ptline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.pt{display:none}}
+</style>
+<script>try{if(sessionStorage.getItem('ptx')==='1'){sessionStorage.removeItem('ptx');document.documentElement.classList.add('pt-in')}}catch(e){}</script>
 </head>
 <body>
+<div class="pt" aria-hidden="true"><b></b><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 100"><polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/><polygon class="s" points="9.2,54 153.2,54 152.6,57 8.6,57" fill="#FF6A00"/><polygon class="s s2" points="6.4,68 150.4,68 150,70 6,70" fill="#FF6A00"/><polygon class="s s3" points="3.6,82 147.6,82 147.3,83.5 3.3,83.5" fill="#FF6A00"/><g fill="#F5F7FA"><polygon points="29,17 103,17 102,22 28,22"/><polygon points="43,26 101,26 100,31 42,31"/><polygon points="63,31 78,31 68,82 53,82"/><polygon points="109,17 124,17 114,82 99,82"/></g></svg></div>
+
 <header>
   <a href="../" class="logo" aria-label="TAIGA ISHII トップへ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
   <polygon points="20,0 164,0 144,100 0,100" fill="#2456D8"/>
@@ -217,7 +237,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   </g>
   <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
 </svg></a>
-  <nav><a href="../#profile">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../#results">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="./" class="on">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../#schedule">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../#gallery">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="../support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="#contact">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on&&on.offsetLeft+on.offsetWidth>n.clientWidth)n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2;function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
+  <nav><a href="../profile/">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="./" class="on">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="../support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="#contact">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on&&on.offsetLeft+on.offsetWidth>n.clientWidth)n.scrollLeft=on.offsetLeft-(n.clientWidth-on.offsetWidth)/2;function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
 </header>
 
 <div class="top-wrap">
@@ -237,7 +257,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
     <small>NEXT RACE</small>
     <h2>11.22 SUN　FJ1500 もてぎ・菅生 最終戦</h2>
     <p>モビリティリゾートもてぎで開催されます。現地での応援をよろしくお願いします！</p>
-    <a href="../#schedule">スケジュールを見る</a>
+    <a href="../schedule/">スケジュールを見る</a>
   </div>
   <div class="filters reveal" role="tablist" aria-label="年ごとのレポート">
     <button type="button" data-f="2026">2026</button><button type="button" data-f="2025">2025</button><button type="button" data-f="2024">2024</button>
@@ -248,7 +268,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   <h2 class="yr reveal" id="y2026">2026</h2>
 
   <article class="rp" id="r20261107">
-    <div class="photo reveal"><img decoding="async" srcset="../img/rp_2026_mg13-800.webp 800w, ../img/rp_2026_mg13-1080.webp 1080w, ../img/rp_2026_mg13.webp 1400w" sizes="(max-width:720px) 90vw, 480px" src="../img/rp_2026_mg13.webp" alt="もてぎのストレートを走る石井大雅（#47）" loading="lazy"></div>
+    <div class="photo reveal"><img decoding="async" srcset="../img/rp_2026_mg13-800.webp 800w, ../img/rp_2026_mg13-1080.webp 1080w, ../img/rp_2026_mg13.webp 1400w" sizes="(max-width:720px) 90vw, 480px" src="../img/rp_2026_mg13.webp" alt="もてぎのストレートを走る石井大雅" loading="lazy"></div>
     <div class="reveal">
       <div class="date">2026.11.07 SAT – 11.08 SUN</div>
       <h2><i class="tag f4">FIA-F4</i>第13・14戦</h2>
@@ -301,7 +321,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   </article>
 
   <article class="rp" id="r20260919">
-    <div class="photo reveal"><img decoding="async" srcset="../img/p2-800.webp 800w, ../img/p2-1080.webp 1080w, ../img/p2.webp 1491w" sizes="(max-width:720px) 90vw, 480px" src="../img/p2.webp" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></div>
+    <div class="photo reveal"><img decoding="async" srcset="../img/p2-800.webp 800w, ../img/p2-1080.webp 1080w, ../img/p2.webp 1491w" sizes="(max-width:720px) 90vw, 480px" src="../img/p2.webp" alt="FIA-F4を走る石井大雅" loading="lazy"></div>
     <div class="reveal">
       <div class="date">2026.09.19 SAT – 09.20 SUN</div>
       <h2><i class="tag f4">FIA-F4</i>第9・10戦</h2>
@@ -331,7 +351,7 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   </article>
 
   <article class="rp" id="r20260801">
-    <div class="photo reveal"><img decoding="async" src="../img/p3.webp" alt="FIA-F4を走る石井大雅（#47）" loading="lazy"></div>
+    <div class="photo reveal"><img decoding="async" src="../img/p3.webp" alt="FIA-F4を走る石井大雅" loading="lazy"></div>
     <div class="reveal">
       <div class="date">2026.08.01 SAT – 08.02 SUN</div>
       <h2><i class="tag f4">FIA-F4</i>第5・6戦</h2>
@@ -637,6 +657,43 @@ nav a .ja{font-size:9px;font-weight:500;letter-spacing:.05em;margin-top:3px;opac
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll);
   frame();
+})();
+</script>
+<script id="next-js">
+(function(){
+  var box=document.querySelector('main .next'); if(!box||!window.fetch) return;
+  fetch('../schedule/',{cache:'no-cache'}).then(function(r){return r.text()}).then(function(h){
+    var d=new DOMParser().parseFromString(h,'text/html'),now=new Date();now.setHours(0,0,0,0);
+    var y=now.getFullYear(),pm=0,hit=null,cs=d.querySelectorAll('#schedule .card');
+    if(cs.length){var f=(cs[0].querySelector('small').textContent.match(/\d{1,2}/)||[1])[0]; if(+f-(now.getMonth()+1)>6) y--;}
+    [].some.call(cs,function(c){
+      var sm=c.querySelector('small').textContent,ds=sm.match(/\d{1,2}\.\d{1,2}/g)||[];if(!ds.length)return false;
+      var a=ds[0].split('.'),b=(ds[1]||ds[0]).split('.');if(+a[0]<pm)y++;pm=+a[0];
+      var en=new Date(+b[0]<+a[0]?y+1:y,+b[0]-1,+b[1]);
+      if(en>=now){hit={sm:sm.trim(),h:c.querySelector('h3').textContent.trim(),p:c.querySelector('p').textContent.trim()};return true}return false});
+    if(!hit){box.style.display='none';return}
+    box.querySelector('h2').textContent=hit.sm+'　'+hit.h;
+    box.querySelector('p').textContent=hit.p+'で開催されます。現地での応援をよろしくお願いします！';
+  }).catch(function(){});
+})();
+</script>
+<script id="pt-js">
+(function(){
+  var d=document.documentElement;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.addEventListener('click',function(e){
+    if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+    var a=e.target.closest&&e.target.closest('a'); if(!a||a.target==='_blank'||a.hasAttribute('download')) return;
+    var u; try{u=new URL(a.href,location.href)}catch(x){return}
+    if(u.origin!==location.origin) return;
+    if(u.pathname===location.pathname&&u.search===location.search) return; // 同じページ内の移動はそのまま
+    e.preventDefault();
+    try{sessionStorage.setItem('ptx','1')}catch(x){}
+    d.classList.remove('pt-in'); d.classList.add('pt-out');
+    setTimeout(function(){location.href=u.href},680);
+  });
+  // 「戻る」で帰ってきたときに帯が残らないように
+  addEventListener('pageshow',function(e){if(e.persisted){d.classList.remove('pt-out');try{sessionStorage.removeItem('ptx')}catch(x){}}});
 })();
 </script>
 </body>
