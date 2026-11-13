@@ -930,9 +930,11 @@ html.pt-in .pt svg .s3{animation-delay:.1s}
     if(u.pathname===location.pathname&&u.search===location.search) return; // 同じページ内の移動はそのまま
     e.preventDefault();
     try{sessionStorage.setItem('ptx','1')}catch(x){}
-    d.classList.remove('pt-in'); d.classList.add('pt-out');
+    d.classList.remove('pt-in'); void d.offsetWidth; d.classList.add('pt-out'); // いったん素の状態に戻してから閉じる（2回目以降の移動で急に色が変わるのを防ぐ）
     setTimeout(function(){location.href=u.href},720);
   });
+  // 入ってくる動きが終わったら目印を外しておく
+  if(d.classList.contains('pt-in')) setTimeout(function(){if(!d.classList.contains('pt-out'))d.classList.remove('pt-in')},1300);
   // 「戻る」で帰ってきたときに帯が残らないように
   addEventListener('pageshow',function(e){if(e.persisted){d.classList.remove('pt-out');try{sessionStorage.removeItem('ptx')}catch(x){}}});
 })();
