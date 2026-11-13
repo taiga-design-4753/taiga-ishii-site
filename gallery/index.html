@@ -345,7 +345,12 @@ html.blue .best-n,html.blue .toprace .pos{color:#2456D8}
 }
 
 /* ページ分け */
-.hero-wrap{height:118vh!important}
+.hero-wrap{height:auto!important}
+/* タイガ 2026-11-13「この画面に長く残るのがだるい」：写真を止めて見せる区間をなくし、スクロールした分だけすぐ下へ進む。ズームは写真が上へ流れていく間にかける */
+@supports (animation-timeline:view()){
+html:not(.still) .hero picture,html:not(.still) .hero .shade{animation-range:exit 0% exit 100%!important}
+html:not(.still) .hero-text{animation:none!important}
+}
 .page-top{padding-top:110px}
 .nextlast{padding-top:56px;padding-bottom:24px}
 .tick{display:grid;grid-template-columns:1fr 1fr;border:1px solid #2a2a2a}
