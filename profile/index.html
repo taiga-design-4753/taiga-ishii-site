@@ -421,6 +421,24 @@ html.pt-in .pt svg .s3{animation-delay:.08s}
 @media (prefers-reduced-motion:reduce){.pt{display:none}}
 </style>
 <script>try{var _p=sessionStorage.getItem('ptx');if(_p){sessionStorage.removeItem('ptx');_p=_p.split('|');if(Date.now()-(+_p[0])<5000&&_p[1]===location.pathname)document.documentElement.classList.add('pt-in')}}catch(e){}</script>
+<style id="menu-css">
+.mbtn{display:none}
+@media(max-width:720px){
+header::after{content:none!important}
+.mbtn{display:flex;align-items:center;gap:10px;flex:none;min-height:44px;padding:0 4px 0 12px;margin:0;background:none;border:0;color:var(--white);font:inherit;font-size:13px;font-weight:700;letter-spacing:.08em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,106,0,.3)}
+.mbtn i{display:block;position:relative;width:22px;height:14px}
+.mbtn i b{position:absolute;left:0;right:0;height:2px;background:var(--orange);transition:transform .2s,opacity .2s}
+.mbtn i b:nth-child(1){top:0}.mbtn i b:nth-child(2){top:6px}.mbtn i b:nth-child(3){top:12px}
+html.menu-open .mbtn i b:nth-child(1){transform:translateY(6px) rotate(45deg)}
+html.menu-open .mbtn i b:nth-child(2){opacity:0}
+html.menu-open .mbtn i b:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+header nav{display:none!important;position:fixed;left:0;right:0;top:var(--mt,70px);bottom:0;z-index:9;flex-direction:column;gap:0!important;padding:6px 6vw calc(40px + env(safe-area-inset-bottom,0px));background:#0b0b0b;overflow-x:hidden!important;overflow-y:auto;-webkit-mask-image:none!important;mask-image:none!important;overscroll-behavior:contain}
+html.menu-open header nav{display:flex!important}
+html.menu-open,html.menu-open body{overflow:hidden}
+header nav a{flex-direction:row!important;justify-content:space-between!important;align-items:center;flex:none;min-height:62px!important;padding:0 4px;border-bottom:1px solid #2a2a2a;font-size:20px;font-weight:700;letter-spacing:.08em}
+header nav a .ja{font-size:13px!important;margin:0!important;opacity:.7;letter-spacing:.05em}
+}
+</style>
 <style id="tap-css">@media (hover:none){header nav a:not(.on):hover{color:inherit}}header nav a,header a.logo{touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,106,0,.3)}header nav{overscroll-behavior-x:contain}header nav a:active{color:var(--orange)}</style>
 </head>
 <body>
@@ -453,7 +471,7 @@ html.pt-in .pt svg .s3{animation-delay:.08s}
   </g>
   <polygon points="192,74 242,74 241.2,78 191.2,78" fill="#FF6A00"/>
 </svg></a>
-  <nav><a href="../">HOME<span class="ja" lang="ja">ホーム</span></a><a href="../profile/" class="on" aria-current="page">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="../report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="../support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on){var ol=on.offsetLeft-n.offsetLeft;if(ol+on.offsetWidth>n.clientWidth)n.scrollLeft=ol-(n.clientWidth-on.offsetWidth)/2;}function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
+  <nav id="gnav"><a href="../">HOME<span class="ja" lang="ja">ホーム</span></a><a href="../profile/" class="on" aria-current="page">PROFILE<span class="ja" lang="ja">プロフィール</span></a><a href="../results/">RESULTS<span class="ja" lang="ja">リザルト</span></a><a href="../report/">REPORT<span class="ja" lang="ja">レポート</span></a><a href="../schedule/">SCHEDULE<span class="ja" lang="ja">スケジュール</span></a><a href="../gallery/">GALLERY<span class="ja" lang="ja">ギャラリー</span></a><a href="../support/">SUPPORT<span class="ja" lang="ja">支援</span></a><a href="../contact/">CONTACT<span class="ja" lang="ja">お問い合わせ</span></a></nav><button type="button" class="mbtn" aria-expanded="false" aria-controls="gnav"><i aria-hidden="true"><b></b><b></b><b></b></i><span>メニュー</span></button><script>(function(){var n=document.querySelector('header nav'),h=document.querySelector('header');if(!n)return;var on=n.querySelector('a.on');if(on){var ol=on.offsetLeft-n.offsetLeft;if(ol+on.offsetWidth>n.clientWidth)n.scrollLeft=ol-(n.clientWidth-on.offsetWidth)/2;}function u(){var e=n.scrollLeft+n.clientWidth>=n.scrollWidth-4;n.classList.toggle('end',e);h.classList.toggle('navend',e)}n.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u()})();</script>
 </header>
 
 
@@ -744,6 +762,19 @@ html.pt-in .pt svg .s3{animation-delay:.08s}
   // 「戻る」で帰ってきたときに板が残らないように
   function back(){[].forEach.call(document.querySelectorAll('header nav a'),function(x){x.classList.toggle('on',x.hasAttribute('aria-current'))})}
   addEventListener('pageshow',function(e){busy=false;if(e.persisted){back();d.classList.remove('pt-out');d.classList.remove('pt-in');try{sessionStorage.removeItem('ptx')}catch(x){}}});
+})();
+</script>
+<script id="menu-js">
+(function(){
+  var d=document.documentElement,b=document.querySelector('.mbtn'),n=document.getElementById('gnav'),h=document.querySelector('header');
+  if(!b||!n) return;
+  function set(o){d.classList.toggle('menu-open',o);b.setAttribute('aria-expanded',o?'true':'false');b.querySelector('span').textContent=o?'閉じる':'メニュー';
+    if(o)n.style.setProperty('--mt',Math.round(h.getBoundingClientRect().bottom)+'px')}
+  b.addEventListener('click',function(){set(!d.classList.contains('menu-open'))});
+  n.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&a.classList.contains('on')&&a.hasAttribute('aria-current'))set(false)});
+  addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+  addEventListener('pageshow',function(){set(false)});
+  if(window.matchMedia)matchMedia('(min-width:721px)').addEventListener('change',function(){set(false)});
 })();
 </script>
 </body>
