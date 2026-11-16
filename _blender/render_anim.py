@@ -44,6 +44,16 @@ for m in bpy.data.materials:
         bsdf.inputs['Roughness'].default_value = 0.35
         nt.links.new(bsdf.outputs[0], outn.inputs['Surface'])
 
+# halo / roll hoop: satin graphite so it separates from the gloss-black body
+for m in bpy.data.materials:
+    b = next((n for n in m.node_tree.nodes if n.type == 'BSDF_PRINCIPLED'), None) if m.use_nodes else None
+    if b and abs(b.inputs['Metallic'].default_value - 0.75) < 0.01 and abs(b.inputs['Roughness'].default_value - 0.38) < 0.01:
+        b.inputs['Base Color'].default_value = (0.045, 0.047, 0.052, 1)
+        b.inputs['Metallic'].default_value = 0.15; b.inputs['Roughness'].default_value = 0.5
+        try: b.inputs['Coat Weight'].default_value = 0.0
+        except Exception: pass
+        print('halo material', m.name)
+
 # world: dark with a faint gradient
 w = bpy.data.worlds.new('w'); sc.world = w; w.use_nodes = True
 bg = w.node_tree.nodes['Background']
@@ -72,11 +82,12 @@ fl = bpy.context.object
 fm = bpy.data.materials.new('floor'); fm.use_nodes = True
 fb = fm.node_tree.nodes['Principled BSDF']
 fb.inputs['Base Color'].default_value = (0.012, 0.012, 0.014, 1)
-fb.inputs['Roughness'].default_value = 0.16
+fb.inputs['Roughness'].default_value = 0.38
+fb.inputs['Specular IOR Level'].default_value = 0.14
 fl.data.materials.append(fm)
 
 # rim/side lights light only the car (no blobs on the floor)
-for o in (rO, sK):
+for o in (rO, sK, L_sideL):
     o.light_linking.receiver_collection = carcol
 
 # backfaces invisible to the camera (as in the browser version) for single-sided materials,
@@ -96,6 +107,7 @@ for m in bpy.data.materials:
 
 sweepL = bpy.data.lights.new('sweep', 'POINT'); sweepL.shadow_soft_size = 0.3
 sweep = bpy.data.objects.new('sweep', sweepL); sc.collection.objects.link(sweep)
+sweep.light_linking.receiver_collection = carcol
 
 cam = bpy.data.cameras.new('cam'); co = bpy.data.objects.new('cam', cam)
 sc.collection.objects.link(co); sc.camera = co
@@ -160,7 +172,9 @@ for i in range(F0, F1 + 1, STEP):
     cam.dof.focus_distance = max(0.5, (Vector((0.6, -0.3, 0.4)) - co.location).length)
     cam.dof.aperture_fstop = 5.6 + (64 - 5.6) * min(1, e * 3)
     for L, p in base.items(): L.data.energy = p * (0.04 + 0.96 * f['L'])
-    L_top.data.energy *= (1 - 0.5 * e)
+    for L in base: L.data.energy *= (1 - 0.5 * e)
+    L_top.data.energy *= (1 - 0.8 * e)
+    L_front.data.energy *= (1 - 0.9 * e)
     for L, p in rims.items(): L.data.energy = p * f['R']
     sweep.location = (f['sw'][0], -1.2, 1.5); sweepL.energy = 250 * f['sw'][1]
     sc.render.filepath = fp
