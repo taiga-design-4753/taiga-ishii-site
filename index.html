@@ -421,6 +421,10 @@ html.pt-in .pt svg .s3{animation-delay:.08s}
 @media (prefers-reduced-motion:reduce){.pt{display:none}}
 </style>
 <script>try{var _p=sessionStorage.getItem('ptx');if(_p){sessionStorage.removeItem('ptx');_p=_p.split('|');if(Date.now()-(+_p[0])<5000&&_p[1]===location.pathname)document.documentElement.classList.add('pt-in')}}catch(e){}</script>
+<style id="hv-css">
+.hero picture video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;opacity:0;transition:opacity .9s ease;pointer-events:none}
+.hero picture video.on{opacity:1}
+</style>
 <style id="menu-css">
 .mbtn,.msns,.mbg,.mnext,.mlast{display:none}
 @media(max-width:720px){
@@ -513,7 +517,7 @@ html.menu-open .mlast,html.menu-open .msns{transition:opacity .35s .66s}
 
 <div class="hero-wrap" id="top">
   <div class="hero">
-    <picture><source media="(max-width:720px)" srcset="img/p2.webp"><img decoding="async" fetchpriority="high" src="img/hero.webp" alt="石井大雅" style="object-position:45% 50%"></picture><div class="shade" aria-hidden="true"></div>
+    <picture><source media="(max-width:720px)" srcset="img/p2.webp"><img decoding="async" fetchpriority="high" src="img/hero.webp" alt="石井大雅" style="object-position:45% 50%"><video class="hvid" muted playsinline loop preload="none" aria-hidden="true" tabindex="-1"></video></picture><div class="shade" aria-hidden="true"></div>
     <div class="hero-text">
       <h1 class="hlogo"><span class="sr">石井大雅（TAIGA ISHII）</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 482 124" aria-hidden="true">
         <defs><linearGradient id="hShine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="hMk"><polygon points="20,0 164,0 144,100 0,100"/></clipPath></defs>
@@ -905,7 +909,26 @@ html.menu-open .mlast,html.menu-open .msns{transition:opacity .35s .66s}
     }
   }).catch(function(){});
 })();
-</script><script id="pt-js">
+</script><script id="hv-js">
+(function(){
+  var v = document.querySelector('.hvid'); if (!v) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var c = navigator.connection || {};
+  if (c.saveData || /(^|-)(slow-2g|2g|3g)$/.test(c.effectiveType || '')) return;
+  function go(){
+    v.src = matchMedia('(max-width:720px)').matches ? 'vid/hero_sp.mp4' : 'vid/hero_pc.mp4';
+    v.muted = true;
+    v.addEventListener('playing', function(){ v.classList.add('on'); }, {once: true});
+    function play(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+    play();
+    var w = document.querySelector('.hero-wrap');
+    if (w && 'IntersectionObserver' in window) new IntersectionObserver(function(es){ es[0].isIntersecting ? play() : v.pause(); }).observe(w);
+    document.addEventListener('visibilitychange', function(){ document.hidden ? v.pause() : play(); });
+  }
+  if (document.readyState === 'complete') setTimeout(go, 300); else addEventListener('load', function(){ setTimeout(go, 300); });
+})();
+</script>
+<script id="pt-js">
 (function(){
   var d=document.documentElement, busy=false;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
