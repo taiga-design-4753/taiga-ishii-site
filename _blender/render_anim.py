@@ -55,10 +55,45 @@ for m in bpy.data.materials:
         except Exception: pass
         print('halo material', m.name)
 
+# livery experiments (env LIVERY=white|blue|orange)
+import os
+LV = os.environ.get('LIVERY')
+cols = {'white': (0.80, 0.80, 0.82), 'blue': (0.017, 0.07, 0.62), 'orange': (0.80, 0.16, 0.012)}
+if LV in cols:
+    for m in bpy.data.materials:
+        b = next((n for n in m.node_tree.nodes if n.type == 'BSDF_PRINCIPLED'), None) if m.use_nodes else None
+        if b and abs(b.inputs['Metallic'].default_value - 0.55) < 0.01 and abs(b.inputs['Roughness'].default_value - 0.24) < 0.01:
+            b.inputs['Base Color'].default_value = cols[LV] + (1,)
+            b.inputs['Metallic'].default_value = 0.25; b.inputs['Roughness'].default_value = 0.22
+            print('livery', m.name)
+
 # world: dark with a faint gradient
 w = bpy.data.worlds.new('w'); sc.world = w; w.use_nodes = True
 bg = w.node_tree.nodes['Background']
 bg.inputs[0].default_value = (0.012, 0.013, 0.016, 1); bg.inputs[1].default_value = 1.0
+
+# BG=mix : orange and blue blended backdrop (smoky), bright near the horizon, dark overhead
+if os.environ.get('BG', 'mix') == 'mix':
+    nt = w.node_tree; N = nt.nodes; Lk = nt.links.new
+    BGS = float(os.environ.get('BGS', '0.35'))
+    tc = N.new('ShaderNodeTexCoord'); sep = N.new('ShaderNodeSeparateXYZ'); Lk(tc.outputs['Generated'], sep.inputs[0])
+    noi = N.new('ShaderNodeTexNoise'); noi.inputs['Scale'].default_value = 2.4; noi.inputs['Detail'].default_value = 4.0
+    Lk(tc.outputs['Generated'], noi.inputs['Vector'])
+    at = N.new('ShaderNodeMath'); at.operation = 'ARCTAN2'; Lk(sep.outputs['Y'], at.inputs[0]); Lk(sep.outputs['X'], at.inputs[1])
+    ma = N.new('ShaderNodeMath'); ma.operation = 'MULTIPLY_ADD'; Lk(at.outputs[0], ma.inputs[0]); ma.inputs[1].default_value = float(os.environ.get('BGN', '3')); ma.inputs[2].default_value = float(os.environ.get('BGPH', '1.5'))
+    sn = N.new('ShaderNodeMath'); sn.operation = 'SINE'; Lk(ma.outputs[0], sn.inputs[0])
+    m1 = N.new('ShaderNodeMath'); m1.operation = 'MULTIPLY_ADD'; Lk(sn.outputs[0], m1.inputs[0]); m1.inputs[1].default_value = 0.38; m1.inputs[2].default_value = 0.2
+    m2 = N.new('ShaderNodeMath'); m2.operation = 'MULTIPLY_ADD'; Lk(noi.outputs['Fac'], m2.inputs[0]); m2.inputs[1].default_value = 0.6; Lk(m1.outputs[0], m2.inputs[2])
+    ramp = N.new('ShaderNodeValToRGB'); cr = ramp.color_ramp
+    cr.elements[0].position = 0.22; cr.elements[0].color = (0.01, 0.07, 0.85, 1)
+    cr.elements[1].position = 0.78; cr.elements[1].color = (1.0, 0.24, 0.01, 1)
+    e = cr.elements.new(0.5); e.color = (0.22, 0.05, 0.22, 1)
+    Lk(m2.outputs[0], ramp.inputs[0])
+    ab = N.new('ShaderNodeMath'); ab.operation = 'ABSOLUTE'; Lk(sep.outputs['Z'], ab.inputs[0])
+    mr = N.new('ShaderNodeMapRange'); Lk(ab.outputs[0], mr.inputs[0]); mr.inputs[1].default_value = 0.0; mr.inputs[2].default_value = 0.55; mr.inputs[3].default_value = 1.0; mr.inputs[4].default_value = 0.0
+    pw = N.new('ShaderNodeMath'); pw.operation = 'POWER'; Lk(mr.outputs[0], pw.inputs[0]); pw.inputs[1].default_value = 1.6
+    st = N.new('ShaderNodeMath'); st.operation = 'MULTIPLY_ADD'; Lk(pw.outputs[0], st.inputs[0]); st.inputs[1].default_value = BGS; st.inputs[2].default_value = 0.02
+    Lk(ramp.outputs[0], bg.inputs[0]); Lk(st.outputs[0], bg.inputs[1])
 
 def area(name, pos, target, size, power, color=(1, 1, 1), sy=None):
     L = bpy.data.lights.new(name, 'AREA'); L.energy = power; L.color = color
@@ -86,6 +121,13 @@ fb.inputs['Base Color'].default_value = (0.012, 0.012, 0.014, 1)
 fb.inputs['Roughness'].default_value = 0.38
 fb.inputs['Specular IOR Level'].default_value = 0.14
 fl.data.materials.append(fm)
+if os.environ.get('BG', 'mix') == 'mix':
+    nt = fm.node_tree; N = nt.nodes
+    outn = next(n for n in N if n.type == 'OUTPUT_MATERIAL')
+    tc = N.new('ShaderNodeTexCoord'); ln = N.new('ShaderNodeVectorMath'); ln.operation = 'LENGTH'; nt.links.new(tc.outputs['Object'], ln.inputs[0])
+    mr = N.new('ShaderNodeMapRange'); mr.interpolation_type = 'SMOOTHSTEP'; nt.links.new(ln.outputs['Value'], mr.inputs[0]); mr.inputs[1].default_value = 4.0; mr.inputs[2].default_value = 16.0
+    tr = N.new('ShaderNodeBsdfTransparent'); mx = N.new('ShaderNodeMixShader')
+    nt.links.new(mr.outputs[0], mx.inputs[0]); nt.links.new(fb.outputs[0], mx.inputs[1]); nt.links.new(tr.outputs[0], mx.inputs[2]); nt.links.new(mx.outputs[0], outn.inputs['Surface'])
 
 # rim/side lights light only the car (no blobs on the floor)
 for o in (rO, sK, L_sideL):
