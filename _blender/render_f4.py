@@ -12,6 +12,9 @@ force_cpu = len(a) > 5 and a[5] == 'cpu'
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=glb)
 sc = bpy.context.scene
+carcol = bpy.data.collections.new('car_only')
+for o in list(sc.objects):
+    carcol.objects.link(o)
 
 def T(x, y, z):  # three.js (x fwd, y up, z side) -> Blender (x, -z, y)
     return Vector((x, -z, y))
@@ -53,9 +56,10 @@ def area(name, pos, target, size, power, color=(1, 1, 1), sy=None):
 area('top',   (0.2, 4.2, 0.0),  (0.2, 0, 0),    7.0, 420, sy=2.2)      # long overhead softbox
 area('sideL', (0.5, 1.6, 4.5),  (0.2, 0.4, 0),  6.0, 160,  sy=1.0)      # strip, camera side
 area('sideR', (0.5, 1.8, -4.5), (0.2, 0.4, 0),  6.0, 90,  sy=1.0)
+sK = area('sideKey',(-4.0, 1.4, 2.4), (-0.4, 0.45, 0.5), 3.5, 120, sy=0.5)
 area('front', (6.0, 2.2, 1.0),  (0.5, 0.4, 0),  2.5, 70)
-area('rimB',  (-5.0, 1.6, -2.5),(0, 0.5, 0),    2.0, 500, color=(0.25, 0.42, 1.0))
-area('rimO',  (-4.5, 1.2, 3.2), (0, 0.5, 0),    1.6, 130,  color=(1.0, 0.45, 0.12))
+area('rimB',  (-5.0, 1.6, -2.5),(0, 0.5, 0),    2.0, 300, color=(0.25, 0.42, 1.0))
+rO = area('rimO',  (-3.2, 2.6, -3.4),(0, 0.5, 0),    0.6, 40,   color=(1.0, 0.45, 0.12))
 
 # floor: dark glossy
 bpy.ops.mesh.primitive_plane_add(size=80, location=(0, 0, 0))
@@ -65,6 +69,10 @@ fb = fm.node_tree.nodes['Principled BSDF']
 fb.inputs['Base Color'].default_value = (0.012, 0.012, 0.014, 1)
 fb.inputs['Roughness'].default_value = 0.16
 fl.data.materials.append(fm)
+
+# rim/side lights light only the car (no blobs on the floor)
+for o in (rO, sK):
+    o.light_linking.receiver_collection = carcol
 
 # camera at the hero pose
 cam = bpy.data.cameras.new('cam'); co = bpy.data.objects.new('cam', cam)
