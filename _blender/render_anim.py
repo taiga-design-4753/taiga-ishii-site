@@ -42,6 +42,7 @@ for m in bpy.data.materials:
         if tex: nt.links.new(tex.outputs['Color'], bsdf.inputs['Base Color'])
         elif col: bsdf.inputs['Base Color'].default_value = col
         bsdf.inputs['Roughness'].default_value = 0.35
+        if tex and m.blend_method != 'OPAQUE': nt.links.new(tex.outputs['Alpha'], bsdf.inputs['Alpha'])
         nt.links.new(bsdf.outputs[0], outn.inputs['Surface'])
 
 # halo / roll hoop: satin graphite so it separates from the gloss-black body
