@@ -123,7 +123,7 @@ def mth(op, a_, b_=None):
 yw = mth('ABSOLUTE', sep.outputs['Y'])
 line = mth('LESS_THAN', mth('ABSOLUTE', mth('SUBTRACT', yw, 2.3)), 0.07)
 xw = sep.outputs['X']
-dash = mth('LESS_THAN', mth('MODULO', mth('ADD', xw, 10000.0), 8.0), 4.0)
+dash = mth('LESS_THAN', mth('MODULO', mth('ADD', xw, 10000.0), 24.0), 10.0)
 mark = mth('MULTIPLY', line, dash)
 mix = N.new('ShaderNodeMix'); mix.data_type = 'RGBA'
 Lk(mark, mix.inputs['Factor']); Lk(rp.outputs[0], mix.inputs[6]); mix.inputs[7].default_value = (0.55, 0.55, 0.55, 1)
@@ -152,10 +152,10 @@ def gate_row(name, col, strength, x0, spacing, count, boxes):
 gate_boxes = [((0, 0, 3.4), (0.35, 7.0, 0.06)),
               ((0, 3.6, 1.2), (0.25, 0.05, 2.4)), ((0, -3.6, 1.2), (0.25, 0.05, 2.4))]
 side_boxes = [((0, 3.4, 0.08), (2.4, 0.04, 0.04)), ((0, -3.4, 0.08), (2.4, 0.04, 0.04))]
-gate_row('g_orange', (1.0, 0.28, 0.02), 30.0, 14.0, 27.0, 38, gate_boxes)
-gate_row('g_blue',   (0.05, 0.25, 1.0), 30.0, 23.0, 27.0, 38, gate_boxes)
-gate_row('g_white',  (1.0, 0.95, 0.9),  3.0, 32.0, 27.0, 38, gate_boxes)
-gate_row('g_side',   (1.0, 0.35, 0.05), 20.0, 6.0, 4.5, 230, side_boxes)
+gate_row('g_orange', (1.0, 0.28, 0.02), 12.0, 14.0, 54.0, 20, gate_boxes)
+gate_row('g_blue',   (0.05, 0.25, 1.0), 14.0, 32.0, 54.0, 20, gate_boxes)
+gate_row('g_white',  (1.0, 0.95, 0.9),  2.0, 50.0, 54.0, 20, gate_boxes)
+gate_row('g_side',   (1.0, 0.35, 0.05), 8.0, 500.0, 4.5, 1, [((0, 3.4, 0.08), (1200.0, 0.04, 0.04)), ((0, -3.4, 0.08), (1200.0, 0.04, 0.04))])
 
 for f in range(0, NF + 1):
     road.location = (-dist[f], 0, 0); road.keyframe_insert('location', index=0, frame=f)
@@ -168,6 +168,14 @@ for wo in WHEELS: key_linear(wo)
 for e, s in GATE_EMIT:
     for f, val in ((0, 0.0), (80, 0.0), (86, s * 1.6), (92, s)):
         e.inputs[1].default_value = val; e.inputs[1].keyframe_insert('default_value', frame=f)
+
+# tunnel walls: dark concrete that catches the gate light, so the frame is not empty black
+wm = bpy.data.materials.new('wall'); wm.use_nodes = True
+wb = wm.node_tree.nodes['Principled BSDF']; wb.inputs['Base Color'].default_value = (0.05, 0.05, 0.055, 1); wb.inputs['Roughness'].default_value = 0.6
+for sy in (4.0, -4.0):
+    bpy.ops.mesh.primitive_plane_add(size=1, location=(0, sy, 2.5), rotation=(1.5708, 0, 0))
+    o = bpy.context.object; o.scale = (3000, 5, 1); o.data.materials.append(wm)
+bpy.ops.mesh.primitive_plane_add(size=1, location=(0, 0, 5.0)); o = bpy.context.object; o.scale = (3000, 8, 1); o.data.materials.append(wm)
 
 # ---------- studio lights (fixed to the car) ----------
 def T(x, y, z): return Vector((x, -z, y))  # three.js -> Blender
@@ -190,7 +198,7 @@ for o, p in ((L_top, 260), (L_sideL, 90), (L_rimB, 260), (rO, 40)):
 # sweeping strip light for the opening reveal (front -> back)
 sw = area('sweep', (2.8, 1.6, 1.8), (0, 0.3, 0), 0.25, 0, sy=2.5)
 sw.light_linking.receiver_collection = carcol
-for f, x, p in ((0, 3.2, 0), (6, 3.0, 260), (70, -2.6, 260), (78, -3.0, 0)):
+for f, x, p in ((0, 3.2, 0), (6, 3.0, 140), (70, -2.6, 140), (78, -3.0, 0)):
     sw.location.x = x; sw.keyframe_insert('location', index=0, frame=f)
     sw.data.energy = p; sw.data.keyframe_insert('energy', frame=f)
 # rain light blinks once moving
@@ -211,18 +219,17 @@ cam.sensor_fit = 'HORIZONTAL'; cam.sensor_width = 36; cam.clip_start = 0.03
 cam.dof.use_dof = True; cam.dof.focus_object = tgt
 # (frame, cam pos, target, lens(mm, horizontal 36mm), f-stop)
 KEYS = [
-  # 1 studio reveal: low slide along the left side, nose -> cockpit
-  [(0, (3.4, -1.45, 0.34), (2.0, 0.0, 0.2), 32, 2.4), (74, (1.0, -1.5, 0.52), (-0.2, 0.0, 0.5), 32, 2.4)],
+  # 1 studio reveal: head-on, slow push in while the strip light passes over
+  [(0, (5.8, -0.3, 0.40), (2.0, 0.0, 0.5), 58, 2.8), (74, (4.4, 0.0, 0.48), (2.0, 0.0, 0.5), 58, 2.8)],
   # 2 front wheel close-up, wheels start turning, gates flick on
   [(75, (1.75, -1.75, 0.30), (1.41, -0.74, 0.28), 34, 2.8), (134, (1.55, -1.62, 0.34), (1.41, -0.74, 0.30), 34, 2.8)],
-  # 3 front 3/4 low tracking at speed
-  [(135, (3.9, -1.9, 0.36), (0.3, 0.0, 0.42), 26, 5.6), (254, (3.1, -1.25, 0.28), (0.1, 0.0, 0.42), 26, 5.6)],
-  # 4 high orbit, side -> rear
-  [(255, (1.2, -3.4, 2.6), (0.0, 0.0, 0.35), 20, 6.0), (300, (-1.6, -2.9, 2.3), (0.0, 0.0, 0.40), 20, 6.0),
-   (344, (-3.6, -0.8, 1.8), (0.0, 0.0, 0.45), 20, 6.0)],
-  # 5 behind the rear wing, car pulls away from camera
-  [(345, (-3.0, 0.5, 0.42), (-1.9, 0.0, 0.72), 26, 3.2), (380, (-4.2, 0.4, 0.5), (-1.6, 0.0, 0.65), 26, 4.0),
-   (419, (-7.0, 0.25, 0.7), (-0.8, 0.0, 0.55), 26, 6.0)],
+  # 3 head-on low tracking at speed, drifting across the nose
+  [(135, (5.4, -1.0, 0.30), (1.4, 0.0, 0.5), 52, 4.0), (254, (4.5, 0.6, 0.28), (1.4, 0.0, 0.5), 52, 4.0)],
+  # 4 straight overhead (car nose-up in the vertical frame), road rushing underneath
+  [(255, (-1.0, -0.15, 3.1), (0.25, 0.0, 0.0), 17, 8.0), (344, (-0.35, 0.15, 3.1), (0.25, 0.0, 0.0), 17, 8.0)],
+  # 5 chase from behind, car pulls away
+  [(345, (-4.6, 0.45, 0.55), (-1.5, 0.0, 0.55), 40, 4.0), (385, (-5.2, 0.2, 0.6), (-1.5, 0.0, 0.55), 40, 4.0),
+   (419, (-8.0, 0.0, 0.8), (-1.5, 0.0, 0.55), 40, 5.6)],
 ]
 for shot in KEYS:
     for i, (f, p, t, lens, fs) in enumerate(shot):
@@ -248,7 +255,7 @@ cfc = fix_cuts(co)
 # hand-held shake in the high-speed shots
 for fc in cfc:
     if fc.data_path == 'location':
-        nm = fc.modifiers.new('NOISE'); nm.scale = 6.0; nm.strength = 0.03 if fc.array_index == 2 else 0.018
+        nm = fc.modifiers.new('NOISE'); nm.scale = 6.0; nm.strength = 0.012 if fc.array_index == 2 else 0.008
         nm.phase = fc.array_index * 7.0
         nm.use_restricted_range = True; nm.frame_start = 135; nm.frame_end = 254; nm.blend_in = 15; nm.blend_out = 5
 
